@@ -10,7 +10,7 @@ import SwiftUI
 struct SelectLevelView: View {
     
     @State var difficultyLevel: Int = 1
-        
+    
     var body: some View {
         
         Spacer()
@@ -44,13 +44,13 @@ struct SelectLevelView: View {
         Spacer()
         
         NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
-            Text("시작").font(.title)
+            Text("시작하기")
         }
-        
+    
         Spacer()
         
-    }
-    
+}
+
     func printLevel() -> String {
         switch difficultyLevel {
         case 1:
@@ -62,7 +62,6 @@ struct SelectLevelView: View {
         default:
             "난이도를 선택해주세요."
         }
-   
     }
 }
 
