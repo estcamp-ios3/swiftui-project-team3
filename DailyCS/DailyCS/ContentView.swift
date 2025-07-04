@@ -20,7 +20,7 @@ struct ContentView: View {
             }
 
             Tab("점수", systemImage: "calendar") {
-                Text("점수")
+                QuestionResultView()
             }
 
         }
