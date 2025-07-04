@@ -9,8 +9,13 @@ import SwiftUI
 
 struct SelectLevelView: View {
     var body: some View {
-        NavigationLink(destination: CSQuestionView()) {
+        
+        Button(action: {}) {
             Text("쉬움")
+        }
+        
+        NavigationLink(destination: CSQuestionView()) {
+            Text("시작")
         }
         
     }
