@@ -14,6 +14,7 @@ struct SelectLevelView: View {
     var body: some View {
         
         Spacer()
+        Spacer()
         
         Text("난이도 선택").font(.largeTitle).bold(true)
             .padding(.bottom, 50)
@@ -42,7 +43,7 @@ struct SelectLevelView: View {
         
         Spacer()
         
-        NavigationLink(destination: CSQuestionView()) {
+        NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
             Text("시작").font(.title)
         }
         

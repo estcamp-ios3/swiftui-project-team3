@@ -9,8 +9,10 @@ import SwiftUI
 
 struct CSQuestionView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       
     }
+    
+    var difficultyLevel: Int = 1
 }
 
 #Preview {
