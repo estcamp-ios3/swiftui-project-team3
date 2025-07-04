@@ -26,6 +26,7 @@ struct CSQuestionView: View {
             NavigationLink(destination:CSQuestionView()) {
                 Text("다음 문제")
             }
+            
         }
     }
     
