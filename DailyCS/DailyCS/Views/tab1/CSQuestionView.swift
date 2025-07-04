@@ -11,12 +11,12 @@ struct CSQuestionView: View {
     
     var difficultyLevel: Int = 1
     
-    var questionData: QuestionData = QuestionData(id: 1, level: 1, question: "문제 내용", answerList: ["a", "b", "c", "d"], answerNumber: 1)
+    var questionData: QuestionData = QuestionData(id: 1, level: 1, questionText: "문제 내용", answerList: ["a", "b", "c", "d"], answerNumber: 1)
     
     var body: some View {
         VStack {
             
-            Text(questionData.question)
+            Text(questionData.questionText)
                 .font(.headline)
             
             List(questionData.answerList, id: \.self) { item in
