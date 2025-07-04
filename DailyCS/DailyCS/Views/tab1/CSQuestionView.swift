@@ -34,7 +34,7 @@ struct CSQuestionView: View {
             NavigationLink(destination:CSQuestionView()) {
                 Text("다음 문제")
                     .frame(width: 200, height: 50)
-                    .background(Color.green)
+                    .background(Color.mainGreen)
                     .foregroundColor(.white)
                     .cornerRadius(20)
             }
