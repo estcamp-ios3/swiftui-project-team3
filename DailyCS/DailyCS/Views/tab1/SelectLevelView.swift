@@ -24,18 +24,30 @@ struct SelectLevelView: View {
         }
         .padding()
         .font(.title)
+        .frame(width: 200, height: 50)
+        .background(Color.green)
+        .foregroundColor(.white)
+        .cornerRadius(20)
         
         Button("보통") {
             difficultyLevel = 2
         }
         .padding()
         .font(.title)
+        .frame(width: 200, height: 50)
+        .background(Color.green)
+        .foregroundColor(.white)
+        .cornerRadius(20)
         
         Button("어려움") {
             difficultyLevel = 3
         }
         .padding()
         .font(.title)
+        .frame(width: 200, height: 50)
+        .background(Color.green)
+        .foregroundColor(.white)
+        .cornerRadius(20)
         
         Spacer()
         
@@ -45,6 +57,12 @@ struct SelectLevelView: View {
         
         NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
             Text("시작하기")
+                .padding()
+                .font(.title)
+                .frame(width: 200, height: 50)
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(20)
         }
     
         Spacer()

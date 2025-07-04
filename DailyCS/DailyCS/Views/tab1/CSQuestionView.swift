@@ -16,20 +16,30 @@ struct CSQuestionView: View {
     var body: some View {
         VStack {
             
-            Text(questionData.questionText)
-                .font(.headline)
+            VStack(alignment: .leading) {
+                
+                Text(questionData.questionText)
+                    .font(.headline)
+                
+                List(questionData.answerList, id: \.self) { item in
+                    
+                    Button(item){
+                        
+                    }
+                    
+                }
             
-            List(questionData.answerList, id: \.self) { item in
-                Text(item)
-            }
+            }.padding(30)
             
             NavigationLink(destination:CSQuestionView()) {
                 Text("다음 문제")
+                    .frame(width: 200, height: 50)
+                    .background(Color.green)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
             }
-            
         }
     }
-    
 }
 
 #Preview {
