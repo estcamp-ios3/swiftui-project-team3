@@ -9,9 +9,18 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        Text("하루 CS")
-            .font(.largeTitle)
-            .bold(true)
+        NavigationStack {
+            Text("하루 CS")
+                .font(.largeTitle)
+                .bold(true)
+            NavigationLink(destination: SelectLevelView()) {
+                Text("문제 풀기")
+            }
+            .frame(width: 200, height: 50)
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+        }
     }
 }
 
