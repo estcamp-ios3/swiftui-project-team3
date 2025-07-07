@@ -23,6 +23,7 @@ struct CSQuestionView: View {
         VStack {
             VStack(alignment: .leading) {
                 
+                Text ("난이도 : \(difficultyLevel)")
                 Text(questionDatas[ChosenQuestion].question)
                     .font(.headline)
                 
@@ -30,6 +31,7 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 1
+                        yourAnswers[ChosenQuestion] = yourAnswer
                         }
                     ) {
                         Text("1. " + questionDatas[ChosenQuestion].answers(index: 1))
@@ -37,6 +39,7 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 2
+                        yourAnswers[ChosenQuestion] = yourAnswer
                     }
                     ) {
                         Text("2. " + questionDatas[ChosenQuestion].answers(index: 2))
@@ -44,6 +47,7 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 3
+                        yourAnswers[ChosenQuestion] = yourAnswer
                     }
                     ) {
                         Text("3. " + questionDatas[ChosenQuestion].answers(index: 3))
@@ -51,6 +55,7 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 4
+                        yourAnswers[ChosenQuestion] = yourAnswer
                     })
                     {
                         Text("4. " + questionDatas[ChosenQuestion].answers(index: 4))
@@ -77,7 +82,7 @@ struct CSQuestionView: View {
         }
         else{
             
-            NavigationLink(destination: QuestionResultView()) {
+            NavigationLink(destination: QuestionResultView(questionDatas: [], yourAnswers: [])) {
                     Text("다 풀었어요~")
             }
         }
