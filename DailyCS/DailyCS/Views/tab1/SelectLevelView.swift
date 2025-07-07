@@ -26,6 +26,7 @@ struct SelectLevelView: View {
           dataManager.fetchCSQuestion { datas in
             print(datas)
           }
+          
         }
         .padding()
         .font(.title)

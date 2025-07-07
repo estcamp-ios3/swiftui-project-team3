@@ -7,6 +7,7 @@
 
 import Foundation
 import Supabase
+import SwiftData
 
 
 /// 서버의 함수로 넘겨줄 파라미터
@@ -47,6 +48,46 @@ class CSDataManager {
         completion([])
       }
     }
+    
   }
+   
+  
+  /// 질문 저장하기
+  /// - Parameters:
+  ///   - question: 저장할 질문
+  func saveQuestion(_ modelContext: ModelContext, question: QuestionData) {
+    let saveQuestion: QuestionDataForSave = QuestionDataForSave(with: question)
+    
+    modelContext.insert(saveQuestion)
+    
+    do {
+      try modelContext.save()
+    }catch{
+      print("질문 저장에 실패했어요.\(error)")
+    }
+  }
+  
+  
+  /// 로컬에서 질문 가져오기
+  func fetchQuestions(_ modelContext: ModelContext) -> [QuestionDataForSave]? {
+    let descriptor = FetchDescriptor<QuestionDataForSave>()
+    
+    return (try? modelContext.fetch(descriptor))
+  }
+  
+  
+  /// 저장된 질문 삭제하기
+  /// - Parameters:
+  ///   - data: 삭제할 질문
+  func deleteQuestion(_ modelContext: ModelContext, data: QuestionDataForSave) {
+    modelContext.delete(data)
+    do {
+      try modelContext.save()
+    }catch{
+      print("질문 삭제에 실패했어요.\(error)")
+    }
+  }
+
+  
 }
 
