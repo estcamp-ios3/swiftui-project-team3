@@ -12,7 +12,7 @@ struct ContentView: View {
     var body: some View {
         TabView {
             Tab("메인", systemImage: "house") {
-                MainView()
+                CSQuestionView()
             }
             
             // level1, 2, 3버튼이 있는 view를 만들어 그 뷰안에서 보여주는게 나을지도
