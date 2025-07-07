@@ -20,74 +20,78 @@ struct CSQuestionView: View {
     
 
     var body: some View {
-        VStack {
-            VStack(alignment: .leading) {
-                
-                Text ("난이도 : \(difficultyLevel)")
-                Text(questionDatas[ChosenQuestion].question)
-                    .font(.headline)
-                
-                List {
+        ZStack
+        {
+            Color.veryLightGreenBackground.ignoresSafeArea()
+            
+            VStack {
+                VStack(alignment: .leading) {
                     
-                    Button(action: {
-                        yourAnswer = 1
-                        yourAnswers[ChosenQuestion] = yourAnswer
+                    Text ("난이도 : \(difficultyLevel)")
+                    Text(questionDatas[ChosenQuestion].question)
+                        .font(.headline)
+                    
+                    List {
+                        
+                        Button(action: {
+                            yourAnswer = 1
+                            yourAnswers[ChosenQuestion] = yourAnswer
                         }
-                    ) {
-                        Text("1. " + questionDatas[ChosenQuestion].answers(index: 1))
+                        ) {
+                            Text("1. " + questionDatas[ChosenQuestion].answers(index: 1))
+                        }
+                        
+                        Button(action: {
+                            yourAnswer = 2
+                            yourAnswers[ChosenQuestion] = yourAnswer
+                        }
+                        ) {
+                            Text("2. " + questionDatas[ChosenQuestion].answers(index: 2))
+                        }
+                        
+                        Button(action: {
+                            yourAnswer = 3
+                            yourAnswers[ChosenQuestion] = yourAnswer
+                        }
+                        ) {
+                            Text("3. " + questionDatas[ChosenQuestion].answers(index: 3))
+                        }
+                        
+                        Button(action: {
+                            yourAnswer = 4
+                            yourAnswers[ChosenQuestion] = yourAnswer
+                        })
+                        {
+                            Text("4. " + questionDatas[ChosenQuestion].answers(index: 4))
+                        }
                     }
-                    
-                    Button(action: {
-                        yourAnswer = 2
-                        yourAnswers[ChosenQuestion] = yourAnswer
-                    }
-                    ) {
-                        Text("2. " + questionDatas[ChosenQuestion].answers(index: 2))
-                    }
-                    
-                    Button(action: {
-                        yourAnswer = 3
-                        yourAnswers[ChosenQuestion] = yourAnswer
-                    }
-                    ) {
-                        Text("3. " + questionDatas[ChosenQuestion].answers(index: 3))
-                    }
-                    
-                    Button(action: {
-                        yourAnswer = 4
-                        yourAnswers[ChosenQuestion] = yourAnswer
-                    })
-                    {
-                        Text("4. " + questionDatas[ChosenQuestion].answers(index: 4))
+                    if yourAnswer != 0 {
+                        Text("Your answer: \(yourAnswer). \(questionDatas[ChosenQuestion].answers(index: yourAnswer))")
                     }
                 }
-                if yourAnswer != 0 {
-                    Text("Your answer: \(yourAnswer). \(questionDatas[ChosenQuestion].answers(index: yourAnswer))")
+                
+            }.padding(30)
+            
+            if ChosenQuestion < questionDatas.count - 1 {
+                Button(action:{
+                    yourAnswer = 0
+                    ChosenQuestion += 1
+                }) {
+                    Text("다음 문제")
+                        .frame(width: 200, height: 50)
+                        .background(Color.mainGreen)
+                        .foregroundColor(.white)
+                        .cornerRadius(20)
                 }
             }
-            
-        }.padding(30)
-        
-        if ChosenQuestion < questionDatas.count - 1 {
-            Button(action:{
-                yourAnswer = 0
-                ChosenQuestion += 1
-            }) {
-                Text("다음 문제")
-                    .frame(width: 200, height: 50)
-                    .background(Color.mainGreen)
-                    .foregroundColor(.white)
-                    .cornerRadius(20)
-            }
-        }
-        else{
-            
-            NavigationLink(destination: QuestionResultView(questionDatas: [], yourAnswers: [])) {
+            else{
+                
+                NavigationLink(destination: QuestionResultView(questionDatas: [], yourAnswers: [])) {
                     Text("다 풀었어요~")
+                }
             }
         }
     }
-
 }
   
   #Preview {
