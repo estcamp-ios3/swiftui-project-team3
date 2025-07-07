@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SelectLevelView: View {
-    
+  let dataManager: CSDataManager = CSDataManager()
+  
     @State var difficultyLevel: Int = 1
     
     var body: some View {
@@ -21,6 +22,10 @@ struct SelectLevelView: View {
         
         Button("쉬움") {
             difficultyLevel = 1
+       
+          dataManager.fetchCSQuestion { datas in
+            print(datas)
+          }
         }
         .padding()
         .font(.title)

@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  DailyCS
+//
+//  Created by 최용헌 on 7/6/25.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+SUPABASE_KEY =  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im12ZG54Z2drdnR0emFsa3BoaWdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE2MDU1NTUsImV4cCI6MjA2NzE4MTU1NX0.Sbi89vujBJYopLc1CUbxaNymn9s_WUKFXJk6GYxf328
