@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F9AEAE02E1BBC5700F884D8 /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
@@ -14,7 +15,6 @@
 		EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */; };
 		EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */; };
 		EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA52E17CA4F00B7924E /* ContentView.swift */; };
-		EE4F8CB42E17CA4F00B7924E /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */; };
 		EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */; };
 		EE4F8CB62E17CA4F00B7924E /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */; };
 		EE4F8CB72E17CA4F00B7924E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */; };
@@ -28,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 		EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionDetailView.swift; sourceTree = "<group>"; };
 		EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionListView.swift; sourceTree = "<group>"; };
 		EE4F8CA52E17CA4F00B7924E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
 		EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCSApp.swift; sourceTree = "<group>"; };
 		EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
@@ -97,6 +97,7 @@
 			children = (
 				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
 				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
+				4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */,
 			);
 			path = tab1;
 			sourceTree = "<group>";
@@ -116,7 +117,6 @@
 				EE4F8CA52E17CA4F00B7924E /* ContentView.swift */,
 				EE4F8CA02E17CA4F00B7924E /* tab1 */,
 				EE4F8CA42E17CA4F00B7924E /* tab2 */,
-				EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,9 +231,9 @@
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
+				4F9AEAE02E1BBC5700F884D8 /* QuestionResultView.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
 				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
-				EE4F8CB42E17CA4F00B7924E /* QuestionResultView.swift in Sources */,
 				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
 				EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */,
 				EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */,
