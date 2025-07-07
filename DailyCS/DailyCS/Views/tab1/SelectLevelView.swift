@@ -26,7 +26,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 1 ? .yellow :.white)
             .cornerRadius(20)
             
             
@@ -36,7 +36,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 2 ? .yellow :.white)
             .cornerRadius(20)
             
             Button("3단계") {
@@ -45,7 +45,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 3 ? .yellow :.white)
             .cornerRadius(20)
             
             Button("4단계") {
@@ -54,7 +54,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 4 ? .yellow :.white)
             .cornerRadius(20)
             
             Button("5단계") {
@@ -63,7 +63,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 5 ? .yellow :.white)
             .cornerRadius(20)
             
             Button("6단계") {
@@ -72,7 +72,7 @@ struct SelectLevelView: View {
             .padding()
             .frame(width: 200, height: 50)
             .background(Color.mainGreen)
-            .foregroundColor(.white)
+            .foregroundColor(difficultyLevel == 6 ? .yellow :.white)
             .cornerRadius(20)
             
         }.font(.title)
