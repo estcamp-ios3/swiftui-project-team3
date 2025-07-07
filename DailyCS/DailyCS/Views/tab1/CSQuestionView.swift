@@ -15,15 +15,11 @@ struct CSQuestionView: View {
     @State var yourAnswer: Int = 0
     @State var ChosenQuestion: Int = 0
     var difficultyLevel: Int = 1
+    
     var questionDatas = questionDummyDatas.shuffled().prefix(5)
-    @State var correctAnswer: [Bool] = Array(repeating: false, count: 5)
+    @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
     
-    func checkAnswer() {
-        if yourAnswer == questionDatas[ChosenQuestion].answer_number {
-            correctAnswer[ChosenQuestion] = true
-        }
-    }
-    
+
     var body: some View {
         VStack {
             
@@ -36,7 +32,6 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 1
-                        checkAnswer()
                         }
                     ) {
                         Text("1. " + questionDatas[ChosenQuestion].answers(index: 1))
@@ -44,7 +39,6 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 2
-                        checkAnswer()
                     }
                     ) {
                         Text("2. " + questionDatas[ChosenQuestion].answers(index: 2))
@@ -52,7 +46,6 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 3
-                        checkAnswer()
                     }
                     ) {
                         Text("3. " + questionDatas[ChosenQuestion].answers(index: 3))
@@ -60,7 +53,6 @@ struct CSQuestionView: View {
                     
                     Button(action: {
                         yourAnswer = 4
-                        checkAnswer()
                     })
                     {
                         Text("4. " + questionDatas[ChosenQuestion].answers(index: 4))
