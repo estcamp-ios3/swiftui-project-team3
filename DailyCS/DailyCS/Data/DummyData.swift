@@ -7,6 +7,15 @@
 
 import Foundation
 
+struct DummyQuestionData: Codable {
+    let id: Int
+    let level: Int
+    let questionText: String
+    let answerList: [String]
+    let answerNumber: Int
+}
+
+
 let questionDummyDatas: [QuestionData] = [
   
     QuestionData(

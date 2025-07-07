@@ -30,7 +30,7 @@ struct SelectLevelView: View {
         .padding()
         .font(.title)
         .frame(width: 200, height: 50)
-        .background(Color.green)
+        .background(Color.mainGreen)
         .foregroundColor(.white)
         .cornerRadius(20)
         
@@ -40,7 +40,7 @@ struct SelectLevelView: View {
         .padding()
         .font(.title)
         .frame(width: 200, height: 50)
-        .background(Color.green)
+        .background(Color.mainGreen)
         .foregroundColor(.white)
         .cornerRadius(20)
         
@@ -50,7 +50,7 @@ struct SelectLevelView: View {
         .padding()
         .font(.title)
         .frame(width: 200, height: 50)
-        .background(Color.green)
+        .background(Color.mainGreen)
         .foregroundColor(.white)
         .cornerRadius(20)
         
@@ -65,7 +65,7 @@ struct SelectLevelView: View {
                 .padding()
                 .font(.title)
                 .frame(width: 200, height: 50)
-                .background(Color.green)
+                .background(Color.mainGreen)
                 .foregroundColor(.white)
                 .cornerRadius(20)
         }

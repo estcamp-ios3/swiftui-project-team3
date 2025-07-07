@@ -17,7 +17,7 @@ struct MainView: View {
                 Text("문제 풀기")
             }
             .frame(width: 200, height: 50)
-            .background(Color.green)
+            .background(Color.mainGreen)
             .foregroundColor(.white)
             .cornerRadius(20)
         }
