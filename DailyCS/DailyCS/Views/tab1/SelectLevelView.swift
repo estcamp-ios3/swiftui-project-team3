@@ -99,6 +99,12 @@ struct SelectLevelView: View {
             "보통"
         case 3:
             "어려움"
+        case 4:
+            "4단계 설명"
+        case 5:
+            "5단계 설명"
+        case 6:
+            "6단계 설명"
         default:
             "난이도를 선택해주세요."
         }
