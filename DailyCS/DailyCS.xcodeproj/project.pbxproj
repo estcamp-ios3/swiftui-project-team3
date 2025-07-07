@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0725542E1B929800086878 /* EntireQuestionsView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAE2E17CA4F00B7924E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9E2E17CA4F00B7924E /* MainView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EE0725542E1B929800086878 /* EntireQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionsView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -62,6 +64,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0725532E1B928400086878 /* Tab3 */ = {
+			isa = PBXGroup;
+			children = (
+				EE0725542E1B929800086878 /* EntireQuestionsView.swift */,
+			);
+			path = Tab3;
+			sourceTree = "<group>";
+		};
 		EE4F8C092E17786200B7924E = {
 			isa = PBXGroup;
 			children = (
@@ -107,8 +117,8 @@
 		EE4F8CA42E17CA4F00B7924E /* tab2 */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
 				EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */,
+				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
 			);
 			path = tab2;
 			sourceTree = "<group>";
@@ -120,6 +130,7 @@
 				EE4F8CA02E17CA4F00B7924E /* tab1 */,
 				EE4F8CA42E17CA4F00B7924E /* tab2 */,
 				EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */,
+				EE0725532E1B928400086878 /* Tab3 */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,6 +243,7 @@
 				EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */,
 				EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */,
 				EE4F8CAE2E17CA4F00B7924E /* MainView.swift in Sources */,
+				EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */,
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
