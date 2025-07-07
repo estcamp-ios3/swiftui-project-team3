@@ -9,35 +9,72 @@ import SwiftUI
 
 struct SavedQuestionListView: View {
     
-    private var questionLevel: [Int: [QuestionData]] {
-        Dictionary(grouping: questions, by: {$0.level})
+    @State private var savedQuestions: [QuestionData] = questions
+    private var allLevels: [Int] {
+        Array(Set(savedQuestions.map { $0.level })).sorted()
     }
-    private var sortedLevels: [Int] {
-        questionLevel.keys.sorted()
+    @State private var selectedLevel: Int? = nil
+    private var filteredQuestions: [QuestionData] {
+        if let level = selectedLevel {
+            return savedQuestions.filter { $0.level == level }
+        } else {
+            return questions
+        }
     }
     
-        var body: some View {
+    var body: some View {
         
-            NavigationStack {
-                // level마다 리스트가 많아질수록 level2, 3내용을 보려면 계속 스크롤을 해야하니 세분화하는 버튼으로 만드는게 나을지도
-                List {
-                    ForEach(sortedLevels, id: \.self) { level in
-                        Section(header: Text("Level \(level)")) {
-                            ForEach(questionLevel[level] ?? []) { question in
-                                NavigationLink {
-                                    SavedQuestionDetailView(question: question)
-                                } label: {
+        NavigationStack {
+            
+            ZStack {
+                Color.veryLightGreenBackground
+                    .ignoresSafeArea()
+                
+                VStack {
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 10) {
+                            Button("전체") {
+                                selectedLevel = nil
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .tint(.correctGreen)
+                            .font(.headline)
+                            
+                            ForEach(allLevels, id: \.self) { level in
+                                Button("Level \(level)"){
+                                    selectedLevel = level
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .tint(.correctGreen)
+                                .font(.headline)
+                            }
+                        }
+                        .padding(.horizontal, 10)
+                    }
+                    .padding(.bottom, 10)
+                    
+                    List {
+                        ForEach(filteredQuestions) { question in
+                            NavigationLink {
+                                SavedQuestionDetailView(question: question, allQuestions: $savedQuestions)
+                            } label: {
+                                VStack(alignment: .leading) {
+                                    Text("Level \(question.level)")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
                                     Text(question.questionText)
                                         .font(.headline)
                                 }
                             }
                         }
                     }
+                    .navigationTitle(Text("저장한 문제 리스트"))
+                    .navigationBarTitleDisplayMode(.large)
+                    .listStyle(.plain)
                 }
-                .navigationTitle(Text("저장한 문제 리스트"))
-                .navigationBarTitleDisplayMode(.large)
-                .listStyle(.plain)
             }
+        }
     }
 }
 
