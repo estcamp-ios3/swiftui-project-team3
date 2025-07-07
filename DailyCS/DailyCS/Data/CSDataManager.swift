@@ -39,7 +39,6 @@ class CSDataManager {
         // 디코딩하기
         let questions = try JSONDecoder().decode([QuestionData].self, from: data)
 
-        
         completion(questions)
     
       } catch {

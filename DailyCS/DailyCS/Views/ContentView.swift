@@ -17,7 +17,7 @@ struct ContentView: View {
             
             // level1, 2, 3버튼이 있는 view를 만들어 그 뷰안에서 보여주는게 나을지도
             Tab("저장", systemImage: "note.text.badge.plus") {
-//                SavedQuestionListView()
+                SavedQuestionListView()
               Text("1")
             }
 

@@ -22,6 +22,7 @@ struct SelectLevelView: View {
         
         Button("쉬움") {
             difficultyLevel = 1
+       
           dataManager.fetchCSQuestion { datas in
             print(datas)
           }
@@ -58,17 +59,17 @@ struct SelectLevelView: View {
         Text("현재 난이도 : " + printLevel())
         
         Spacer()
-//        
-//        NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
-//            Text("시작하기")
-//                .padding()
-//                .font(.title)
-//                .frame(width: 200, height: 50)
-//                .background(Color.green)
-//                .foregroundColor(.white)
-//                .cornerRadius(20)
-//        }
-//    
+        
+        NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
+            Text("시작하기")
+                .padding()
+                .font(.title)
+                .frame(width: 200, height: 50)
+                .background(Color.green)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+        }
+    
         Spacer()
         
 }
