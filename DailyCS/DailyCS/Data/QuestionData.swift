@@ -16,4 +16,20 @@ struct QuestionData: Codable {
   let answer2: String
   let answer3: String
   let answer4: String
+  
+    func answers(index: Int) -> String
+    {
+        switch index {
+        case 1:
+            return answer1
+        case 2:
+            return answer2
+        case 3:
+            return answer3
+        case 4:
+            return answer4
+        default:
+            return "wrong number"
+        }
+    }
 }

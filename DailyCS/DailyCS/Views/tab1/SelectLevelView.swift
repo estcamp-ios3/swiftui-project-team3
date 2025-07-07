@@ -94,11 +94,11 @@ struct SelectLevelView: View {
     func printLevel() -> String {
         switch difficultyLevel {
         case 1:
-            "쉬움"
+            "1단계 설명"
         case 2:
-            "보통"
+            "2단계 설명"
         case 3:
-            "어려움"
+            "3단계 설명"
         case 4:
             "4단계 설명"
         case 5:

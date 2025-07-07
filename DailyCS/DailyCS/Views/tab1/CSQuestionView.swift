@@ -12,23 +12,23 @@ struct CSQuestionView: View {
   
   var difficultyLevel: Int = 1
   
-  var questionData: DummyQuestionData = DummyQuestionData(id: 1, level: 1, questionText: "문제 내용", answerList: ["a", "b", "c", "d"], answerNumber: 1)
-  
+    var questionData = questionDummyDatas.shuffled().prefix(5)
+    
   var body: some View {
     VStack {
       
       VStack(alignment: .leading) {
         
-        Text(questionData.questionText)
+        Text(questionDummyDatas[0].question)
           .font(.headline)
         
-        List(questionData.answerList, id: \.self) { item in
-          
-          Button(item){
-            
-          }
-          
+        List {
+            Text("1. " + questionDummyDatas[0].answers(index: 1))
+            Text("2. " + questionDummyDatas[0].answers(index: 2))
+            Text("3. " + questionDummyDatas[0].answers(index: 3))
+            Text("4. " + questionDummyDatas[0].answers(index: 4))
         }
+    }
         
       }.padding(30)
       
@@ -41,7 +41,7 @@ struct CSQuestionView: View {
       }
     }
   }
-}
+
   
   #Preview {
     CSQuestionView()
