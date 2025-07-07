@@ -20,7 +20,7 @@ struct SelectLevelView: View {
             .padding(.bottom, 50)
             
         VStack {
-            Button("1단계") {
+            Button("Easy") {
                 difficultyLevel = 1
             }
             .padding()
@@ -30,7 +30,7 @@ struct SelectLevelView: View {
             .cornerRadius(20)
             
             
-            Button("2단계") {
+            Button("Normal") {
                 difficultyLevel = 2
             }
             .padding()
@@ -39,7 +39,7 @@ struct SelectLevelView: View {
             .foregroundColor(difficultyLevel == 2 ? .yellow :.white)
             .cornerRadius(20)
             
-            Button("3단계") {
+            Button("Hard") {
                 difficultyLevel = 3
             }
             .padding()
@@ -47,34 +47,33 @@ struct SelectLevelView: View {
             .background(Color.mainGreen)
             .foregroundColor(difficultyLevel == 3 ? .yellow :.white)
             .cornerRadius(20)
-            
-            Button("4단계") {
-                difficultyLevel = 4
-            }
-            .padding()
-            .frame(width: 200, height: 50)
-            .background(Color.mainGreen)
-            .foregroundColor(difficultyLevel == 4 ? .yellow :.white)
-            .cornerRadius(20)
-            
-            Button("5단계") {
-                difficultyLevel = 5
-            }
-            .padding()
-            .frame(width: 200, height: 50)
-            .background(Color.mainGreen)
-            .foregroundColor(difficultyLevel == 5 ? .yellow :.white)
-            .cornerRadius(20)
-            
-            Button("6단계") {
-                difficultyLevel = 6
-            }
-            .padding()
-            .frame(width: 200, height: 50)
-            .background(Color.mainGreen)
-            .foregroundColor(difficultyLevel == 6 ? .yellow :.white)
-            .cornerRadius(20)
-            
+           
+//            Button("4단계") {
+//                difficultyLevel = 4
+//            }
+//            .padding()
+//            .frame(width: 200, height: 50)
+//            .background(Color.mainGreen)
+//            .foregroundColor(difficultyLevel == 4 ? .yellow :.white)
+//            .cornerRadius(20)
+//            
+//            Button("5단계") {
+//                difficultyLevel = 5
+//            }
+//            .padding()
+//            .frame(width: 200, height: 50)
+//            .background(Color.mainGreen)
+//            .foregroundColor(difficultyLevel == 5 ? .yellow :.white)
+//            .cornerRadius(20)
+//            
+//            Button("6단계") {
+//                difficultyLevel = 6
+//            }
+//            .padding()
+//            .frame(width: 200, height: 50)
+//            .background(Color.mainGreen)
+//            .foregroundColor(difficultyLevel == 6 ? .yellow :.white)
+//            .cornerRadius(20)            
         }.font(.title)
         
         Spacer()
