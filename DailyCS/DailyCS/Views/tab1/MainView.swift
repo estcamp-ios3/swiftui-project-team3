@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct MainView: View {
-    var body: some View {
+  var resultList: [(Int,Bool)] = [(1,false), (2,true)]
+  
+  var body: some View {
         NavigationStack {
             Text("하루 CS")
                 .font(.largeTitle)

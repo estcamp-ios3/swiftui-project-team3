@@ -18,6 +18,7 @@ struct SelectLevelView: View {
         
         Text("난이도 선택").font(.largeTitle).bold(true)
             .padding(.bottom, 50)
+
             
         VStack {
             Button("Easy") {
@@ -75,6 +76,7 @@ struct SelectLevelView: View {
 //            .foregroundColor(difficultyLevel == 6 ? .yellow :.white)
 //            .cornerRadius(20)            
         }.font(.title)
+
         
         Spacer()
         

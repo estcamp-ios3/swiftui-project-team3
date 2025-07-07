@@ -11,6 +11,7 @@ import SwiftUI
 
 
 struct CSQuestionView: View {
+//<<<<<<< HEAD
     
     @State var yourAnswer: Int = 0
     @State var ChosenQuestion: Int = 0
@@ -22,6 +23,25 @@ struct CSQuestionView: View {
 
     var body: some View {
         VStack {
+//=======
+//  @Environment(\.modelContext) private var modelContext
+//
+//  var difficultyLevel: Int = 1
+//  
+//  var questionData: DummyQuestionData = DummyQuestionData(id: 1, level: 1, questionText: "문제 내용", answerList: ["a", "b", "c", "d"], answerNumber: 1)
+//  
+//  var body: some View {
+//    VStack {
+//      
+//      VStack(alignment: .leading) {
+//        
+//        Text(questionData.questionText)
+//          .font(.headline)
+//        
+//        List(questionData.answerList, id: \.self) { item in
+//          
+//          Button(item){
+//>>>>>>> 31818f2274bbf2c00b4a1515d7c26f2365c409ab
             
             VStack(alignment: .leading) {
                 
@@ -78,12 +98,23 @@ struct CSQuestionView: View {
             }
         }
         else{
-            Text("\(5 - correctAnswer.filter({$0}).count)/\(questionDatas.count)")
+            
             NavigationLink(destination: QuestionResultView()) {
                     Text("다 풀었어요~")
             }
         }
     }
+//<<<<<<< HEAD
+//=======
+//  }
+//  
+//  /// 질문 로컬에 저장하기
+//  func saveQuestion(question: QuestionData){
+//    let saveQeustion = QuestionDataForSave(with: question)
+//    
+//    modelContext.insert(saveQeustion)
+//  }
+//>>>>>>> 31818f2274bbf2c00b4a1515d7c26f2365c409ab
 }
   
   #Preview {

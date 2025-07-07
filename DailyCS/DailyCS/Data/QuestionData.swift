@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 struct QuestionData: Codable {
   let id: Int
@@ -32,4 +33,19 @@ struct QuestionData: Codable {
             return "wrong number"
         }
     }
+}
+
+@Model
+class QuestionDataForSave {
+  var id: Int
+  var level: Int
+  var question: String
+  var answer: String
+
+  init(with data: QuestionData) {
+    self.id = data.id
+    self.level = data.level
+    self.question = data.question
+    self.answer = data.answer1
+  }
 }
