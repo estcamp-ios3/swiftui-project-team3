@@ -6,23 +6,58 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
+		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
+		EE4F8CAE2E17CA4F00B7924E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9E2E17CA4F00B7924E /* MainView.swift */; };
+		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
+		EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */; };
+		EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */; };
+		EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */; };
+		EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA52E17CA4F00B7924E /* ContentView.swift */; };
+		EE4F8CB42E17CA4F00B7924E /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */; };
+		EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */; };
+		EE4F8CB62E17CA4F00B7924E /* DummyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */; };
+		EE4F8CB72E17CA4F00B7924E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */; };
+		EE4F8CB82E17CA4F00B7924E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */; };
+		EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CBA2E17CA7B00B7924E /* CSDataManager.swift */; };
+		EE4F8CBE2E17CAB900B7924E /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = EE4F8CBD2E17CAB900B7924E /* Realtime */; };
+		EE4F8CC02E17CAB900B7924E /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = EE4F8CBF2E17CAB900B7924E /* Storage */; };
+		EE4F8CC22E17CAB900B7924E /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = EE4F8CC12E17CAB900B7924E /* Supabase */; };
+		EE4F8CD52E1A21E000B7924E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */; };
+		EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CD82E1A22C900B7924E /* Supabase.swift */; };
+		EE4F8CF12E1B43FF00B7924E /* info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CF02E1B43FF00B7924E /* info.plist */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQuestionView.swift; sourceTree = "<group>"; };
+		EE4F8C9E2E17CA4F00B7924E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLevelView.swift; sourceTree = "<group>"; };
+		EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
+		EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionDetailView.swift; sourceTree = "<group>"; };
+		EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionListView.swift; sourceTree = "<group>"; };
+		EE4F8CA52E17CA4F00B7924E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
+		EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCSApp.swift; sourceTree = "<group>"; };
+		EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyData.swift; sourceTree = "<group>"; };
+		EE4F8CBA2E17CA7B00B7924E /* CSDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDataManager.swift; sourceTree = "<group>"; };
+		EE4F8CD42E1A21E000B7924E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		EE4F8CD82E1A22C900B7924E /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
+		EE4F8CF02E1B43FF00B7924E /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		EE4F8C142E17786200B7924E /* DailyCS */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = DailyCS;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		EE4F8C0F2E17786200B7924E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4F8CC02E17CAB900B7924E /* Storage in Frameworks */,
+				EE4F8CBE2E17CAB900B7924E /* Realtime in Frameworks */,
+				EE4F8CC22E17CAB900B7924E /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +67,7 @@
 		EE4F8C092E17786200B7924E = {
 			isa = PBXGroup;
 			children = (
-				EE4F8C142E17786200B7924E /* DailyCS */,
+				EE4F8CAB2E17CA4F00B7924E /* DailyCS */,
 				EE4F8C132E17786200B7924E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -43,6 +78,78 @@
 				EE4F8C122E17786200B7924E /* DailyCS.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		EE4F8C9A2E17CA4F00B7924E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		EE4F8C9C2E17CA4F00B7924E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EE4F8CA02E17CA4F00B7924E /* tab1 */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8C9E2E17CA4F00B7924E /* MainView.swift */,
+				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
+				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
+			);
+			path = tab1;
+			sourceTree = "<group>";
+		};
+		EE4F8CA42E17CA4F00B7924E /* tab2 */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
+				EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */,
+			);
+			path = tab2;
+			sourceTree = "<group>";
+		};
+		EE4F8CA72E17CA4F00B7924E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8CA52E17CA4F00B7924E /* ContentView.swift */,
+				EE4F8CA02E17CA4F00B7924E /* tab1 */,
+				EE4F8CA42E17CA4F00B7924E /* tab2 */,
+				EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE4F8CAB2E17CA4F00B7924E /* DailyCS */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */,
+				EE4F8C9C2E17CA4F00B7924E /* Preview Content */,
+				EE4F8CA72E17CA4F00B7924E /* Views */,
+				EE4F8CB92E17CA6500B7924E /* Data */,
+				EE4F8C9A2E17CA4F00B7924E /* Extension */,
+				EE4F8CD42E1A21E000B7924E /* Config.xcconfig */,
+				EE4F8CF02E1B43FF00B7924E /* info.plist */,
+				EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */,
+			);
+			path = DailyCS;
+			sourceTree = "<group>";
+		};
+		EE4F8CB92E17CA6500B7924E /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */,
+				EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */,
+				EE4F8CBA2E17CA7B00B7924E /* CSDataManager.swift */,
+				EE4F8CD82E1A22C900B7924E /* Supabase.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -60,11 +167,11 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				EE4F8C142E17786200B7924E /* DailyCS */,
-			);
 			name = DailyCS;
 			packageProductDependencies = (
+				EE4F8CBD2E17CAB900B7924E /* Realtime */,
+				EE4F8CBF2E17CAB900B7924E /* Storage */,
+				EE4F8CC12E17CAB900B7924E /* Supabase */,
 			);
 			productName = DailyCS;
 			productReference = EE4F8C122E17786200B7924E /* DailyCS.app */;
@@ -94,6 +201,9 @@
 			);
 			mainGroup = EE4F8C092E17786200B7924E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				EE4F8CBC2E17CAB900B7924E /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = EE4F8C132E17786200B7924E /* Products */;
 			projectDirPath = "";
@@ -109,6 +219,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4F8CF12E1B43FF00B7924E /* info.plist in Resources */,
+				EE4F8CB72E17CA4F00B7924E /* Preview Assets.xcassets in Resources */,
+				EE4F8CD52E1A21E000B7924E /* Config.xcconfig in Resources */,
+				EE4F8CB82E17CA4F00B7924E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +233,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */,
+				EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */,
+				EE4F8CAE2E17CA4F00B7924E /* MainView.swift in Sources */,
+				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
+				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
+				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
+				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
+				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
+				EE4F8CB42E17CA4F00B7924E /* QuestionResultView.swift in Sources */,
+				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
+				EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */,
+				EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */,
+				EE4F8CB62E17CA4F00B7924E /* DummyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +254,7 @@
 /* Begin XCBuildConfiguration section */
 		EE4F8C1E2E17786400B7924E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -190,6 +318,7 @@
 		};
 		EE4F8C1F2E17786400B7924E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -246,6 +375,7 @@
 		};
 		EE4F8C212E17786400B7924E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -254,11 +384,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DailyCS/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "/Users/yong/Desktop/swiftui-project-team3/DailyCS/DailyCS/info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -274,6 +406,7 @@
 		};
 		EE4F8C222E17786400B7924E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -282,11 +415,13 @@
 				DEVELOPMENT_ASSET_PATHS = "\"DailyCS/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "/Users/yong/Desktop/swiftui-project-team3/DailyCS/DailyCS/info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -322,6 +457,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EE4F8CBC2E17CAB900B7924E /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EE4F8CBD2E17CAB900B7924E /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE4F8CBC2E17CAB900B7924E /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		EE4F8CBF2E17CAB900B7924E /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE4F8CBC2E17CAB900B7924E /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		EE4F8CC12E17CAB900B7924E /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE4F8CBC2E17CAB900B7924E /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EE4F8C0A2E17786200B7924E /* Project object */;
 }
