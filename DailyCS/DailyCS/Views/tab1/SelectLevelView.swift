@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct SelectLevelView: View {
-  let dataManager: CSDataManager = CSDataManager()
-  
+    
     @State var difficultyLevel: Int = 1
     
     var body: some View {
@@ -19,40 +18,64 @@ struct SelectLevelView: View {
         
         Text("난이도 선택").font(.largeTitle).bold(true)
             .padding(.bottom, 50)
-        
-        Button("쉬움") {
-            difficultyLevel = 1
-       
-          dataManager.fetchCSQuestion { datas in
-            print(datas)
-          }
-        }
-        .padding()
-        .font(.title)
-        .frame(width: 200, height: 50)
-        .background(Color.mainGreen)
-        .foregroundColor(.white)
-        .cornerRadius(20)
-        
-        Button("보통") {
-            difficultyLevel = 2
-        }
-        .padding()
-        .font(.title)
-        .frame(width: 200, height: 50)
-        .background(Color.mainGreen)
-        .foregroundColor(.white)
-        .cornerRadius(20)
-        
-        Button("어려움") {
-            difficultyLevel = 3
-        }
-        .padding()
-        .font(.title)
-        .frame(width: 200, height: 50)
-        .background(Color.mainGreen)
-        .foregroundColor(.white)
-        .cornerRadius(20)
+            
+        VStack {
+            Button("1단계") {
+                difficultyLevel = 1
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            
+            Button("2단계") {
+                difficultyLevel = 2
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            Button("3단계") {
+                difficultyLevel = 3
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            Button("4단계") {
+                difficultyLevel = 4
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            Button("5단계") {
+                difficultyLevel = 5
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+            Button("6단계") {
+                difficultyLevel = 6
+            }
+            .padding()
+            .frame(width: 200, height: 50)
+            .background(Color.mainGreen)
+            .foregroundColor(.white)
+            .cornerRadius(20)
+            
+        }.font(.title)
         
         Spacer()
         
@@ -62,12 +85,6 @@ struct SelectLevelView: View {
         
         NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
             Text("시작하기")
-                .padding()
-                .font(.title)
-                .frame(width: 200, height: 50)
-                .background(Color.mainGreen)
-                .foregroundColor(.white)
-                .cornerRadius(20)
         }
     
         Spacer()
