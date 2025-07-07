@@ -16,7 +16,7 @@ struct SavedQuestionDetailView: View {
     
     VStack {
       
-      Text(question.questionText)
+      Text(question.question)
         .font(.title)
         .bold()
         .padding()
@@ -30,7 +30,7 @@ struct SavedQuestionDetailView: View {
         .buttonStyle(.borderedProminent)
         .tint(.green)
       } else {
-        Text("\(question.answerList[question.answerNumber])")
+        Text("\(question.answer1)")
           .font(.title2)
       }
     }
@@ -41,6 +41,6 @@ struct SavedQuestionDetailView: View {
 
 #Preview {
   NavigationStack {
-    SavedQuestionDetailView(question: questions[0])
+    SavedQuestionDetailView(question: QuestionData(id: 1, level: 1, question: "test", answer_number: 1, answer1: "test", answer2: "test", answer3: "test", answer4: "test") )
   }
 }
