@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct DummyQuestionData: Codable {
+struct DummyQuestionData: Codable, Identifiable {
+  var uuid: UUID = UUID()
     let id: Int
     let level: Int
     let questionText: String
