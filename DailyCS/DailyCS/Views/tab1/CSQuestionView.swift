@@ -11,8 +11,6 @@ import SwiftUI
 
 
 struct CSQuestionView: View {
-//<<<<<<< HEAD
-    
     @State var yourAnswer: Int = 0
     @State var ChosenQuestion: Int = 0
     var difficultyLevel: Int = 1
