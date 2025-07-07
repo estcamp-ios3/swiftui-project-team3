@@ -8,7 +8,8 @@
 import Foundation
 import SwiftData
 
-struct QuestionData: Codable {
+struct QuestionData: Codable, Identifiable {
+  var uuid: UUID = UUID()
   let id: Int
   let level: Int
   let question: String
