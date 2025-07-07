@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftData
 
 struct QuestionData: Codable {
   let id: Int
@@ -16,4 +17,19 @@ struct QuestionData: Codable {
   let answer2: String
   let answer3: String
   let answer4: String
+}
+
+@Model
+class QuestionDataForSave {
+  var id: Int
+  var level: Int
+  var question: String
+  var answer: String
+
+  init(with data: QuestionData) {
+    self.id = data.id
+    self.level = data.level
+    self.question = data.question
+    self.answer = data.answer1
+  }
 }

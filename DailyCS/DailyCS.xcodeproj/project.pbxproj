@@ -144,8 +144,8 @@
 		EE4F8CB92E17CA6500B7924E /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */,
 				EE4F8CAA2E17CA4F00B7924E /* DummyData.swift */,
+				EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */,
 				EE4F8CBA2E17CA7B00B7924E /* CSDataManager.swift */,
 				EE4F8CD82E1A22C900B7924E /* Supabase.swift */,
 			);
