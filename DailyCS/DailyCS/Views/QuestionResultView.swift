@@ -7,34 +7,101 @@
 
 import SwiftUI
 
-
 struct QuestionResultView: View {
-    @State var listname: String = ""
+    @State private var moveToSelectLevelView = false
+    
     var body: some View {
-        
-        ScrollView{
-            
-            Spacer(minLength: 30)
-            
-            Text("오늘의 점수")
-                .font(.largeTitle)
-            Text("65 / 100")
-                .font(.largeTitle)
+    
+            NavigationStack {
+                
+                VStack(spacing: 16) {
+                    // ① 닫기 버튼
+                    HStack {
+                        Button(action: {
+                            // 닫기 액션
+                            moveToSelectLevelView = true
+                        }) {
+                            Image(systemName: "xmark")
+                                .font(.title)
+                                .padding()
+                        }
+                        Spacer()
+                    }
+                    
+                    // ② 오늘의 점수
+                    VStack(spacing: 8) {
+                        Text("오늘의 점수")
+                            .font(.headline)
+                        Text("60 / 100")
+                            .font(.title)
+                            .bold()
+                    }
+                    .padding()
+                    
+                    // ③ 틀린 문제 리스트
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("틀린문제 리스트")
+                            .font(.headline)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.gray)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                        Spacer()
+                            .padding(.horizontal)
+                        
+                        ForEach(1...5, id: \.self) { idx in
+                            HStack(alignment: .top, spacing: 12) {
+                                
+                                Text("\(idx)")
+                                    .frame(width: 30, height: 120)
+                                    .background(Color.gray)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(4)
+                                    .padding(.top, 4)
+                                
+                                VStack(alignment: .leading, spacing: 8){
+                                    
+                                    Text("문제 내용")
+                                        .padding(6)
+                                        .background(Color.gray)
+                                        .opacity(0.7)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(4)
+                                    
+                                    Text("선택한 답안 내용")
+                                        .padding(6)
+                                        .background(Color.orange)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(4)
+                                    Text("정답 내용")
+                                        .padding(4)
+                                        .background(Color.green)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(4)
+                                    
+                                }
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(12)
+                            .padding(.horizontal)
+                        
+                    }
+                    
+                }
                 .padding()
-            
-            Spacer(minLength: 40)
-            
-            Text("틀린문제 리스트")
-                .font(.largeTitle)
-            
-            Spacer(minLength: 30)
-            Text("1")
-                .font(.largeTitle)
-            
+                .navigationDestination(isPresented: $moveToSelectLevelView) {
+                    SelectLevelView()
+                }
+            }
         }
-        
-    }
+
 }
-#Preview {
-    QuestionResultView()
+
+struct QuestionResultView_Previews: PreviewProvider {
+    static var previews: some View {
+        QuestionResultView()
+    }
 }

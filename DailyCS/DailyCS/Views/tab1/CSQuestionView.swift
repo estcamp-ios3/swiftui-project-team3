@@ -9,7 +9,8 @@ import SwiftUI
 
 
 struct CSQuestionView: View {
-  
+  @Environment(\.modelContext) private var modelContext
+
   var difficultyLevel: Int = 1
   
   var questionData: DummyQuestionData = DummyQuestionData(id: 1, level: 1, questionText: "문제 내용", answerList: ["a", "b", "c", "d"], answerNumber: 1)
@@ -40,6 +41,13 @@ struct CSQuestionView: View {
           .cornerRadius(20)
       }
     }
+  }
+  
+  /// 질문 로컬에 저장하기
+  func saveQuestion(question: QuestionData){
+    let saveQeustion = QuestionDataForSave(with: question)
+    
+    modelContext.insert(saveQeustion)
   }
 }
   

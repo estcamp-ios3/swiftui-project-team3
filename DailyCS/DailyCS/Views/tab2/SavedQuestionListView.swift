@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SavedQuestionListView: View {
-  
+  @Environment(\.modelContext) private var modelContext
+
   private var questionLevel: [Int: [QuestionData]] {
     Dictionary(grouping: questionDummyDatas, by: {$0.level})
   }
@@ -43,6 +45,9 @@ struct SavedQuestionListView: View {
 //      .listStyle(.plain)
 //    }
   }
+  
+  
+
 }
 
 #Preview {
