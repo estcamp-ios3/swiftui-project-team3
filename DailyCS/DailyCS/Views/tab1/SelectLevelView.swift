@@ -24,38 +24,47 @@ struct SelectLevelView: View {
                             Text("난이도 선택").font(.largeTitle).bold(true)
                             .padding(.bottom, 50)
                         
-                        
-                            Button("Easy") {
-                                difficultyLevel = 1
+                            Button(action: { difficultyLevel = 1}) {
+                                Text("Easy")
+                                    .bold()
+                                    .foregroundColor(difficultyLevel == 1 ? Color.yellow : Color.white)
+                                    .modifier(LevelButtonStyle(color: .correctGreen))
                             }
-                            .foregroundColor(difficultyLevel == 1 ? Color.yellow : Color.white)
-                            .modifier(LevelButtonStyle(color: .correctGreen))
+                            .border(Color.yellow, width : difficultyLevel == 1 ? 5 : 0)
+                            .cornerRadius(5)
                             
-                            
-                            Button("Normal") {
-                                difficultyLevel = 2
+                            Button(action: { difficultyLevel = 2}) {
+                                Text("Normal")
+                                    .bold()
+                                    .foregroundColor(difficultyLevel == 2 ? Color.yellow : Color.white)
+                                    .modifier(LevelButtonStyle(color: .correctGreen))
                             }
-                            .foregroundColor(difficultyLevel == 2 ? Color.yellow : Color.white)
-                            .modifier(LevelButtonStyle(color: .correctGreen))
+                            .border(Color.yellow, width : difficultyLevel == 2 ? 5 : 0)
+                            .cornerRadius(5)
                             
-                            Button("Hard") {
-                                difficultyLevel = 3
+                            Button(action: { difficultyLevel = 3 }) {
+                                Text("Hard")
+                                    .bold()
+                                    .foregroundColor(difficultyLevel == 3 ? Color.yellow : Color.white)
+                                    .modifier(LevelButtonStyle(color: .correctGreen))
                             }
-                            .foregroundColor(difficultyLevel == 3 ? Color.yellow : Color.white)
-                            .modifier(LevelButtonStyle(color: .correctGreen))
+                            .border(Color.yellow, width : difficultyLevel == 3 ? 5 : 0)
+                            .cornerRadius(5)
                             
                         
                         
                         Spacer()
                         
-                        Text("현재 난이도 : " + printLevel())
+//                        Text("현재 난이도 : " + printLevel())
                         
                         Spacer()
                         
-                          Button("시작하기") {
+                            Button(action: {
                             // 레벨은 받아서 수정
                             csDataManager.fetchCSQuestion(level: difficultyLevel)
-                          }
+                            }) {
+                                Text("시작하기").modifier(LevelButtonStyle(color: .correctGreen))
+                            }
                           
                           NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel,
                                                                      questionDatas: $csDataManager.questions),
@@ -79,12 +88,7 @@ struct SelectLevelView: View {
             "2단계 설명"
         case 3:
             "3단계 설명"
-        case 4:
-            "4단계 설명"
-        case 5:
-            "5단계 설명"
-        case 6:
-            "6단계 설명"
+       
         default:
             "난이도를 선택해주세요."
         }
