@@ -9,7 +9,9 @@ import SwiftUI
 
 
 struct ContentView: View {
+    let dataManager = CSDataManager()
     var body: some View {
+        
         
         TabView {
             Tab("메인", systemImage: "house") {

@@ -15,7 +15,8 @@ struct CSQuestionView: View {
     @State var ChosenQuestion: Int = 0
     var difficultyLevel: Int = 1
     
-    var questionDatas = questionDummyDatas.shuffled().prefix(5)
+    var questionDatas: [QuestionData] = questionDummyDatas.shuffled()
+    
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
     
 
@@ -27,7 +28,16 @@ struct CSQuestionView: View {
             VStack {
                 VStack(alignment: .leading) {
                     
-                    Text ("난이도 : \(difficultyLevel)")
+                    HStack {
+                        Text ("난이도 : \(difficultyLevel)")
+                        
+                        Spacer()
+                        
+                        Button("문제 저장") {
+                            
+                        }
+                    }.padding(.horizontal)
+                    
                     Text(questionDatas[ChosenQuestion].question)
                         .font(.headline)
                     
@@ -86,7 +96,7 @@ struct CSQuestionView: View {
             }
             else{
                 
-                NavigationLink(destination: QuestionResultView(questionDatas: [], yourAnswers: [])) {
+                NavigationLink(destination: QuestionResultView(questionDatas: questionDatas, yourAnswers: yourAnswers)) {
                     Text("다 풀었어요~")
                 }
             }
