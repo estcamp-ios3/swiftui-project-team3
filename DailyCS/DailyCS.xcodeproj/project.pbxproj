@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0725542E1B929800086878 /* EntireQuestionsView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
@@ -24,10 +25,11 @@
 		EE4F8CC22E17CAB900B7924E /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = EE4F8CC12E17CAB900B7924E /* Supabase */; };
 		EE4F8CD52E1A21E000B7924E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */; };
 		EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CD82E1A22C900B7924E /* Supabase.swift */; };
+		EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64772E1CA364001AA420 /* QuestionResultView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
+		EE0725542E1B929800086878 /* EntireQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionsView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -43,6 +45,7 @@
 		EE4F8CBA2E17CA7B00B7924E /* CSDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSDataManager.swift; sourceTree = "<group>"; };
 		EE4F8CD42E1A21E000B7924E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE4F8CD82E1A22C900B7924E /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
+		EEEA64772E1CA364001AA420 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +107,7 @@
 			children = (
 				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
 				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
-				4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */,
+				EEEA64772E1CA364001AA420 /* QuestionResultView.swift */,
 			);
 			path = tab1;
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 				EE4F8CA52E17CA4F00B7924E /* ContentView.swift */,
 				EE4F8CA02E17CA4F00B7924E /* tab1 */,
 				EE4F8CA42E17CA4F00B7924E /* tab2 */,
+				EE0725532E1B928400086878 /* Tab3 */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -236,9 +240,10 @@
 				EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */,
 				EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */,
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
+				EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */,
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
+				EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
-				4F9AEAE02E1BBC5700F884D8 /* QuestionResultView.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
 				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
 				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
