@@ -9,13 +9,17 @@ import SwiftUI
 
 struct QuestionResultView: View {
     @State private var moveToSelectLevelView = false
+    var questionDatas: [QuestionData] = []
+    var yourAnswers: [Int] = []
     
     var body: some View {
     
-            NavigationStack {
+        NavigationStack {
+            ZStack {
+                Color.veryLightGreenBackground.edgesIgnoringSafeArea(.all)
                 
                 VStack(spacing: 16) {
-                    // ① 닫기 버튼
+                    // 닫기 버튼
                     HStack {
                         Button(action: {
                             // 닫기 액션
@@ -28,76 +32,81 @@ struct QuestionResultView: View {
                         Spacer()
                     }
                     
-                    // ② 오늘의 점수
-                    VStack(spacing: 8) {
-                        Text("오늘의 점수")
-                            .font(.headline)
+                    // 오늘의 점수
+                    VStack(spacing: 20) {
+                        Text("오늘의 점수").foregroundColor(.green)
+                            .font(.largeTitle)
+                        
                         Text("60 / 100")
-                            .font(.title)
+                            .font(.title2)
                             .bold()
+                        
                     }
+                    
                     .padding()
                     
-                    // ③ 틀린 문제 리스트
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("틀린문제 리스트")
-                            .font(.headline)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                            .background(Color.gray)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                        Spacer()
-                            .padding(.horizontal)
-                        
-                        ForEach(1...5, id: \.self) { idx in
-                            HStack(alignment: .top, spacing: 12) {
-                                
-                                Text("\(idx)")
-                                    .frame(width: 30, height: 120)
-                                    .background(Color.gray)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(4)
-                                    .padding(.top, 4)
-                                
-                                VStack(alignment: .leading, spacing: 8){
+                    // 틀린 문제 리스트
+                    ScrollView {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("틀린문제 리스트")
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.gray)
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
+                            Spacer()
+                                .padding(.horizontal)
+                            
+                            ForEach(1...5, id: \.self) { idx in
+                                HStack(alignment: .top, spacing: 12) {
                                     
-                                    Text("문제 내용")
-                                        .padding(6)
-                                        .background(Color.gray)
-                                        .opacity(0.7)
+                                    
+                                    Text("\(idx)")
+                                        .frame(width: 30, height: 110)
+                                        .background(Color.red)
                                         .foregroundColor(.white)
                                         .cornerRadius(4)
+                                        .padding(.top, 4)
+                                        .font(.headline)
                                     
-                                    Text("선택한 답안 내용")
-                                        .padding(6)
-                                        .background(Color.orange)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(4)
-                                    Text("정답 내용")
-                                        .padding(4)
-                                        .background(Color.green)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(4)
-                                    
+                                    VStack(alignment: .leading, spacing: 7){
+                                        
+                                        Text("문제 내용")
+                                            .padding(6)
+                                            .background(Color.black)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(4)
+                                        
+                                        Text("선택한 답안 내용")
+                                            .padding(6)
+                                            .background(Color.accentColor)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(4)
+                                        Text("정답 내용")
+                                            .padding(4)
+                                            .background(Color.correctGreen)
+                                            .foregroundColor(.white)
+                                            .cornerRadius(4)
+                                    }
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                            .background(Color.gray.opacity(0.1))
-                            .cornerRadius(12)
-                            .padding(.horizontal)
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(12)
+                        .padding(.horizontal)
                         
                     }
                     
                 }
-                .padding()
+                .padding(.horizontal, 20)
                 .navigationDestination(isPresented: $moveToSelectLevelView) {
                     SelectLevelView()
                 }
             }
         }
-
+    }
 }
 
 struct QuestionResultView_Previews: PreviewProvider {
