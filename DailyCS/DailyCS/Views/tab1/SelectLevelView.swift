@@ -28,17 +28,20 @@ struct SelectLevelView: View {
                             Button("Easy") {
                                 difficultyLevel = 1
                             }
+                            .foregroundColor(difficultyLevel == 1 ? Color.yellow : Color.white)
                             .modifier(LevelButtonStyle(color: .correctGreen))
                             
                             
                             Button("Normal") {
                                 difficultyLevel = 2
                             }
+                            .foregroundColor(difficultyLevel == 2 ? Color.yellow : Color.white)
                             .modifier(LevelButtonStyle(color: .correctGreen))
                             
                             Button("Hard") {
                                 difficultyLevel = 3
                             }
+                            .foregroundColor(difficultyLevel == 3 ? Color.yellow : Color.white)
                             .modifier(LevelButtonStyle(color: .correctGreen))
                             
                         
