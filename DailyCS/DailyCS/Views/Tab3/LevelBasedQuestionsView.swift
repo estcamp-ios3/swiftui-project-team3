@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct LevelBasedQuestionsView: View {
+  @State var navigtaionTitle: String
+  
     var body: some View {
       NavigationStack {
         
       }
+      .modifier(BackgroundStyle(navigationTitle: navigtaionTitle))
+
         
     }
 }
 
 #Preview {
-    LevelBasedQuestionsView()
+  LevelBasedQuestionsView(navigtaionTitle: "Easy")
 }

@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+
+/// 레벨에 따른 케이스
+enum LevelCase {
+  case easy
+  case normal
+  case hard
+  
+  var value: String {
+    switch self {
+    case .easy: "Easy"
+    case .normal: "Normal"
+    case .hard: "Hard"
+    }
+  }
+}
+
 struct EntireQuestionsView: View {
   
   var body: some View {
@@ -18,28 +34,25 @@ struct EntireQuestionsView: View {
         Spacer()
 
         VStack(alignment: .center, spacing: 20) {
-          NavigationLink(destination: LevelBasedQuestionsView()) {
-            Text("Easy")
+          NavigationLink(destination: LevelBasedQuestionsView(navigtaionTitle: LevelCase.easy.value)) {
+            Text(LevelCase.easy.value)
               .modifier(LevelButtonStyle(color: .correctGreen))
           }
 
-          NavigationLink(destination: LevelBasedQuestionsView()) {
-            Text("Normal")
+          NavigationLink(destination: LevelBasedQuestionsView(navigtaionTitle: LevelCase.normal.value)) {
+            Text(LevelCase.normal.value)
               .modifier(LevelButtonStyle(color: .correctGreen))
           }
 
-          NavigationLink(destination: LevelBasedQuestionsView()) {
-            Text("Hard")
+          NavigationLink(destination: LevelBasedQuestionsView(navigtaionTitle: LevelCase.hard.value)) {
+            Text(LevelCase.hard.value)
               .modifier(LevelButtonStyle(color: .correctGreen))
           }
         }
         .padding(.horizontal, 16)
         Spacer()
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity)
-      .background(Color.veryLightGreenBackground)
-      .navigationTitle("전체 문제")
-      .navigationBarTitleDisplayMode(.large)
+      .modifier(BackgroundStyle(navigationTitle: "전체 문제"))
     }
   }
 }
@@ -56,6 +69,18 @@ struct LevelButtonStyle: ViewModifier {
       .frame(maxWidth: .infinity)
       .background(color)
       .cornerRadius(10)
+  }
+}
+
+// 배경 스타일 + 네비게이션타이틀
+struct BackgroundStyle: ViewModifier {
+  let navigationTitle: String
+  func body(content: Content) -> some View {
+    content
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(Color.veryLightGreenBackground)
+      .navigationTitle(navigationTitle)
+      .navigationBarTitleDisplayMode(.large)
   }
 }
 

@@ -12,12 +12,31 @@ struct QuestionResultView: View {
     var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
     
+  // questionDatas 에 5개의 데이터
+  // yourAnswers 5개의 데이터
+  func test(){
+    var questionArray: [QuestionData1] = []
+    
+    for (question, answer) in zip(questionDatas, yourAnswers) {
+      print("질문: \(question), 당신의 답변: \(answer)")
+      if question.answer_number != answer {
+        questionArray.append(question)
+        
+      }
+    }
+    
+    let totalScore = 100 - (questionArray.count * 20)
+    
+    // 리스트 출력
+    
+  }
+  
     var body: some View {
     
         NavigationStack {
             ZStack {
                 Color.veryLightGreenBackground.edgesIgnoringSafeArea(.all)
-                
+            
                 VStack(spacing: 16) {
                     // 닫기 버튼
                     HStack {
