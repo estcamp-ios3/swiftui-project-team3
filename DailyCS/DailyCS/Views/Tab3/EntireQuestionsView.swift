@@ -9,29 +9,57 @@ import SwiftUI
 
 struct EntireQuestionsView: View {
   
-    var body: some View {
-      NavigationStack {
+  var body: some View {
+    NavigationStack {
+      VStack(alignment: .leading){
         Text("난이도를 선택하세요")
-          .padding(.bottom, 40)
+          .padding(.horizontal, 20)
         
-        VStack(alignment: .center, spacing: 20) {
-          
-          NavigationLink("Easy",destination: LevelBasedQuestionsView())
-          NavigationLink("Normal",destination: LevelBasedQuestionsView())
-          NavigationLink("Hard",destination: LevelBasedQuestionsView())
-    
+        Spacer()
 
+        VStack(alignment: .center, spacing: 20) {
+          NavigationLink(destination: LevelBasedQuestionsView()) {
+            Text("Easy")
+              .modifier(LevelButtonStyle(color: .correctGreen))
+          }
+
+          NavigationLink(destination: LevelBasedQuestionsView()) {
+            Text("Normal")
+              .modifier(LevelButtonStyle(color: .correctGreen))
+          }
+
+          NavigationLink(destination: LevelBasedQuestionsView()) {
+            Text("Hard")
+              .modifier(LevelButtonStyle(color: .correctGreen))
+          }
         }
-        
+        .padding(.horizontal, 16)
+        Spacer()
       }
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
       .background(Color.veryLightGreenBackground)
       .navigationTitle("전체 문제")
       .navigationBarTitleDisplayMode(.large)
-
-        
     }
+  }
 }
 
+
+/// 버튼 스타일
+struct LevelButtonStyle: ViewModifier {
+  let color: Color
+  func body(content: Content) -> some View {
+    content
+      .font(.headline)
+      .foregroundColor(.white)
+      .padding()
+      .frame(maxWidth: .infinity)
+      .background(color)
+      .cornerRadius(10)
+  }
+}
+
+
 #Preview {
-    EntireQuestionsView()
+  EntireQuestionsView()
 }

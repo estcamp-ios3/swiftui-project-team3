@@ -28,7 +28,7 @@ class CSDataManager: ObservableObject {
   /// - Parameters:
   ///   - level: 질문의 레벨
   ///   - limit: 질문의 갯수
-  func fetchCSQuestion(level: Int = 0, limit: Int = 5) {
+  func fetchCSQuestion(level: Int = 1, limit: Int = 5) {
     Task {
       do {
         // 서버에 저장된 함수에 파라미터로 가져올 문제의 레벨, 갯수 넘겨주기
