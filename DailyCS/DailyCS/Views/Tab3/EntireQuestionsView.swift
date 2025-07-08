@@ -12,31 +12,20 @@ struct EntireQuestionsView: View {
     var body: some View {
       NavigationStack {
         Text("난이도를 선택하세요")
+          .padding(.bottom, 40)
         
-        VStack {
-          Button {
-            print("Easy")
-            CSDataManager().fetchCSQuestionWithPaging()
-          } label: {
-            Text("Easy")
-          }
+        VStack(alignment: .center, spacing: 20) {
           
-          Button {
-            print("Normal")
-          } label: {
-            Text("Normal")
-          }
-          
-          Button {
-            print("Hard")
-          } label: {
-            Text("Hard")
-          }
+          NavigationLink("Easy",destination: LevelBasedQuestionsView())
+          NavigationLink("Normal",destination: LevelBasedQuestionsView())
+          NavigationLink("Hard",destination: LevelBasedQuestionsView())
+    
 
         }
+        
       }
       .background(Color.veryLightGreenBackground)
-      .navigationTitle(Text("전체 문제"))
+      .navigationTitle("전체 문제")
       .navigationBarTitleDisplayMode(.large)
 
         
