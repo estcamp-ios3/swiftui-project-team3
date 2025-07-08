@@ -28,30 +28,18 @@ struct SelectLevelView: View {
                             Button("Easy") {
                                 difficultyLevel = 1
                             }
-                            .padding()
-                            .frame(width: 200, height: 50)
-                            .background(Color.mainGreen)
-                            .foregroundColor(difficultyLevel == 1 ? .yellow :.white)
-                            .cornerRadius(20)
+                            .modifier(LevelButtonStyle(color: .correctGreen))
                             
                             
                             Button("Normal") {
                                 difficultyLevel = 2
                             }
-                            .padding()
-                            .frame(width: 200, height: 50)
-                            .background(Color.mainGreen)
-                            .foregroundColor(difficultyLevel == 2 ? .yellow :.white)
-                            .cornerRadius(20)
+                            .modifier(LevelButtonStyle(color: .correctGreen))
                             
                             Button("Hard") {
                                 difficultyLevel = 3
                             }
-                            .padding()
-                            .frame(width: 200, height: 50)
-                            .background(Color.mainGreen)
-                            .foregroundColor(difficultyLevel == 3 ? .yellow :.white)
-                            .cornerRadius(20)
+                            .modifier(LevelButtonStyle(color: .correctGreen))
                             
                         
                         
@@ -75,6 +63,7 @@ struct SelectLevelView: View {
                         
                         Spacer()
                         }.font(.title)
+                            .padding()
                 }
         }
 }

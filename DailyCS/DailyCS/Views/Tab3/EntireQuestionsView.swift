@@ -63,7 +63,7 @@ struct LevelButtonStyle: ViewModifier {
   let color: Color
   func body(content: Content) -> some View {
     content
-      .font(.headline)
+      .font(.title)
       .foregroundColor(.white)
       .padding()
       .frame(maxWidth: .infinity)
