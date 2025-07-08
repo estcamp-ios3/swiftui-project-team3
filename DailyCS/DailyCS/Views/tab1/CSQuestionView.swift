@@ -20,8 +20,8 @@ struct CSQuestionView: View {
     @Binding var questionDatas: [QuestionData1]
     
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
-  @State var selectedAnswer: String = ""
-    
+    @State var selectedAnswer: String = ""
+    @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
 
     var body: some View {
         ZStack
@@ -90,6 +90,7 @@ struct CSQuestionView: View {
                 
                 if ChosenQuestion < questionDatas.count - 1 {
                     Button(action:{
+                        selectedAnswerArray[ChosenQuestion - 1] = selectedAnswer
                         yourAnswer = 0
                         ChosenQuestion += 1
                         
@@ -103,7 +104,10 @@ struct CSQuestionView: View {
                 }
                 else{
                     
-                    NavigationLink(destination: QuestionResultView(questionDatas: questionDatas, yourAnswers: yourAnswers)) {
+                    NavigationLink(destination: QuestionResultView(
+                        questionDatas: questionDatas,
+                        yourAnswers: yourAnswers,
+                        selectedAnswerArray: selectedAnswerArray)) {
                         Text("다 풀었어요~")
                     }
                 }

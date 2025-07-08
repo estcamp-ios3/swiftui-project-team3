@@ -11,7 +11,7 @@ struct QuestionResultView: View {
     @State private var moveToSelectLevelView = false
     var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
-    
+    var selectedAnswerArray: [String] = []
   // questionDatas 에 5개의 데이터
   // yourAnswers 5개의 데이터
   func test(){
