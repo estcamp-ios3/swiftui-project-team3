@@ -22,6 +22,7 @@ struct CSQuestionView: View {
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
     @State var selectedAnswer: String = ""
     @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
+    @State var isSaved: Bool = false
 
     var body: some View {
         ZStack
@@ -38,6 +39,10 @@ struct CSQuestionView: View {
                         
                         Button("문제 저장") {
                             csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
+                            isSaved = true
+                        }.alert(isPresented: $isSaved) {
+                            Alert(title: Text("저장되었습니다."),
+                                  dismissButton: .default(Text("OK")))
                         }
                     }.padding(.horizontal)
                     
@@ -90,7 +95,7 @@ struct CSQuestionView: View {
                 
                 if ChosenQuestion < questionDatas.count - 1 {
                     Button(action:{
-                        selectedAnswerArray[ChosenQuestion - 1] = selectedAnswer
+                        selectedAnswerArray[ChosenQuestion] = selectedAnswer
                         yourAnswer = 0
                         ChosenQuestion += 1
                         
