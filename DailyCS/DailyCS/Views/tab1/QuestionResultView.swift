@@ -13,9 +13,7 @@ struct QuestionResultView: View {
     var yourAnswers: [Int] = []
     @State private var path = NavigationPath()
     
-    
-    // questionDatas 에 5개의 데이터
-    // yourAnswers 5개의 데이터
+
     func test(){
         var questionArray: [QuestionData1] = []
         
@@ -26,7 +24,8 @@ struct QuestionResultView: View {
                 
             }
         }
-        
+    
+
         _ = 100 - (questionArray.count * 20)
         
         // 리스트 출력
@@ -77,11 +76,14 @@ struct QuestionResultView: View {
                     List(questionDummyDatas) {data in HStack {
                         //
                         Text(data.question)
+
                     }
+
+
                     }
-                    
                 }
-                
+
+
             }
             .padding(.horizontal, 20)
             .navigationDestination(for: String.self) { destination in
