@@ -24,6 +24,8 @@ class CSDataManager: ObservableObject {
   @Published var questions: [QuestionData1] = []
   @Published var isLoaded: Bool = false
   
+  @Published var totalQuestions: [QuestionData1] = []
+  
   /// CS관련 질문들 가져오기
   /// - Parameters:
   ///   - level: 질문의 레벨
@@ -62,19 +64,29 @@ class CSDataManager: ObservableObject {
   
   /// CS 질문 가져오기 (페이징 처리)
   /// - Parameter level: 가져올 레벨
-  func fetchCSQuestionWithPaging(level: Int = 0) {
+  func fetchCSQuestionWithPaging(level: Int = 1, from: Int = 0, to: Int = 10) {
     Task {
       do{
         let data = try await supabase
           .from("questions")
-          .select()
+          .select("*")
           .eq("level", value: level)
-          .range(from: 0, to: 9)
+          .order("id", ascending: true)
+          .range(from: from, to: to)
           .execute()
           .data
-                  
+
+        
+      
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
+
+        let convertedQuestions = questions.map { QuestionData1(with: $0) }
+
         print(questions)
+        
+        DispatchQueue.main.async {
+          self.totalQuestions.append(contentsOf: convertedQuestions)
+        }
         
       }catch{
         print("실패 \(error)")
