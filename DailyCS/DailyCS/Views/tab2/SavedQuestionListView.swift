@@ -1,4 +1,4 @@
-//
+
 //  SavedQuestionView.swift
 //  DailyCS
 //
@@ -6,21 +6,31 @@
 //
 
 import SwiftUI
+import _SwiftData_SwiftUI
 
 struct SavedQuestionListView: View {
     
-    @State private var savedQuestions: [QuestionData] = questionDummyDatas
-    private var allLevels: [Int] {
-        Array(Set(savedQuestions.map { $0.level })).sorted()
-    }
+    @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
+    @Environment(\.modelContext) private var modelContext //
+    private let csDataManager = CSDataManager() //
     @State private var selectedLevel: Int? = nil
-    private var filteredQuestions: [QuestionData] {
+    
+    //    private var allLevels: [Int] {
+    //        Array(Set(savedQuestions.map { $0.level })).sorted()
+    //    }
+    private var allLevels: [Int] {
+        Array(Set(questionDummyDatas.map { $0.level })).sorted()
+    }
+    
+    
+    private var filteredQuestions: [QuestionDataForSave] {
         if let level = selectedLevel {
             return savedQuestions.filter { $0.level == level }
         } else {
-            return savedQuestions
+            return savedQuestions.sorted(by: { $0.level < $1.level })
         }
     }
+    @AppStorage("hasLoadedInitialSavedQuestions") private var hasLoadedInitialSavedQuestions: Bool = false
     
     var body: some View {
         
@@ -29,7 +39,7 @@ struct SavedQuestionListView: View {
             ZStack {
                 Color.veryLightGreenBackground
                     .ignoresSafeArea()
-                    
+                
                 VStack(spacing: 0) {
                     
                     Text("저장한 문제 리스트")
@@ -38,7 +48,7 @@ struct SavedQuestionListView: View {
                         .padding()
                     
                     ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
+                        HStack(spacing: 17) {
                             Button("전체") {
                                 selectedLevel = nil
                             }
@@ -59,12 +69,18 @@ struct SavedQuestionListView: View {
                         .padding(.leading, 20)
                     }
                     
-                    
-                    List {
-                        ForEach(filteredQuestions, id: \.id) { question in
-                            if let index = savedQuestions.firstIndex(where: { $0.id == question.id }) {
+                    if filteredQuestions.isEmpty {
+                        Spacer()
+                        Text("저장한 문제가 없습니다.")
+                            .font(.title2)
+                            .foregroundStyle(.gray)
+                        Spacer()
+                    } else {
+                        
+                        List {
+                            ForEach(filteredQuestions/*, id: \.id*/) { question in
                                 NavigationLink {
-                                    SavedQuestionDetailView(question: $savedQuestions[index], allQuestions: $savedQuestions)
+                                    SavedQuestionDetailView(question: question)
                                 } label: {
                                     VStack(alignment: .leading) {
                                         Text("Level \(question.level)")
@@ -76,11 +92,10 @@ struct SavedQuestionListView: View {
                                 }
                             }
                         }
+                        .listStyle(.automatic)
+                        .scrollContentBackground(.hidden)
+                        .background(Color.veryLightGreenBackground)
                     }
-//                    .navigationTitle(Text("저장한 문제 리스트"))
-                    .listStyle(.automatic)
-                    .scrollContentBackground(.hidden)
-                    .background(Color.veryLightGreenBackground)
                 }
             }
         }
