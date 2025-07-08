@@ -8,47 +8,51 @@
 import SwiftUI
 
 struct QuestionResultView: View {
-    @State private var moveToSelectLevelView = false
+    //    @State private var moveToSelectLevelView = false
     var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
+    @State private var path = NavigationPath()
     
-  // questionDatas 에 5개의 데이터
-  // yourAnswers 5개의 데이터
-  func test(){
-    var questionArray: [QuestionData1] = []
     
-    for (question, answer) in zip(questionDatas, yourAnswers) {
-      print("질문: \(question), 당신의 답변: \(answer)")
-      if question.answer_number != answer {
-        questionArray.append(question)
+    // questionDatas 에 5개의 데이터
+    // yourAnswers 5개의 데이터
+    func test(){
+        var questionArray: [QuestionData1] = []
         
-      }
+        for (question, answer) in zip(questionDatas, yourAnswers) {
+            print("질문: \(question), 당신의 답변: \(answer)")
+            if question.answer_number != answer {
+                questionArray.append(question)
+                
+            }
+        }
+        
+        _ = 100 - (questionArray.count * 20)
+        
+        // 리스트 출력
+        
     }
     
-    let totalScore = 100 - (questionArray.count * 20)
-    
-    // 리스트 출력
-    
-  }
-  
     var body: some View {
-    
-        NavigationStack {
+        NavigationStack(path:$path) {
+            
             ZStack {
                 Color.veryLightGreenBackground.edgesIgnoringSafeArea(.all)
-            
+                
                 VStack(spacing: 16) {
-                    // 닫기 버튼
+                    
                     HStack {
                         Button(action: {
                             // 닫기 액션
-                            moveToSelectLevelView = true
+                            path.append("SelectLevel")
+                            //      moveToSelectLevelView = true
                         }) {
                             Image(systemName: "xmark")
                                 .font(.title)
                                 .padding()
                         }
                         Spacer()
+                        
                     }
                     
                     // 오늘의 점수
@@ -56,7 +60,7 @@ struct QuestionResultView: View {
                         Text("오늘의 점수").foregroundColor(.green)
                             .font(.largeTitle)
                         
-                        Text("60 / 100")
+                        Text("\(_=100 - (questionDatas.count * 20))점 (\(questionDatas.count)문제 중 \(questionDatas.count - yourAnswers.filter({$0 != 0}).count)문제 틀림)")
                             .font(.title2)
                             .bold()
                         
@@ -64,66 +68,32 @@ struct QuestionResultView: View {
                     
                     .padding()
                     
-                    // 틀린 문제 리스트
-                    ScrollView {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("틀린문제 리스트")
-                                .font(.headline)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.gray)
-                                .foregroundColor(.white)
-                                .cornerRadius(8)
-                            Spacer()
-                                .padding(.horizontal)
-                            
-                            ForEach(1...5, id: \.self) { idx in
-                                HStack(alignment: .top, spacing: 12) {
-                                    
-                                    
-                                    Text("\(idx)")
-                                        .frame(width: 30, height: 110)
-                                        .background(Color.red)
-                                        .foregroundColor(.white)
-                                        .cornerRadius(4)
-                                        .padding(.top, 4)
-                                        .font(.headline)
-                                    
-                                    VStack(alignment: .leading, spacing: 7){
-                                        
-                                        Text("문제 내용")
-                                            .padding(6)
-                                            .background(Color.black)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(4)
-                                        
-                                        Text("선택한 답안 내용")
-                                            .padding(6)
-                                            .background(Color.accentColor)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(4)
-                                        Text("정답 내용")
-                                            .padding(4)
-                                            .background(Color.correctGreen)
-                                            .foregroundColor(.white)
-                                            .cornerRadius(4)
-                                    }
-                                }
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                        .background(Color.gray.opacity(0.1))
-                        .cornerRadius(12)
-                        .padding(.horizontal)
-                        
+                    // 더미 데이터
+                    Text("틀린 문제 리스트")
+                        .font(.title2)
+                        .fontWeight(.medium)
+                        .foregroundColor(.red)
+                        .tint(.black)
+                    List(questionDummyDatas) {data in HStack {
+                        //
+                        Text(data.question)
+                    }
                     }
                     
                 }
-                .padding(.horizontal, 20)
-                .navigationDestination(isPresented: $moveToSelectLevelView) {
+                
+            }
+            .padding(.horizontal, 20)
+            .navigationDestination(for: String.self) { destination in
+                if destination == "SelectLevel" {
                     SelectLevelView()
                 }
+                //                    .navigationDestination(isPresented: $moveToSelectLevelView, destination: {
+                //                        SelectLevelView()
+                //                    })
+                
             }
+            .navigationBarBackButtonHidden(true) // Back 버튼 없애기
         }
     }
 }
