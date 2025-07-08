@@ -53,51 +53,66 @@ struct CSQuestionView: View {
                     Text(questionDatas[ChosenQuestion].question)
                         .font(.headline)
                     
-                    List {
+                    ScrollView {
+                        VStack(alignment: .leading){
+                            Button(action: {
+                                yourAnswer = 1
+                                yourAnswers[ChosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[ChosenQuestion].answer1
+                            }
+                            ){
+                                Text("1. " + questionDatas[ChosenQuestion].answer1)
+                                    .multilineTextAlignment(.leading)
+                                    .padding()
+                                    .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
+                            }
+                            
+                            
+                            Button(action: {
+                                yourAnswer = 2
+                                yourAnswers[ChosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[ChosenQuestion].answer2
+                            }
+                            ) {
+                                Text("2. " + questionDatas[ChosenQuestion].answer2)
+                                    .multilineTextAlignment(.leading)
+                                    .padding()
+                                    .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
+                            }.padding()
+                            
+                            Button(action: {
+                                yourAnswer = 3
+                                yourAnswers[ChosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[ChosenQuestion].answer3
+                            }
+                            ) {
+                                Text("3. " + questionDatas[ChosenQuestion].answer3)
+                                    .multilineTextAlignment(.leading)
+                                    .padding()
+                                    .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
+                            }.padding()
+                            
+                            Button(action: {
+                                yourAnswer = 4
+                                yourAnswers[ChosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[ChosenQuestion].answer4
+                            })
+                            {
+                                Text("4. " + questionDatas[ChosenQuestion].answer4)
+                                    .multilineTextAlignment(.leading)
+                                    .padding()
+                                    .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
+                            }.padding()
+                        }.frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Button(action: {
-                            yourAnswer = 1
-                            yourAnswers[ChosenQuestion] = yourAnswer
-                          selectedAnswer = questionDatas[ChosenQuestion].answer1
+                        if yourAnswer != 0 {
+                            
+                            Text("답변 : \(yourAnswer). \(selectedAnswer)")
+                                .font(.headline)
+                                .foregroundColor(.black)
+                                .padding(10)
+                                .background(Color.gray.opacity(0.2))
                         }
-                        ) {
-                          Text("1. " + questionDatas[ChosenQuestion].answer1)
-                        }
-                        
-                        Button(action: {
-                            yourAnswer = 2
-                            yourAnswers[ChosenQuestion] = yourAnswer
-                          selectedAnswer = questionDatas[ChosenQuestion].answer2
-                        }
-                        ) {
-                          Text("2. " + questionDatas[ChosenQuestion].answer2)
-                        }
-                        
-                        Button(action: {
-                            yourAnswer = 3
-                            yourAnswers[ChosenQuestion] = yourAnswer
-                          selectedAnswer = questionDatas[ChosenQuestion].answer3
-                        }
-                        ) {
-                          Text("3. " + questionDatas[ChosenQuestion].answer3)
-                        }
-                        
-                        Button(action: {
-                            yourAnswer = 4
-                            yourAnswers[ChosenQuestion] = yourAnswer
-                          selectedAnswer = questionDatas[ChosenQuestion].answer4
-                        })
-                        {
-                          Text("4. " + questionDatas[ChosenQuestion].answer4)
-                        }
-                    }
-                    if yourAnswer != 0 {
-              
-                        Text("답변 : \(yourAnswer). \(selectedAnswer)")
-                            .font(.headline)
-                            .foregroundColor(.black)
-                            .padding(10)
-                            .background(Color.gray.opacity(0.2))
                     }
                 }
                 
