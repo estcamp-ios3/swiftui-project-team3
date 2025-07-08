@@ -26,6 +26,7 @@
 		EE4F8CD52E1A21E000B7924E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */; };
 		EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CD82E1A22C900B7924E /* Supabase.swift */; };
 		EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64772E1CA364001AA420 /* QuestionResultView.swift */; };
+		EEEA647C2E1CA731001AA420 /* LevelBasedQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		EE4F8CD42E1A21E000B7924E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE4F8CD82E1A22C900B7924E /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
 		EEEA64772E1CA364001AA420 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
+		EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelBasedQuestionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				EE0725542E1B929800086878 /* EntireQuestionsView.swift */,
+				EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */,
 			);
 			path = Tab3;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */,
+				EEEA647C2E1CA731001AA420 /* LevelBasedQuestionsView.swift in Sources */,
 				EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */,
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
 				EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */,

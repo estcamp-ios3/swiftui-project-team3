@@ -18,14 +18,17 @@ struct QuestionRequestParams: Encodable {
 
 
 ///  CS질문 네트워크 매니져
-class CSDataManager {
-
+class CSDataManager: ObservableObject {
+  static let shared = CSDataManager()
+  
+  @Published var questions: [QuestionData1] = []
+  @Published var isLoaded: Bool = false
   
   /// CS관련 질문들 가져오기
   /// - Parameters:
   ///   - level: 질문의 레벨
   ///   - limit: 질문의 갯수
-  func fetchCSQuestion(level: Int = 0, limit: Int = 5, completion: @escaping ([QuestionDataDTO]) -> Void) {
+  func fetchCSQuestion(level: Int = 0, limit: Int = 5) {
     Task {
       do {
         // 서버에 저장된 함수에 파라미터로 가져올 문제의 레벨, 갯수 넘겨주기
@@ -40,12 +43,18 @@ class CSDataManager {
         // 디코딩하기
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
 
-        completion(questions)
+        let convertedQuestions = questions.map { QuestionData1(with: $0) }
+        
+        print(convertedQuestions)
+        DispatchQueue.main.async {
+          self.questions = convertedQuestions
+          self.isLoaded = true
+          
+        }
     
       } catch {
         print("err", error)
         
-        completion([])
       }
     }
   }
@@ -77,7 +86,7 @@ class CSDataManager {
   /// 질문 저장하기
   /// - Parameters:
   ///   - question: 저장할 질문
-  func saveQuestion(_ modelContext: ModelContext, question: QuestionData) {
+  func saveQuestion(_ modelContext: ModelContext, question: QuestionData1) {
     let saveQuestion: QuestionDataForSave = QuestionDataForSave(with: question)
     
     modelContext.insert(saveQuestion)

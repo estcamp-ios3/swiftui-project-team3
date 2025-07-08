@@ -11,13 +11,16 @@ import SwiftUI
 
 
 struct CSQuestionView: View {
+  @StateObject private var csDataManager = CSDataManager.shared
+  
     @State var yourAnswer: Int = 0
     @State var ChosenQuestion: Int = 0
     var difficultyLevel: Int = 1
     
-    var questionDatas: [QuestionData] = questionDummyDatas.shuffled()
+  @Binding var questionDatas: [QuestionData1] 
     
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
+  @State var selectedAnswer: String = ""
     
 
     var body: some View {
@@ -46,37 +49,42 @@ struct CSQuestionView: View {
                         Button(action: {
                             yourAnswer = 1
                             yourAnswers[ChosenQuestion] = yourAnswer
+                          selectedAnswer = questionDatas[ChosenQuestion].answer1
                         }
                         ) {
-                            Text("1. " + questionDatas[ChosenQuestion].answers(index: 1))
+                          Text("1. " + questionDatas[ChosenQuestion].answer1)
                         }
                         
                         Button(action: {
                             yourAnswer = 2
                             yourAnswers[ChosenQuestion] = yourAnswer
+                          selectedAnswer = questionDatas[ChosenQuestion].answer2
                         }
                         ) {
-                            Text("2. " + questionDatas[ChosenQuestion].answers(index: 2))
+                          Text("2. " + questionDatas[ChosenQuestion].answer2)
                         }
                         
                         Button(action: {
                             yourAnswer = 3
                             yourAnswers[ChosenQuestion] = yourAnswer
+                          selectedAnswer = questionDatas[ChosenQuestion].answer3
                         }
                         ) {
-                            Text("3. " + questionDatas[ChosenQuestion].answers(index: 3))
+                          Text("3. " + questionDatas[ChosenQuestion].answer3)
                         }
                         
                         Button(action: {
                             yourAnswer = 4
                             yourAnswers[ChosenQuestion] = yourAnswer
+                          selectedAnswer = questionDatas[ChosenQuestion].answer4
                         })
                         {
-                            Text("4. " + questionDatas[ChosenQuestion].answers(index: 4))
+                          Text("4. " + questionDatas[ChosenQuestion].answer4)
                         }
                     }
                     if yourAnswer != 0 {
-                        Text("Your answer: \(yourAnswer). \(questionDatas[ChosenQuestion].answers(index: yourAnswer))")
+              
+                        Text("Your answer: \(yourAnswer). \(selectedAnswer)")
                     }
                 }
                 
@@ -86,6 +94,7 @@ struct CSQuestionView: View {
                 Button(action:{
                     yourAnswer = 0
                     ChosenQuestion += 1
+            
                 }) {
                     Text("다음 문제")
                         .frame(width: 200, height: 50)
@@ -103,7 +112,7 @@ struct CSQuestionView: View {
         }
     }
 }
-  
-  #Preview {
-    CSQuestionView()
-  }
+//  
+//  #Preview {
+//    CSQuestionView()
+//  }

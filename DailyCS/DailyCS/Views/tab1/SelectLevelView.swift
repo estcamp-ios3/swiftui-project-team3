@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SelectLevelView: View {
+  @StateObject private var csDataManager: CSDataManager = CSDataManager.shared
+  
     @State var difficultyLevel: Int = 1
         var body: some View {
             
@@ -59,8 +61,16 @@ struct SelectLevelView: View {
                         
                         Spacer()
                         
-                        NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel)) {
-                            Text("시작하기")
+                          Button("시작하기") {
+                            // 레벨은 받아서 수정
+                            csDataManager.fetchCSQuestion(level: 0)
+                          }
+                          
+                          NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel,
+                                                                     questionDatas: $csDataManager.questions),
+                                         isActive: $csDataManager.isLoaded) {
+                          EmptyView()
+                    
                         }
                         
                         Spacer()
