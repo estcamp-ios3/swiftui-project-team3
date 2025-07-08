@@ -9,24 +9,38 @@ import SwiftUI
 
  
 struct ContentView: View {
-//    let dataManager = CSDataManager()
-    var body: some View {
-        
-        
-        TabView {
-            Tab("메인", systemImage: "house") {
-                SelectLevelView()
+  @State private var isLaunch: Bool = true
+  
+  var body: some View {
+    // 런치스크린 띄우기
+    if isLaunch {
+      LaunchView()
+        .onAppear {
+          // 1.5초 뒤에 해제
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            withAnimation(.linear) {
+              self.isLaunch = false
             }
             
-            Tab("저장", systemImage: "note.text.badge.plus") {
-                SavedQuestionListView()
-            }
-            
-            Tab("점수", systemImage: "calendar") {
-              EntireQuestionsView()
-            }
-            
+          }
         }
+    }else {
+      
+      TabView {
+        Tab("메인", systemImage: "house") {
+          SelectLevelView()
+        }
+        
+        Tab("저장", systemImage: "note.text.badge.plus") {
+          SavedQuestionListView()
+        }
+        
+        Tab("점수", systemImage: "calendar") {
+          EntireQuestionsView()
+        }
+        
+      }
+    }
         
     }
 }

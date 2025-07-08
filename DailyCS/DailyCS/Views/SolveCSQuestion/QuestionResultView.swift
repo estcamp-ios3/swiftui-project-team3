@@ -9,7 +9,7 @@ import SwiftUI
 
 
 /// TodayCS - front - QuestionResultView
-/// 문제풀이 결과 홤녀
+/// 문제풀이 결과 화면
 struct QuestionResultView: View {
     //    @State private var moveToSelectLevelView = false
     var questionDatas: [QuestionData1] = []
