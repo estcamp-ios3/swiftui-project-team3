@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct ContentView: View {
-    let dataManager = CSDataManager()
+//    let dataManager = CSDataManager()
     var body: some View {
         
         
