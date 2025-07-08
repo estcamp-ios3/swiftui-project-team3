@@ -23,6 +23,20 @@ struct CSQuestionView: View {
     @State var selectedAnswer: String = ""
     @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
     @State var isSaved: Bool = false
+    
+    func printLevel() -> String {
+        switch difficultyLevel {
+        case 1:
+            "난이도 Easy"
+        case 2:
+            "난이도 Normal"
+        case 3:
+            "난이도 Hard"
+       
+        default:
+            "난이도를 선택해주세요."
+        }
+    }
 
     var body: some View {
         ZStack
@@ -32,27 +46,10 @@ struct CSQuestionView: View {
             VStack {
                 VStack(alignment: .leading) {
                     
-                    HStack {
-                        Text ("난이도 : \(difficultyLevel)")
-                        
-                        Spacer()
-                        
-                        Button(action : {
-                            csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
-                            isSaved = true
-                        }) {
-                            Text("문제 저장")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(Color.correctGreen)
-                                .cornerRadius(10)
-                        }.alert(isPresented: $isSaved) {
-                            Alert(title: Text("저장되었습니다."),
-                                  dismissButton: .default(Text("OK")))
-                        }
-                    }.padding(.bottom, 20)
-                    
+                    Text("\(ChosenQuestion + 1)번 문제")
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .padding(.bottom, 10)
                     Text(questionDatas[ChosenQuestion].question)
                         .font(.headline)
                     
@@ -125,9 +122,29 @@ struct CSQuestionView: View {
                     }
                 }
             }.padding(30)
-        }
+                .navigationTitle(printLevel())
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action : {
+                            csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
+                            isSaved = true
+                        }) {
+                            Text("문제 저장")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(5)
+                                .background(Color.correctGreen)
+                                .cornerRadius(10)
+                        }.alert(isPresented: $isSaved) {
+                            Alert(title: Text("저장되었습니다."),
+                                  dismissButton: .default(Text("OK")))
+                        }
+                    }
+                }
+            }
     }
 }
+
   
 //  #Preview {
 //    CSQuestionView()
