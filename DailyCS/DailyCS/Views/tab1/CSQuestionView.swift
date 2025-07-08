@@ -73,46 +73,46 @@ struct CSQuestionView: View {
                                 yourAnswers[ChosenQuestion] = yourAnswer
                                 selectedAnswer = questionDatas[ChosenQuestion].answer2
                             }
-                            ) {
+                            ){
                                 Text("2. " + questionDatas[ChosenQuestion].answer2)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }.padding()
+                            }
                             
                             Button(action: {
                                 yourAnswer = 3
                                 yourAnswers[ChosenQuestion] = yourAnswer
                                 selectedAnswer = questionDatas[ChosenQuestion].answer3
                             }
-                            ) {
+                            ){
                                 Text("3. " + questionDatas[ChosenQuestion].answer3)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }.padding()
+                            }
                             
                             Button(action: {
                                 yourAnswer = 4
                                 yourAnswers[ChosenQuestion] = yourAnswer
                                 selectedAnswer = questionDatas[ChosenQuestion].answer4
-                            })
-                            {
+                            }
+                            ){
                                 Text("4. " + questionDatas[ChosenQuestion].answer4)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }.padding()
+                            }
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
-                        if yourAnswer != 0 {
-                            
-                            Text("답변 : \(yourAnswer). \(selectedAnswer)")
-                                .font(.headline)
-                                .foregroundColor(.black)
-                                .padding(10)
-                                .background(Color.gray.opacity(0.2))
-                        }
+//                        if yourAnswer != 0 {
+//                            
+//                            Text("답변 : \(yourAnswer). \(selectedAnswer)")
+//                                .font(.headline)
+//                                .foregroundColor(.black)
+//                                .padding(10)
+//                                .background(Color.gray.opacity(0.2))
+//                        }
                     }
                 }
                 
@@ -124,8 +124,8 @@ struct CSQuestionView: View {
                         
                     }) {
                         Text("다음 문제")
-                            .modifier(LevelButtonStyle(color: .correctGreen))
-                    }
+                            .modifier(LevelButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                    }.disabled(yourAnswer == 0)
                 }
                 else{
                     
