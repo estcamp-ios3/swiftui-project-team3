@@ -1,4 +1,4 @@
-//
+
 //  SavedQuestionDetailView.swift
 //  DailyCS
 //
@@ -6,27 +6,29 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct SavedQuestionDetailView: View {
     
-    @Binding var question: QuestionData
+    @Bindable var question: QuestionDataForSave
     
-    private func getAnswerText(for data: QuestionData) -> String {
-        switch data.answer_number {
-        case 0: return data.answer1
-        case 1: return data.answer2
-        case 2: return data.answer3
-        case 3: return data.answer4
-        default: return ""
-        }
-    }
+//    private func getAnswerText(for data: QuestionData) -> String {
+//        switch data.answer_number {
+//        case 0: return data.answer1
+//        case 1: return data.answer2
+//        case 2: return data.answer3
+//        case 3: return data.answer4
+//        default: return ""
+//        }
+//    }
     
-    @Binding var allQuestions: [QuestionData]
+    
     @State private var showAnswer = false
     @State private var showDelete = false
     @State private var showDeletedAlert = false
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
             
@@ -54,7 +56,7 @@ struct SavedQuestionDetailView: View {
                     .tint(.correctGreen)
                     .padding(.top, 20)
                 } else {
-                    Text(getAnswerText(for: question))
+                    Text(question.answer)
                         .font(.title2)
                         .padding(.vertical)
                         .transition(.opacity)
@@ -78,12 +80,11 @@ struct SavedQuestionDetailView: View {
                 Button("취소하기", role: .cancel) {
                 }
                 Button("삭제하기", role: .destructive) {
-                    if let index = allQuestions.firstIndex(where: { $0.id == question.id }) {
-                        allQuestions.remove(at: index)
+                    modelContext.delete(question)
+                    try? modelContext.save()
                         showDeletedAlert = true
                     }
                 }
-            }
             .alert("나만의 노트에서 삭제했어요", isPresented: $showDeletedAlert) {
                 Button("확인", role: .cancel) {
                     dismiss()
@@ -94,9 +95,9 @@ struct SavedQuestionDetailView: View {
 }
 
 
-#Preview {
-    @Previewable @State var previewQuestions: [QuestionData] = questionDummyDatas
-    NavigationStack {
-        SavedQuestionDetailView(question: $previewQuestions[0], allQuestions: $previewQuestions)
-    }
-}
+//#Preview {
+//    NavigationStack {
+//            SavedQuestionDetailView(question: previewQuestion)
+//        }
+//}
+
