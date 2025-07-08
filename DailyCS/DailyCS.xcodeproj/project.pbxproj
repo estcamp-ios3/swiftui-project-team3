@@ -110,6 +110,7 @@
 				EE4F8C9E2E17CA4F00B7924E /* MainView.swift */,
 				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
 				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
+				EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */,
 			);
 			path = tab1;
 			sourceTree = "<group>";
@@ -129,7 +130,6 @@
 				EE4F8CA52E17CA4F00B7924E /* ContentView.swift */,
 				EE4F8CA02E17CA4F00B7924E /* tab1 */,
 				EE4F8CA42E17CA4F00B7924E /* tab2 */,
-				EE4F8CA62E17CA4F00B7924E /* QuestionResultView.swift */,
 				EE0725532E1B928400086878 /* Tab3 */,
 			);
 			path = Views;
