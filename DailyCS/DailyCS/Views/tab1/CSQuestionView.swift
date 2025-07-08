@@ -12,12 +12,12 @@ import SwiftUI
 
 struct CSQuestionView: View {
   @StateObject private var csDataManager = CSDataManager.shared
-  
+    @Environment(\.modelContext) private var modelContext
     @State var yourAnswer: Int = 0
     @State var ChosenQuestion: Int = 0
-    var difficultyLevel: Int = 1
+    var difficultyLevel: Int = 0
     
-  @Binding var questionDatas: [QuestionData1] 
+    @Binding var questionDatas: [QuestionData1]
     
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
   @State var selectedAnswer: String = ""
@@ -37,7 +37,7 @@ struct CSQuestionView: View {
                         Spacer()
                         
                         Button("문제 저장") {
-                            
+                            csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
                         }
                     }.padding(.horizontal)
                     
@@ -88,31 +88,30 @@ struct CSQuestionView: View {
                     }
                 }
                 
+                if ChosenQuestion < questionDatas.count - 1 {
+                    Button(action:{
+                        yourAnswer = 0
+                        ChosenQuestion += 1
+                        
+                    }) {
+                        Text("다음 문제")
+                            .frame(width: 200, height: 50)
+                            .background(Color.mainGreen)
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                    }
+                }
+                else{
+                    
+                    NavigationLink(destination: QuestionResultView(questionDatas: questionDatas, yourAnswers: yourAnswers)) {
+                        Text("다 풀었어요~")
+                    }
+                }
             }.padding(30)
-            
-            if ChosenQuestion < questionDatas.count - 1 {
-                Button(action:{
-                    yourAnswer = 0
-                    ChosenQuestion += 1
-            
-                }) {
-                    Text("다음 문제")
-                        .frame(width: 200, height: 50)
-                        .background(Color.mainGreen)
-                        .foregroundColor(.white)
-                        .cornerRadius(20)
-                }
-            }
-            else{
-                
-                NavigationLink(destination: QuestionResultView(questionDatas: questionDatas, yourAnswers: yourAnswers)) {
-                    Text("다 풀었어요~")
-                }
-            }
         }
     }
 }
-//  
+  
 //  #Preview {
 //    CSQuestionView()
 //  }

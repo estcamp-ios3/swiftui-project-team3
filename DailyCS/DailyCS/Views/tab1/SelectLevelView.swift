@@ -63,7 +63,7 @@ struct SelectLevelView: View {
                         
                           Button("시작하기") {
                             // 레벨은 받아서 수정
-                            csDataManager.fetchCSQuestion(level: 0)
+                            csDataManager.fetchCSQuestion(level: difficultyLevel)
                           }
                           
                           NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel,

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct QuestionResultView: View {
     @State private var moveToSelectLevelView = false
-    var questionDatas: [QuestionData] = []
+    var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
     
     var body: some View {
