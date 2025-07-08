@@ -11,9 +11,9 @@ struct QuestionResultView: View {
     //    @State private var moveToSelectLevelView = false
     var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
+
     @State private var path = NavigationPath()
     
-
     func test(){
         var questionArray: [QuestionData1] = []
         
@@ -29,6 +29,8 @@ struct QuestionResultView: View {
         _ = 100 - (questionArray.count * 20)
         
         // 리스트 출력
+
+
         
     }
     

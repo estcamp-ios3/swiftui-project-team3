@@ -20,8 +20,9 @@ struct CSQuestionView: View {
     @Binding var questionDatas: [QuestionData1]
     
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
-  @State var selectedAnswer: String = ""
-    
+    @State var selectedAnswer: String = ""
+    @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
+    @State var isSaved: Bool = false
 
     var body: some View {
         ZStack
@@ -36,10 +37,21 @@ struct CSQuestionView: View {
                         
                         Spacer()
                         
-                        Button("문제 저장") {
+                        Button(action : {
                             csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
+                            isSaved = true
+                        }) {
+                            Text("문제 저장")
+                                .font(.headline)
+                                .foregroundColor(.white)
+                                .padding(5)
+                                .background(Color.correctGreen)
+                                .cornerRadius(10)
+                        }.alert(isPresented: $isSaved) {
+                            Alert(title: Text("저장되었습니다."),
+                                  dismissButton: .default(Text("OK")))
                         }
-                    }.padding(.horizontal)
+                    }.padding(.bottom, 20)
                     
                     Text(questionDatas[ChosenQuestion].question)
                         .font(.headline)
@@ -84,27 +96,32 @@ struct CSQuestionView: View {
                     }
                     if yourAnswer != 0 {
               
-                        Text("Your answer: \(yourAnswer). \(selectedAnswer)")
+                        Text("답변 : \(yourAnswer). \(selectedAnswer)")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            .padding(10)
+                            .background(Color.gray.opacity(0.2))
                     }
                 }
                 
                 if ChosenQuestion < questionDatas.count - 1 {
                     Button(action:{
+                        selectedAnswerArray[ChosenQuestion] = selectedAnswer
                         yourAnswer = 0
                         ChosenQuestion += 1
                         
                     }) {
                         Text("다음 문제")
-                            .frame(width: 200, height: 50)
-                            .background(Color.mainGreen)
-                            .foregroundColor(.white)
-                            .cornerRadius(20)
+                            .modifier(LevelButtonStyle(color: .correctGreen))
                     }
                 }
                 else{
                     
-                    NavigationLink(destination: QuestionResultView(questionDatas: questionDatas, yourAnswers: yourAnswers)) {
-                        Text("다 풀었어요~")
+                    NavigationLink(destination: QuestionResultView(
+                        questionDatas: questionDatas,
+                        yourAnswers: yourAnswers,
+                        selectedAnswerArray: selectedAnswerArray)) {
+                            Text("다 풀었어요~").modifier(LevelButtonStyle(color: .correctGreen))
                     }
                 }
             }.padding(30)

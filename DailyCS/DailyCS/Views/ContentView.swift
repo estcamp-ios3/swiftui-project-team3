@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+ 
 struct ContentView: View {
 //    let dataManager = CSDataManager()
     var body: some View {
@@ -18,10 +18,8 @@ struct ContentView: View {
                 SelectLevelView()
             }
             
-            // level1, 2, 3버튼이 있는 view를 만들어 그 뷰안에서 보여주는게 나을지도
             Tab("저장", systemImage: "note.text.badge.plus") {
                 SavedQuestionListView()
-                Text("1")
             }
             
             Tab("점수", systemImage: "calendar") {
