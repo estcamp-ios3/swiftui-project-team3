@@ -1,4 +1,3 @@
-
 //  SavedQuestionDetailView.swift
 //  DailyCS
 //
@@ -11,16 +10,6 @@ import SwiftData
 struct SavedQuestionDetailView: View {
     
     @Bindable var question: QuestionDataForSave
-    
-//    private func getAnswerText(for data: QuestionData) -> String {
-//        switch data.answer_number {
-//        case 0: return data.answer1
-//        case 1: return data.answer2
-//        case 2: return data.answer3
-//        case 3: return data.answer4
-//        default: return ""
-//        }
-//    }
     
     
     @State private var showAnswer = false
@@ -57,13 +46,14 @@ struct SavedQuestionDetailView: View {
                     .padding(.top, 20)
                 } else {
                     Text(question.answer)
-                        .font(.title2)
+                        .font(.title)
+                        .bold()
                         .padding(.vertical)
                         .transition(.opacity)
                 }
                     Spacer()
             }
-                .navigationTitle("문제 상세 (Level \(question.level))")
+                .navigationTitle("문제 상세(\(LevelName(rawValue: question.level)?.description ?? "\(question.level)"))")
                 .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
