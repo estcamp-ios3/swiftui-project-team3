@@ -35,6 +35,9 @@ enum LevelCase {
   }
 }
 
+
+/// TodayCS - front - EntireQuestionsView
+/// 전체 질문 화면
 struct EntireQuestionsView: View {
   
   @StateObject private var csDataManager = CSDataManager.shared
@@ -143,7 +146,7 @@ struct EntireQuestionsView: View {
   
   
   /// 버튼 스타일
-  struct LevelButtonStyle: ViewModifier {
+  struct CustomButtonStyle: ViewModifier {
     let color: Color
     func body(content: Content) -> some View {
       content

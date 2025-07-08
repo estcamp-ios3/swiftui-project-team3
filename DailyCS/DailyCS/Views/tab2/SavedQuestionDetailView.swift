@@ -7,6 +7,7 @@
 import SwiftUI
 import SwiftData
 
+/// TodayCS - front - QuestionDetailView
 struct SavedQuestionDetailView: View {
     
     @Bindable var question: QuestionDataForSave
