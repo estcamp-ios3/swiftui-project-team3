@@ -11,7 +11,7 @@ struct QuestionResultView: View {
     //    @State private var moveToSelectLevelView = false
     var questionDatas: [QuestionData1] = []
     var yourAnswers: [Int] = []
-
+    var selectedAnswerArray: [String] = []
     @State private var path = NavigationPath()
     
     func test(){
