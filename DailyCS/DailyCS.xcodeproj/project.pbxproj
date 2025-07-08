@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
@@ -28,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		EE4F8C9B2E17CA4F00B7924E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -104,6 +104,7 @@
 			children = (
 				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
 				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
+				4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */,
 			);
 			path = tab1;
 			sourceTree = "<group>";
@@ -237,9 +238,9 @@
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
+				4F9AEAE02E1BBC5700F884D8 /* QuestionResultView.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
 				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
-				EE4F8CB42E17CA4F00B7924E /* QuestionResultView.swift in Sources */,
 				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
 				EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */,
 				EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */,
