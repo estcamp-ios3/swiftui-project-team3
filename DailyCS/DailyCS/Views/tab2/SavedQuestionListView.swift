@@ -1,4 +1,3 @@
-
 //  SavedQuestionView.swift
 //  DailyCS
 //
@@ -8,24 +7,22 @@
 import SwiftUI
 import _SwiftData_SwiftUI
 
+
 struct SavedQuestionListView: View {
     
     @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
     @Environment(\.modelContext) private var modelContext //
-    private let csDataManager = CSDataManager() //
+    private let csDataManager = CSDataManager.shared
     @State private var selectedLevel: Int? = nil
     
-    //    private var allLevels: [Int] {
-    //        Array(Set(savedQuestions.map { $0.level })).sorted()
-    //    }
-    private var allLevels: [Int] {
-        Array(Set(questionDummyDatas.map { $0.level })).sorted()
+    private var allLevels: [LevelName] {
+        LevelName.allCases.sorted(by: { $0.rawValue < $1.rawValue })
     }
     
     
     private var filteredQuestions: [QuestionDataForSave] {
-        if let level = selectedLevel {
-            return savedQuestions.filter { $0.level == level }
+        if let levelRawValue = selectedLevel {
+            return savedQuestions.filter { $0.level == levelRawValue }
         } else {
             return savedQuestions.sorted(by: { $0.level < $1.level })
         }
@@ -47,49 +44,54 @@ struct SavedQuestionListView: View {
                         .bold()
                         .padding()
                     
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 17) {
-                            Button("전체") {
-                                selectedLevel = nil
+                    HStack(spacing: 26) {
+                        Button("전체") {
+                            selectedLevel = nil
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .tint(selectedLevel == nil ? .correctGreen : .gray)
+                        .font(.headline)
+                        
+                        ForEach(allLevels) { levelName in
+                            Button(levelName.description) {
+                                selectedLevel = levelName.rawValue
                             }
                             .buttonStyle(.borderedProminent)
-                            .tint(selectedLevel == nil ? .correctGreen : .gray)
+                            .tint(selectedLevel == levelName.rawValue ? .correctGreen : .gray)
                             .font(.headline)
-                            
-                            ForEach(allLevels, id: \.self) { level in
-                                Button("Level \(level)"){
-                                    selectedLevel = level
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(selectedLevel == level ? .correctGreen : .gray)
-                                .font(.headline)
-                            }
                         }
-                        .padding(.horizontal, 10)
-                        .padding(.leading, 20)
                     }
+                    .padding(.horizontal, 10)
                     
                     if filteredQuestions.isEmpty {
                         Spacer()
-                        Text("저장한 문제가 없습니다.")
+                        Text("저장한 문제가 없습니다")
                             .font(.title2)
                             .foregroundStyle(.gray)
                         Spacer()
                     } else {
                         
                         List {
-                            ForEach(filteredQuestions/*, id: \.id*/) { question in
+                            ForEach(filteredQuestions) { question in
                                 NavigationLink {
                                     SavedQuestionDetailView(question: question)
                                 } label: {
                                     VStack(alignment: .leading) {
-                                        Text("Level \(question.level)")
+                                        Text(LevelName(rawValue: question.level)?.description ?? "\(question.level)")
                                             .font(.caption)
                                             .foregroundColor(.gray)
                                         Text(question.question)
                                             .font(.headline)
                                     }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .background(Color.white)
+                                    .cornerRadius(10)
+                                    .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
                                 }
+                                .listRowSeparator(.hidden)
+                                .listRowBackground(Color.veryLightGreenBackground)
+                                .listRowInsets(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                             }
                         }
                         .listStyle(.automatic)
