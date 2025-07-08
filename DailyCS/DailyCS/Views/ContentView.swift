@@ -23,7 +23,7 @@ struct ContentView: View {
             }
             
             Tab("점수", systemImage: "calendar") {
-                QuestionResultView()
+              EntireQuestionsView()
             }
             
         }

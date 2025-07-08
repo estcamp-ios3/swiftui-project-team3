@@ -25,7 +25,7 @@ class CSDataManager {
   /// - Parameters:
   ///   - level: 질문의 레벨
   ///   - limit: 질문의 갯수
-  func fetchCSQuestion(level: Int = 0, limit: Int = 5, completion: @escaping ([QuestionData]) -> Void) {
+  func fetchCSQuestion(level: Int = 0, limit: Int = 5, completion: @escaping ([QuestionDataDTO]) -> Void) {
     Task {
       do {
         // 서버에 저장된 함수에 파라미터로 가져올 문제의 레벨, 갯수 넘겨주기
@@ -38,7 +38,7 @@ class CSDataManager {
           .data
       
         // 디코딩하기
-        let questions = try JSONDecoder().decode([QuestionData].self, from: data)
+        let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
 
         completion(questions)
     
@@ -48,7 +48,29 @@ class CSDataManager {
         completion([])
       }
     }
-    
+  }
+  
+  
+  /// CS 질문 가져오기 (페이징 처리)
+  /// - Parameter level: 가져올 레벨
+  func fetchCSQuestionWithPaging(level: Int = 0) {
+    Task {
+      do{
+        let data = try await supabase
+          .from("questions")
+          .select()
+          .eq("level", value: level)
+          .range(from: 0, to: 9)
+          .execute()
+          .data
+                  
+        let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
+        print(questions)
+        
+      }catch{
+        print("실패 \(error)")
+      }
+    }
   }
    
   

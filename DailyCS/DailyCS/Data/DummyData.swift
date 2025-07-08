@@ -9,11 +9,11 @@ import Foundation
 
 struct DummyQuestionData: Codable, Identifiable {
   var uuid: UUID = UUID()
-    let id: Int
-    let level: Int
-    let questionText: String
-    let answerList: [String]
-    let answerNumber: Int
+  let id: Int
+  let level: Int
+  let questionText: String
+  let answerList: [String]
+  let answerNumber: Int
 }
 
 

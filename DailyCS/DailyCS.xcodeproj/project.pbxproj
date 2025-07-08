@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F9AEAE02E1BBC5700F884D8 /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9AEADF2E1BBC5700F884D8 /* QuestionResultView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
@@ -60,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE0725532E1B928400086878 /* Tab3 */ = {
+			isa = PBXGroup;
+			children = (
+				EE0725542E1B929800086878 /* EntireQuestionsView.swift */,
+			);
+			path = Tab3;
+			sourceTree = "<group>";
+		};
 		EE4F8C092E17786200B7924E = {
 			isa = PBXGroup;
 			children = (
@@ -105,8 +112,8 @@
 		EE4F8CA42E17CA4F00B7924E /* tab2 */ = {
 			isa = PBXGroup;
 			children = (
-				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
 				EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */,
+				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
 			);
 			path = tab2;
 			sourceTree = "<group>";
