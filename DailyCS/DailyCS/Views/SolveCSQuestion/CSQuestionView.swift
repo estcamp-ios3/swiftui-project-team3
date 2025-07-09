@@ -25,7 +25,7 @@ struct CSQuestionView: View {
     @Environment(\.dismiss) var dismiss
     @State var yourAnswer: Int = 0
     @State var chosenQuestion: Int = 0
-    @State var isShowPopup: Bool = false
+    @State var isShowPopup: Bool = false // 뒤로가기 팝업창 제어용 bool
     var difficultyLevel: Int = 0
     
     @Binding var questionDatas: [QuestionData1]
@@ -55,48 +55,21 @@ struct CSQuestionView: View {
         }
     }
     
-    struct BackPopup: View {
-        @Binding var isShowingPopup: Bool
-        var onConfirm: () -> Void
-        
-        var body: some View {
-            VStack {
-                Spacer()
-                Text("첫 화면으로 돌아가시겠습니까?")
-                    .font(.title).bold()
-                    .padding(.horizontal)
-                
-                Spacer()
-                
-                HStack{
-                    Button("확인") {	
-                        onConfirm()
-                        isShowingPopup = false
-                    }.font(.title).bold(true).padding(.horizontal)
-                    
-                    Button("취소", role: .cancel){
-                        isShowingPopup = false
-                    }.font(.title).bold(true).padding(.horizontal)
-                }
-                Spacer()
+    var backButton: some View {
+            Button(action: {
+                isShowPopup = true
+            }) {
+                Image(systemName: "chevron.backward")
+            }.alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
+                Button("취소") {
+                }.bold(true)
+                Button("확인", role: .cancel) { 
+                    dismiss()
+                }.bold(true)
+            } message: {
+                Text("진행 중인 문제는 저장되지 않습니다.").font(.headline)
             }
         }
-    }
-    var backButton: some View {
-        Button(action: {
-            isShowPopup = true
-        }) {
-            Text("처음으로")
-                .font(.headline)
-        }.sheet(isPresented: $isShowPopup) {
-            BackPopup(
-                isShowingPopup: $isShowPopup,
-                onConfirm: {
-                    dismiss() // CSQuestionView의 dismiss가 전달됨
-                }
-            ).presentationDetents([.fraction(0.3)])
-        }
-    }
 
     var body: some View {
         ZStack
@@ -107,11 +80,14 @@ struct CSQuestionView: View {
                 VStack(alignment: .leading) {
                     
                     Text("\(chosenQuestion + 1)번 문제")
-                        .font(.headline)
+                        .font(.title2)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
+                        .foregroundColor(Color.darkGrayText)
                     Text(questionDatas[chosenQuestion].question)
-                        .font(.headline)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        
                     
                     ScrollView {
                         VStack(alignment: .leading){
@@ -124,8 +100,9 @@ struct CSQuestionView: View {
                                 Text("1. " + questionDatas[chosenQuestion].answer1)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+                            }.background(yourAnswer == 1 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             
                             Button(action: {
@@ -137,8 +114,10 @@ struct CSQuestionView: View {
                                 Text("2. " + questionDatas[chosenQuestion].answer2)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+
+                            }.background(yourAnswer == 2 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 3
@@ -149,8 +128,10 @@ struct CSQuestionView: View {
                                 Text("3. " + questionDatas[chosenQuestion].answer3)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+
+                            }.background(yourAnswer == 3 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 4
@@ -161,8 +142,9 @@ struct CSQuestionView: View {
                                 Text("4. " + questionDatas[chosenQuestion].answer4)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+                            }.background(yourAnswer == 4 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                            .cornerRadius(10)
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
 //                        if yourAnswer != 0 {
@@ -202,8 +184,8 @@ struct CSQuestionView: View {
                             questionDatas: questionDatas,
                             yourAnswers: yourAnswers,
                             selectedAnswerArray: selectedAnswerArray)) {
-                                Text("다 풀었어요~").modifier(CustomButtonStyle(color: .correctGreen))
-                            }
+                                Text("결과 보기").modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                            }.disabled(yourAnswer == 0)
                     }
                 }
             }.padding(30)
@@ -211,7 +193,6 @@ struct CSQuestionView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action : {
-                          
                           // 이미 저장된 경우 - 저장 x
                           if savedQuestionIDs.contains(where: { $0 == questionDatas[chosenQuestion].id }) {
                             print("이미 저장됨")
@@ -223,12 +204,13 @@ struct CSQuestionView: View {
                           }
                           isSaved = true
                         }) {
-                            Text("문제 저장")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(Color.correctGreen)
-                                .cornerRadius(10)
+                            Image(systemName: "square.and.arrow.down.on.square.fill")
+//                            Text("문제 저장")
+//                                .font(.headline)
+//                                .foregroundColor(.white)
+//                                .padding(5)
+//                                .background(Color.correctGreen)
+//                                .cornerRadius(10)
                         }.alert(alertMessage, isPresented: $isSaved) {
                           Button("확인", role: .cancel) {}
                         }
