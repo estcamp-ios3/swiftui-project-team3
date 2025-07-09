@@ -8,7 +8,6 @@ import SwiftUI
 import _SwiftData_SwiftUI
 
 
-///TodayCS - front - SavedQuesionListView
 struct SavedQuestionListView: View {
     
     @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
@@ -38,20 +37,15 @@ struct SavedQuestionListView: View {
                 Color.veryLightGreenBackground
                     .ignoresSafeArea()
                 
-                VStack(spacing: 0) {
+                VStack {
                     
-                    Text("저장한 문제 리스트")
-                        .font(.largeTitle)
-                        .bold()
-                        .padding()
-                    
-                    HStack(spacing: 26) {
+                    HStack {
                         Button("전체") {
                             selectedLevel = nil
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(selectedLevel == nil ? .correctGreen : .gray)
-                        .font(.headline)
+                        .font(.title)
                         
                         ForEach(allLevels) { levelName in
                             Button(levelName.description) {
@@ -59,15 +53,14 @@ struct SavedQuestionListView: View {
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(selectedLevel == levelName.rawValue ? .correctGreen : .gray)
-                            .font(.headline)
+                            .font(.title)
                         }
                     }
-                    .padding(.horizontal, 10)
                     
                     if filteredQuestions.isEmpty {
                         Spacer()
                         Text("저장한 문제가 없습니다")
-                            .font(.title2)
+                            .font(.title3)
                             .foregroundStyle(.gray)
                         Spacer()
                     } else {
@@ -80,7 +73,7 @@ struct SavedQuestionListView: View {
                                     VStack(alignment: .leading) {
                                         Text(LevelName(rawValue: question.level)?.description ?? "\(question.level)")
                                             .font(.caption)
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(.darkGrayText)
                                         Text(question.question)
                                             .font(.headline)
                                     }
@@ -88,7 +81,7 @@ struct SavedQuestionListView: View {
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .background(Color.white)
                                     .cornerRadius(10)
-                                    .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+                                    
                                 }
                                 .listRowSeparator(.hidden)
                                 .listRowBackground(Color.veryLightGreenBackground)
@@ -101,6 +94,8 @@ struct SavedQuestionListView: View {
                     }
                 }
             }
+            .navigationBarTitle("저장된 문제 리스트")
+            .navigationBarTitleDisplayMode(.large)
         }
     }
 }
