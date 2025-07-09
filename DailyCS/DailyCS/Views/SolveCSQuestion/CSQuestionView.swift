@@ -55,34 +55,6 @@ struct CSQuestionView: View {
         }
     }
     
-// struct BackPopup: View {
-//        @Binding var isShowingPopup: Bool
-//        var onConfirm: () -> Void
-//        
-//        var body: some View {
-//            VStack {
-//                Spacer()
-//                Text("첫 화면으로 돌아가시겠습니까?")
-//                    .font(.title).bold()
-//                    .padding(.horizontal)
-//                
-//                Spacer()
-//                
-//                HStack{
-//                    Button("확인") {	
-//                        onConfirm()
-//                        isShowingPopup = false
-//                    }.font(.title).bold(true).padding(.horizontal)
-//                    
-//                    Button("취소", role: .cancel){
-//                        isShowingPopup = false
-//                    }.font(.title).bold(true).padding(.horizontal)
-//                }
-//                Spacer()
-//            }
-//        }
-//    }
-    
     var backButton: some View {
             Button(action: {
                 isShowPopup = true
@@ -128,9 +100,9 @@ struct CSQuestionView: View {
                                 Text("1. " + questionDatas[chosenQuestion].answer1)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
                                     .foregroundColor(Color.black)
-                            }
+                            }.background(yourAnswer == 1 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             
                             Button(action: {
@@ -142,10 +114,10 @@ struct CSQuestionView: View {
                                 Text("2. " + questionDatas[chosenQuestion].answer2)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
                                     .foregroundColor(Color.black)
 
-                            }
+                            }.background(yourAnswer == 2 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 3
@@ -156,10 +128,10 @@ struct CSQuestionView: View {
                                 Text("3. " + questionDatas[chosenQuestion].answer3)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
                                     .foregroundColor(Color.black)
 
-                            }
+                            }.background(yourAnswer == 3 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 4
@@ -170,10 +142,9 @@ struct CSQuestionView: View {
                                 Text("4. " + questionDatas[chosenQuestion].answer4)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
                                     .foregroundColor(Color.black)
-
-                            }
+                            }.background(yourAnswer == 4 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                            .cornerRadius(10)
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
 //                        if yourAnswer != 0 {
@@ -222,7 +193,6 @@ struct CSQuestionView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action : {
-                          
                           // 이미 저장된 경우 - 저장 x
                           if savedQuestionIDs.contains(where: { $0 == questionDatas[chosenQuestion].id }) {
                             print("이미 저장됨")
@@ -234,12 +204,13 @@ struct CSQuestionView: View {
                           }
                           isSaved = true
                         }) {
-                            Text("문제 저장")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(Color.correctGreen)
-                                .cornerRadius(10)
+                            Image(systemName: "square.and.arrow.down.on.square.fill")
+//                            Text("문제 저장")
+//                                .font(.headline)
+//                                .foregroundColor(.white)
+//                                .padding(5)
+//                                .background(Color.correctGreen)
+//                                .cornerRadius(10)
                         }.alert(alertMessage, isPresented: $isSaved) {
                           Button("확인", role: .cancel) {}
                         }
