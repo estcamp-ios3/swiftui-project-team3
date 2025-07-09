@@ -57,7 +57,7 @@ struct SelectLevelView: View {
                         
                         Spacer()
                         
-                        Text("현재 난이도 \n" + printLevel())
+                        Text(printLevel())
                             .font(.title2)
                         
                         Spacer()
@@ -66,7 +66,7 @@ struct SelectLevelView: View {
                             // 레벨은 받아서 수정
                             csDataManager.fetchCSQuestion(level: difficultyLevel)
                             }) {
-                                Text("시작하기").modifier(CustomButtonStyle(color: .correctGreen))
+                                Text("시작하기").modifier(CustomButtonStyle(color: .mainGreen))
                             }
                         
                         Spacer()
@@ -86,11 +86,11 @@ struct SelectLevelView: View {
     func printLevel() -> String {
         switch difficultyLevel {
         case 1:
-            "해당 난이도는 학생, 0~1년차 입니다."
+            "해당 난이도는 0 ~ 1년차 대상입니다."
         case 2:
-            "해당 난이도는 1~3년차 입니다."
+            "해당 난이도는 1 ~ 3년차 대상입니다."
         case 3:
-            "해당 난이도는 5~7년차, 7년차이상 입니다."
+            "해당 난이도는 5 ~ 7년차 이상 대상입니다."
        
         default:
             "난이도를 선택해주세요."

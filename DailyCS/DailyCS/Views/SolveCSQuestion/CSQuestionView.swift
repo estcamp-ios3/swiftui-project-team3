@@ -107,11 +107,14 @@ struct CSQuestionView: View {
                 VStack(alignment: .leading) {
                     
                     Text("\(chosenQuestion + 1)번 문제")
-                        .font(.headline)
+                        .font(.title2)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
+                        .foregroundColor(Color.darkGrayText)
                     Text(questionDatas[chosenQuestion].question)
-                        .font(.headline)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        
                     
                     ScrollView {
                         VStack(alignment: .leading){
@@ -125,6 +128,7 @@ struct CSQuestionView: View {
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
+                                    .foregroundColor(Color.black)
                             }
                             
                             
@@ -138,6 +142,8 @@ struct CSQuestionView: View {
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
+                                    .foregroundColor(Color.black)
+
                             }
                             
                             Button(action: {
@@ -150,6 +156,8 @@ struct CSQuestionView: View {
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
+                                    .foregroundColor(Color.black)
+
                             }
                             
                             Button(action: {
@@ -162,6 +170,8 @@ struct CSQuestionView: View {
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
+                                    .foregroundColor(Color.black)
+
                             }
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
@@ -202,8 +212,8 @@ struct CSQuestionView: View {
                             questionDatas: questionDatas,
                             yourAnswers: yourAnswers,
                             selectedAnswerArray: selectedAnswerArray)) {
-                                Text("다 풀었어요~").modifier(CustomButtonStyle(color: .correctGreen))
-                            }
+                                Text("결과 보기").modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                            }.disabled(yourAnswer == 0)
                     }
                 }
             }.padding(30)
