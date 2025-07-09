@@ -27,22 +27,27 @@ struct ContentView: View {
     }else {
       
       TabView {
-        Tab("메인", systemImage: "house") {
+        Tab("난이도 선택", systemImage: "house") {
           SelectLevelView()
         }
         
-        Tab("저장", systemImage: "note.text.badge.plus") {
+        Tab("저장된 문제", systemImage: "note.text.badge.plus") {
           SavedQuestionListView()
         }
         
-        Tab("점수", systemImage: "calendar") {
+        Tab("전체 문제", systemImage: "calendar") {
           EntireQuestionsView()
         }
         
       }
+      .tint(.accentGreen)
     }
         
     }
+  
+  init() {
+    UITabBar.appearance().backgroundColor = UIColor.white
+  }
 }
 
 #Preview {

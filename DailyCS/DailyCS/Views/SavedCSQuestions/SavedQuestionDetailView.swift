@@ -73,7 +73,7 @@ struct SavedQuestionDetailView: View {
             isCheckEditingAlert = true
           } label: {
             Image(systemName: isSaved ? "trash" : "folder.fill.badge.plus")
-              .foregroundColor(isSaved ? .red : .black)
+              .foregroundColor(isSaved ? .red : .accentGreen)
               .padding(.trailing, 10)
           }
         }
@@ -92,7 +92,7 @@ struct SavedQuestionDetailView: View {
           isCompleteEditingAlert = true
         } label: {
           Text(isSaved ? "삭제하기" : "저장하기")
-            .foregroundColor(isSaved ? .red : .green)
+            .foregroundColor(isSaved ? .red : .accentGreen)
         }
       }
       .alert(alertResultTitle, isPresented: $isCompleteEditingAlert) {
