@@ -20,17 +20,24 @@ struct CSQuestionView: View {
   var savedQuestionIDs: [Int] {
     return savedQuestions.map { $0.id }
   }
-  
+
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     @State var yourAnswer: Int = 0
     @State var chosenQuestion: Int = 0
+    @State var isShowPopup: Bool = false // 뒤로가기 팝업창 제어용 bool
     var difficultyLevel: Int = 0
     
     @Binding var questionDatas: [QuestionData1]
     
+    //사용자가 제출한 정답 번호를 저장하는 배열
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
+    
+    //제출한 정답 번호에 해당하는 답안 내용을 저장해두고 QuestionResultView로 넘기기 위한 변수
     @State var selectedAnswer: String = ""
     @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
+    
+    //문제 저장 버튼에서 쓸 bool과 알림 메세지용 string
     @State var isSaved: Bool = false
     @State var alertMessage = ""
     
@@ -47,6 +54,22 @@ struct CSQuestionView: View {
             "난이도를 선택해주세요."
         }
     }
+    
+    var backButton: some View {
+            Button(action: {
+                isShowPopup = true
+            }) {
+                Image(systemName: "chevron.backward")
+            }.alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
+                Button("취소") {
+                }.bold(true)
+                Button("확인", role: .cancel) { 
+                    dismiss()
+                }.bold(true)
+            } message: {
+                Text("진행 중인 문제는 저장되지 않습니다.").font(.headline)
+            }
+        }
 
     var body: some View {
         ZStack
@@ -57,11 +80,14 @@ struct CSQuestionView: View {
                 VStack(alignment: .leading) {
                     
                     Text("\(chosenQuestion + 1)번 문제")
-                        .font(.headline)
+                        .font(.title2)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
+                        .foregroundColor(Color.darkGrayText)
                     Text(questionDatas[chosenQuestion].question)
-                        .font(.headline)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        
                     
                     ScrollView {
                         VStack(alignment: .leading){
@@ -74,8 +100,9 @@ struct CSQuestionView: View {
                                 Text("1. " + questionDatas[chosenQuestion].answer1)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+                            }.background(yourAnswer == 1 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             
                             Button(action: {
@@ -87,8 +114,10 @@ struct CSQuestionView: View {
                                 Text("2. " + questionDatas[chosenQuestion].answer2)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+
+                            }.background(yourAnswer == 2 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 3
@@ -99,8 +128,10 @@ struct CSQuestionView: View {
                                 Text("3. " + questionDatas[chosenQuestion].answer3)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+
+                            }.background(yourAnswer == 3 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                                .cornerRadius(10)
                             
                             Button(action: {
                                 yourAnswer = 4
@@ -111,8 +142,9 @@ struct CSQuestionView: View {
                                 Text("4. " + questionDatas[chosenQuestion].answer4)
                                     .multilineTextAlignment(.leading)
                                     .padding()
-                                    .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
-                            }
+                                    .foregroundColor(Color.black)
+                            }.background(yourAnswer == 4 ? Color.lightLime.opacity(0.8) : Color.lightLime.opacity(0.2))
+                            .cornerRadius(10)
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
 //                        if yourAnswer != 0 {
@@ -125,8 +157,7 @@ struct CSQuestionView: View {
 //                        }
                     }
                 }
-            
-                HStack{
+                HStack {
                     
                     Button(action:{
                         selectedAnswerArray[chosenQuestion] = selectedAnswer
@@ -134,20 +165,16 @@ struct CSQuestionView: View {
                         yourAnswer = yourAnswers[chosenQuestion]
                     }) {
                         Text("이전 문제")
-                            .font(.headline)
                             .modifier(CustomButtonStyle(color: chosenQuestion == 0 ? .gray : .correctGreen))
                     }.disabled(chosenQuestion == 0)
                     
                     if chosenQuestion < questionDatas.count - 1 {
                         Button(action:{
                             selectedAnswerArray[chosenQuestion] = selectedAnswer
-                            yourAnswers[chosenQuestion] = yourAnswer
                             chosenQuestion += 1
                             yourAnswer = yourAnswers[chosenQuestion]
-                            
                         }) {
                             Text("다음 문제")
-                                .font(.headline)
                                 .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
                         }.disabled(yourAnswer == 0)
                     }
@@ -157,10 +184,8 @@ struct CSQuestionView: View {
                             questionDatas: questionDatas,
                             yourAnswers: yourAnswers,
                             selectedAnswerArray: selectedAnswerArray)) {
-                                Text("다 풀었어요")
-                                    .font(.headline)
-                                    .modifier(CustomButtonStyle(color: .correctGreen))
-                            }
+                                Text("결과 보기").modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                            }.disabled(yourAnswer == 0)
                     }
                 }
             }.padding(30)
@@ -168,7 +193,6 @@ struct CSQuestionView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action : {
-                          
                           // 이미 저장된 경우 - 저장 x
                           if savedQuestionIDs.contains(where: { $0 == questionDatas[chosenQuestion].id }) {
                             print("이미 저장됨")
@@ -180,18 +204,21 @@ struct CSQuestionView: View {
                           }
                           isSaved = true
                         }) {
-                            Text("문제 저장")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding(5)
-                                .background(Color.correctGreen)
-                                .cornerRadius(10)
+                            Image(systemName: "square.and.arrow.down.on.square.fill")
+//                            Text("문제 저장")
+//                                .font(.headline)
+//                                .foregroundColor(.white)
+//                                .padding(5)
+//                                .background(Color.correctGreen)
+//                                .cornerRadius(10)
                         }.alert(alertMessage, isPresented: $isSaved) {
                           Button("확인", role: .cancel) {}
                         }
                     }
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
     }
 }
 
