@@ -125,24 +125,42 @@ struct CSQuestionView: View {
 //                        }
                     }
                 }
-                
-                if chosenQuestion < questionDatas.count - 1 {
+            
+                HStack{
+                    
                     Button(action:{
                         selectedAnswerArray[chosenQuestion] = selectedAnswer
-                        yourAnswer = 0
-                        chosenQuestion += 1
+                        chosenQuestion -= 1
+                        yourAnswer = yourAnswers[chosenQuestion]
                     }) {
-                        Text("다음 문제")
-                            .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
-                    }.disabled(yourAnswer == 0)
-                }
-                else{
+                        Text("이전 문제")
+                            .font(.headline)
+                            .modifier(CustomButtonStyle(color: chosenQuestion == 0 ? .gray : .correctGreen))
+                    }.disabled(chosenQuestion == 0)
                     
-                    NavigationLink(destination: QuestionResultView(
-                        questionDatas: questionDatas,
-                        yourAnswers: yourAnswers,
-                        selectedAnswerArray: selectedAnswerArray)) {
-                            Text("다 풀었어요~").modifier(CustomButtonStyle(color: .correctGreen))
+                    if chosenQuestion < questionDatas.count - 1 {
+                        Button(action:{
+                            selectedAnswerArray[chosenQuestion] = selectedAnswer
+                            yourAnswers[chosenQuestion] = yourAnswer
+                            chosenQuestion += 1
+                            yourAnswer = yourAnswers[chosenQuestion]
+                            
+                        }) {
+                            Text("다음 문제")
+                                .font(.headline)
+                                .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                        }.disabled(yourAnswer == 0)
+                    }
+                    else{
+                        
+                        NavigationLink(destination: QuestionResultView(
+                            questionDatas: questionDatas,
+                            yourAnswers: yourAnswers,
+                            selectedAnswerArray: selectedAnswerArray)) {
+                                Text("다 풀었어요")
+                                    .font(.headline)
+                                    .modifier(CustomButtonStyle(color: .correctGreen))
+                            }
                     }
                 }
             }.padding(30)
