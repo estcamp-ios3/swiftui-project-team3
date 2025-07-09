@@ -64,7 +64,6 @@ struct CSQuestionView: View {
       
 
       Button("취소") {
-        dismiss()
       }.bold(true)
       
       Button("확인") {
