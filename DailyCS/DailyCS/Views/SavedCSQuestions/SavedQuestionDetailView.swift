@@ -7,7 +7,6 @@
 import SwiftUI
 import SwiftData
 
-/// TodayCS - front - QuestionDetailView
 /// 질문 상세 화면
 struct SavedQuestionDetailView: View {
   @Bindable var question: QuestionDataForSave
@@ -113,9 +112,11 @@ struct SavedQuestionDetailView: View {
     } label: {
       HStack {
         Image(systemName: "chevron.left")
-        Text("저장한 문제")
+              .font(.title2)
+              .aspectRatio(contentMode: .fit)
+              .foregroundColor(.mainGreen)
+
       }
-      .foregroundColor(.mainGreen)
     }
   }
 }

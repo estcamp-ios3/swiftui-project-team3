@@ -62,6 +62,45 @@ class CSDataManager: ObservableObject {
   }
   
   
+  func shuffleAnswer(data: QuestionData1) -> QuestionData1 {
+    // 질문 배열, 질문하고 정답여부
+    var answerArr: [(String, Bool)] = []
+    
+    _ = questions.map {
+      // 여기 정답
+      answerArr.append(($0.answer1, true))
+      answerArr.append(($0.answer2, false))
+      answerArr.append(($0.answer3, false))
+      answerArr.append(($0.answer4, false))
+    }
+    
+    let shuffledAnswerArr = answerArr.shuffled()
+    
+    // 정답 위치
+    var answerPosition: Int = 0
+    
+    for i in shuffledAnswerArr{
+      answerPosition += 1
+      if i.1 {
+        break
+      }
+    }
+    
+    let shuffledQuestion = QuestionDataDTO(
+      id: data.id,
+      level: data.level,
+      question: data.question,
+      answer_number: answerPosition,
+      answer1: shuffledAnswerArr[0].0,
+      answer2: shuffledAnswerArr[1].0,
+      answer3: shuffledAnswerArr[2].0,
+      answer4: shuffledAnswerArr[3].0
+    )
+    
+    return QuestionData1(with: shuffledQuestion)
+  }
+  
+  
   /// CS 질문 가져오기 (페이징 처리)
   /// - Parameter level: 가져올 레벨
   func fetchCSQuestionWithPaging(level: Int = 1, from: Int = 0, to: Int = 10) {

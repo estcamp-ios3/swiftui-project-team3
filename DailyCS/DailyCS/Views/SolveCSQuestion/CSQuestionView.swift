@@ -63,7 +63,7 @@ struct CSQuestionView: View {
             }.alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
                 Button("취소") {
                 }.bold(true)
-                Button("확인", role: .cancel) { 
+                Button("확인", role: .cancel) {
                     dismiss()
                 }.bold(true)
             } message: {
@@ -148,7 +148,7 @@ struct CSQuestionView: View {
                         }.frame(maxWidth: .infinity, alignment: .leading)
                         
 //                        if yourAnswer != 0 {
-//                            
+//
 //                            Text("답변 : \(yourAnswer). \(selectedAnswer)")
 //                                .font(.headline)
 //                                .foregroundColor(.black)
