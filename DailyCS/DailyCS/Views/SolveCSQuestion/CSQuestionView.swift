@@ -25,7 +25,7 @@ struct CSQuestionView: View {
     @Environment(\.dismiss) var dismiss
     @State var yourAnswer: Int = 0
     @State var chosenQuestion: Int = 0
-    @State var isShowPopup: Bool = false
+    @State var isShowPopup: Bool = false // 뒤로가기 팝업창 제어용 bool
     var difficultyLevel: Int = 0
     
     @Binding var questionDatas: [QuestionData1]
@@ -55,48 +55,50 @@ struct CSQuestionView: View {
         }
     }
     
-    struct BackPopup: View {
-        @Binding var isShowingPopup: Bool
-        var onConfirm: () -> Void
-        
-        var body: some View {
-            VStack {
-                Spacer()
-                Text("첫 화면으로 돌아가시겠습니까?")
-                    .font(.title).bold()
-                    .padding(.horizontal)
-                
-                Spacer()
-                
-                HStack{
-                    Button("확인") {	
-                        onConfirm()
-                        isShowingPopup = false
-                    }.font(.title).bold(true).padding(.horizontal)
-                    
-                    Button("취소", role: .cancel){
-                        isShowingPopup = false
-                    }.font(.title).bold(true).padding(.horizontal)
-                }
-                Spacer()
+// struct BackPopup: View {
+//        @Binding var isShowingPopup: Bool
+//        var onConfirm: () -> Void
+//        
+//        var body: some View {
+//            VStack {
+//                Spacer()
+//                Text("첫 화면으로 돌아가시겠습니까?")
+//                    .font(.title).bold()
+//                    .padding(.horizontal)
+//                
+//                Spacer()
+//                
+//                HStack{
+//                    Button("확인") {	
+//                        onConfirm()
+//                        isShowingPopup = false
+//                    }.font(.title).bold(true).padding(.horizontal)
+//                    
+//                    Button("취소", role: .cancel){
+//                        isShowingPopup = false
+//                    }.font(.title).bold(true).padding(.horizontal)
+//                }
+//                Spacer()
+//            }
+//        }
+//    }
+    
+    var backButton: some View {
+            Button(action: {
+                isShowPopup = true
+            }) {
+                Text("처음으로")
+                    .font(.headline)
+            }.alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
+                Button("취소") {
+                }.bold(true)
+                Button("확인", role: .cancel) { 
+                    dismiss()
+                }.bold(true)
+            } message: {
+                Text("진행 중인 문제는 저장되지 않습니다.").font(.headline)
             }
         }
-    }
-    var backButton: some View {
-        Button(action: {
-            isShowPopup = true
-        }) {
-            Text("처음으로")
-                .font(.headline)
-        }.sheet(isPresented: $isShowPopup) {
-            BackPopup(
-                isShowingPopup: $isShowPopup,
-                onConfirm: {
-                    dismiss() // CSQuestionView의 dismiss가 전달됨
-                }
-            ).presentationDetents([.fraction(0.3)])
-        }
-    }
 
     var body: some View {
         ZStack
