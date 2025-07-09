@@ -9,10 +9,10 @@ import SwiftUI
 
 
 /// 레벨에 따른 케이스
-enum LevelCase {
-  case easy
-  case normal
-  case hard
+enum LevelCase: Int, CaseIterable {
+  case easy = 1
+  case normal = 2
+  case hard = 3
   
   
   /// 버튼 및 네비게이션 타이틀
@@ -24,14 +24,8 @@ enum LevelCase {
     }
   }
   
-  
-  /// 난이도 반환
-  var convertNum: Int {
-    switch self {
-    case .easy: 1
-    case .normal: 2
-    case .hard: 3
-    }
+  static func title(for rawValue: Int) -> String {
+    return LevelCase(rawValue: rawValue)?.titleValue ?? "Easy"
   }
 }
 
@@ -57,6 +51,7 @@ struct EntireQuestionsView: View {
   var body: some View {
     
     NavigationStack {
+      
       VStack {
         ScrollView(.horizontal, showsIndicators: false) {
           HStack(spacing: 17) {
@@ -81,7 +76,6 @@ struct EntireQuestionsView: View {
           .padding(.horizontal, 20)
         }
         
-        Spacer()
         
         List(csDataManager.totalQuestions) { question in
           NavigationLink {
@@ -90,7 +84,7 @@ struct EntireQuestionsView: View {
             Text("test")
           } label: {
             VStack(alignment: .leading, spacing: 10) {
-              Text(selectedLevel)
+              Text(LevelCase.title(for: question.level))
               
               Text(question.question)
             }
@@ -105,17 +99,20 @@ struct EntireQuestionsView: View {
                 print("마지막")
                 startIndex += 10
                 endIndex += 10
-                csDataManager.fetchCSQuestionWithPaging(level: convertLevel(), from: startIndex, to: endIndex)
+                csDataManager.fetchCSQuestionWithPaging(level: convertLevel(),
+                                                        from: startIndex,
+                                                        to: endIndex)
               }
             }
           }
         }
+        .listRowSpacing(20)
+        .scrollContentBackground(.hidden)
+        .background(Color.veryLightGreenBackground)
         .onAppear {
           // 처음 리스트 시작 시 서버에서 데이터 가져오기
           csDataManager.fetchCSQuestionWithPaging()
         }
-        
-        
       }
       .modifier(BackgroundStyle(navigationTitle: "전체 문제"))
     }
@@ -143,35 +140,35 @@ struct EntireQuestionsView: View {
     }
   }
 }
-  
-  
-  /// 버튼 스타일
-  struct CustomButtonStyle: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-      content
-        .font(.title)
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(color)
-        .cornerRadius(10)
-    }
+
+
+/// 버튼 스타일
+struct CustomButtonStyle: ViewModifier {
+  let color: Color
+  func body(content: Content) -> some View {
+    content
+      .font(.title)
+      .foregroundColor(.white)
+      .padding()
+      .frame(maxWidth: .infinity)
+      .background(color)
+      .cornerRadius(10)
   }
-  
-  // 배경 스타일 + 네비게이션타이틀
-  struct BackgroundStyle: ViewModifier {
-    let navigationTitle: String
-    func body(content: Content) -> some View {
-      content
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.veryLightGreenBackground)
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.large)
-    }
+}
+
+// 배경 스타일 + 네비게이션타이틀
+struct BackgroundStyle: ViewModifier {
+  let navigationTitle: String
+  func body(content: Content) -> some View {
+    content
+      .frame(maxWidth: .infinity, maxHeight: .infinity)
+      .background(Color.veryLightGreenBackground)
+      .navigationTitle(navigationTitle)
+      .navigationBarTitleDisplayMode(.large)
   }
-  
-  
-  #Preview {
-    EntireQuestionsView()
-  }
+}
+
+
+#Preview {
+  EntireQuestionsView()
+}
