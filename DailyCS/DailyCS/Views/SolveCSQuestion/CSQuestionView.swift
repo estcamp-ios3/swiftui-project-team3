@@ -63,7 +63,7 @@ struct CSQuestionView: View {
             VStack {
                 Spacer()
                 Text("첫 화면으로 돌아가시겠습니까?")
-                    .font(.headline).bold()
+                    .font(.title).bold()
                     .padding(.horizontal)
                 
                 Spacer()
@@ -72,11 +72,11 @@ struct CSQuestionView: View {
                     Button("확인") {	
                         onConfirm()
                         isShowingPopup = false
-                    }.font(.headline).bold(true).padding(.horizontal)
+                    }.font(.title).bold(true).padding(.horizontal)
                     
                     Button("취소", role: .cancel){
                         isShowingPopup = false
-                    }.font(.headline).bold(true).padding(.horizontal)
+                    }.font(.title).bold(true).padding(.horizontal)
                 }
                 Spacer()
             }
