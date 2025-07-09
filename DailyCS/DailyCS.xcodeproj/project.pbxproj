@@ -28,8 +28,9 @@
 		EE4F8CD52E1A21E000B7924E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EE4F8CD42E1A21E000B7924E /* Config.xcconfig */; };
 		EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CD82E1A22C900B7924E /* Supabase.swift */; };
 		EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64772E1CA364001AA420 /* QuestionResultView.swift */; };
-		EEEA647C2E1CA731001AA420 /* LevelBasedQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */; };
 		EEEA64802E1D5C67001AA420 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA647F2E1D5C67001AA420 /* LaunchView.swift */; };
+		EEEA648A2E1EA3F4001AA420 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64892E1EA3F4001AA420 /* Modifiers.swift */; };
+		EEEA649F2E1EB251001AA420 /* NavigationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,8 +53,9 @@
 		EE4F8CD42E1A21E000B7924E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		EE4F8CD82E1A22C900B7924E /* Supabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Supabase.swift; sourceTree = "<group>"; };
 		EEEA64772E1CA364001AA420 /* QuestionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionResultView.swift; sourceTree = "<group>"; };
-		EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelBasedQuestionsView.swift; sourceTree = "<group>"; };
 		EEEA647F2E1D5C67001AA420 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		EEEA64892E1EA3F4001AA420 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +76,6 @@
 			isa = PBXGroup;
 			children = (
 				EE0725542E1B929800086878 /* EntireQuestionsView.swift */,
-				EEEA647B2E1CA731001AA420 /* LevelBasedQuestionsView.swift */,
 			);
 			path = EntireQuestions;
 			sourceTree = "<group>";
@@ -152,6 +153,8 @@
 				EE4F8CA72E17CA4F00B7924E /* Views */,
 				EE4F8CB92E17CA6500B7924E /* Data */,
 				EE4F8C9A2E17CA4F00B7924E /* Extension */,
+				EEEA64892E1EA3F4001AA420 /* Modifiers.swift */,
+				EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */,
 				EE4F8CD42E1A21E000B7924E /* Config.xcconfig */,
 				EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */,
 			);
@@ -251,12 +254,12 @@
 			files = (
 				EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */,
 				EEEA64802E1D5C67001AA420 /* LaunchView.swift in Sources */,
-				EEEA647C2E1CA731001AA420 /* LevelBasedQuestionsView.swift in Sources */,
 				EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */,
 				EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */,
 				EEEA64782E1CA364001AA420 /* QuestionResultView.swift in Sources */,
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */,
+				EEEA649F2E1EB251001AA420 /* NavigationUtils.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
 				4F3F2A0C2E1E3E5100CCB629 /* WrongQuestionView.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
@@ -265,6 +268,7 @@
 				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
 				EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */,
 				EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */,
+				EEEA648A2E1EA3F4001AA420 /* Modifiers.swift in Sources */,
 				EE4F8CB62E17CA4F00B7924E /* DummyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
