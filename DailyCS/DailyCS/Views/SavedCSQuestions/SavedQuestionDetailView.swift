@@ -19,8 +19,11 @@ struct SavedQuestionDetailView: View {
     
     @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     var body: some View {
+        
             
             ZStack {
                 Color.veryLightGreenBackground
@@ -56,8 +59,13 @@ struct SavedQuestionDetailView: View {
             }
                 .navigationTitle("문제 상세(\(LevelName(rawValue: question.level)?.description ?? "\(question.level)"))")
                 .navigationBarTitleDisplayMode(.inline)
+                .navigationBarBackButtonHidden(true)
+                
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing){
+                ToolbarItem(placement: .navigationBarLeading) {
+                    backButton
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showDelete = true
                     } label: {
@@ -83,6 +91,20 @@ struct SavedQuestionDetailView: View {
             }
         }
     }
+    
+    var backButton : some View {
+            Button {
+                self.presentationMode.wrappedValue.dismiss()
+            } label: {
+                HStack {
+                    Image(systemName: "chevron.left")
+                        .aspectRatio(contentMode: .fit)
+                    Text("저장한 문제")
+                }
+                .foregroundColor(.mainGreen)
+            }
+        }
+    
 }
 
 

@@ -175,42 +175,24 @@ struct CSQuestionView: View {
 //                        }
                     }
                 }
-            
-                HStack{
-                    
+                
+                if chosenQuestion < questionDatas.count - 1 {
                     Button(action:{
                         selectedAnswerArray[chosenQuestion] = selectedAnswer
-                        chosenQuestion -= 1
-                        yourAnswer = yourAnswers[chosenQuestion]
+                        yourAnswer = 0
+                        chosenQuestion += 1
                     }) {
-                        Text("이전 문제")
-                            .font(.headline)
-                            .modifier(CustomButtonStyle(color: chosenQuestion == 0 ? .gray : .correctGreen))
-                    }.disabled(chosenQuestion == 0)
+                        Text("다음 문제")
+                            .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                    }.disabled(yourAnswer == 0)
+                }
+                else{
                     
-                    if chosenQuestion < questionDatas.count - 1 {
-                        Button(action:{
-                            selectedAnswerArray[chosenQuestion] = selectedAnswer
-                            yourAnswers[chosenQuestion] = yourAnswer
-                            chosenQuestion += 1
-                            yourAnswer = yourAnswers[chosenQuestion]
-                            
-                        }) {
-                            Text("다음 문제")
-                                .font(.headline)
-                                .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
-                        }.disabled(yourAnswer == 0)
-                    }
-                    else{
-                        
-                        NavigationLink(destination: QuestionResultView(
-                            questionDatas: questionDatas,
-                            yourAnswers: yourAnswers,
-                            selectedAnswerArray: selectedAnswerArray)) {
-                                Text("다 풀었어요")
-                                    .font(.headline)
-                                    .modifier(CustomButtonStyle(color: .correctGreen))
-                            }
+                    NavigationLink(destination: QuestionResultView(
+                        questionDatas: questionDatas,
+                        yourAnswers: yourAnswers,
+                        selectedAnswerArray: selectedAnswerArray)) {
+                            Text("다 풀었어요~").modifier(CustomButtonStyle(color: .correctGreen))
                     }
                 }
             }.padding(30)
