@@ -12,9 +12,9 @@ import SwiftData
 struct DailyCSApp: App {
 //  var modelContainer: ModelContainer = {
 //    let schema = Schema([QuestionDataForSave.self])
-//    
+//
 //    let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//    
+//
 //    do {
 //      let container = try ModelContainer(for: schema, configurations: [configuration])
 //      return container

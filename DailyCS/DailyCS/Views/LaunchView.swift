@@ -10,7 +10,7 @@ import SwiftUI
 struct LaunchView: View {
     var body: some View {
       VStack {
-        Image("LaunchScreenImg")
+        Image("LauchScreenImage")
         Text("for iOS Developer")
           .font(.largeTitle)
       }

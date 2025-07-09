@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SwiftUI
+import SwiftUIa
 
 extension UIColor {
   // 메인 버튼, 강조
