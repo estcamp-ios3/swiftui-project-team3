@@ -11,7 +11,7 @@ import SwiftUI
 /// 난이도 선택화면
 struct SelectLevelView: View {
   @StateObject private var csDataManager: CSDataManager = CSDataManager.shared
-  
+
     @State var difficultyLevel: Int = 1
         var body: some View {
             
@@ -68,17 +68,14 @@ struct SelectLevelView: View {
                             }) {
                                 Text("시작하기").modifier(CustomButtonStyle(color: .correctGreen))
                             }
-                          
-                          NavigationLink(destination: CSQuestionView(difficultyLevel: difficultyLevel,
-                                                                     questionDatas: $csDataManager.questions),
-                                         isActive: $csDataManager.isLoaded) {
-                          EmptyView()
-                    
-                        }
                         
                         Spacer()
                         }.font(.title)
                             .padding()
+                            .navigationDestination(isPresented: $csDataManager.isLoaded) {
+                                CSQuestionView(difficultyLevel: difficultyLevel,
+                                               questionDatas: $csDataManager.questions)
+                            }
                 }
         }
 }

@@ -20,17 +20,24 @@ struct CSQuestionView: View {
   var savedQuestionIDs: [Int] {
     return savedQuestions.map { $0.id }
   }
-  
+
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) var dismiss
     @State var yourAnswer: Int = 0
     @State var chosenQuestion: Int = 0
+    @State var isShowPopup: Bool = false
     var difficultyLevel: Int = 0
     
     @Binding var questionDatas: [QuestionData1]
     
+    //사용자가 제출한 정답 번호를 저장하는 배열
     @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
+    
+    //제출한 정답 번호에 해당하는 답안 내용을 저장해두고 QuestionResultView로 넘기기 위한 변수
     @State var selectedAnswer: String = ""
     @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
+    
+    //문제 저장 버튼에서 쓸 bool과 알림 메세지용 string
     @State var isSaved: Bool = false
     @State var alertMessage = ""
     
@@ -46,6 +53,36 @@ struct CSQuestionView: View {
         default:
             "난이도를 선택해주세요."
         }
+    }
+    
+    struct BackPopup: View {
+        @Binding var isShowingPopup: Bool
+        @Environment(\.dismiss) var dismissPopup
+        
+        var body: some View {
+            VStack {
+                Text("첫 화면으로 돌아가시겠습니까?")
+                    .font(.headline)
+                HStack{
+                    Button("확인") {
+                        isShowingPopup = false
+                        dismissPopup()
+                    }
+                    
+                    Button("취소", role: .cancel){
+                        isShowingPopup = false
+                    }
+                }
+            }
+        }
+    }
+    var backButton: some View {
+        Button(action: {
+            isShowPopup = true
+        }) {
+            Text("처음으로")
+                .font(.headline)
+        }.sheet(isPresented: $isShowPopup) {BackPopup(isShowingPopup: $isShowPopup)}
     }
 
     var body: some View {
@@ -192,6 +229,8 @@ struct CSQuestionView: View {
                     }
                 }
             }
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: backButton)
     }
 }
 
