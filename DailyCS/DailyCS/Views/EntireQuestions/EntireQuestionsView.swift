@@ -64,9 +64,8 @@ struct EntireQuestionsView: View {
   var body: some View {
     
     NavigationStack {
-      VStack {
-        ScrollView(.horizontal, showsIndicators: false) {
-          HStack(spacing: 17) {
+      VStack(alignment: .leading) {
+          HStack {
             Button("전체") {
               selectedLevel = "전체"
               fetchQeustions()
@@ -86,7 +85,7 @@ struct EntireQuestionsView: View {
             }
           }
           .padding(.horizontal, 20)
-        }
+        
         
         Spacer()
         

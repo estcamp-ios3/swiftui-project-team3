@@ -94,6 +94,7 @@ struct SavedQuestionDetailView: View {
           Text(isSaved ? "삭제하기" : "저장하기")
             .foregroundColor(isSaved ? .red : .accentGreen)
         }
+        .buttonStyle(.plain)
       }
       .alert(alertResultTitle, isPresented: $isCompleteEditingAlert) {
         Button("확인", role: .cancel) {

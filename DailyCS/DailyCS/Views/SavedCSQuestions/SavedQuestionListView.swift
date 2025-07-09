@@ -56,6 +56,7 @@ struct SavedQuestionListView: View {
               .font(.title)
             }
           }
+          
           // 저장된 문제가 없는 경우
           if filteredQuestions.isEmpty {
             Spacer()
@@ -69,25 +70,27 @@ struct SavedQuestionListView: View {
             // 저장된 문제가 있는 경우
             List {
               ForEach(filteredQuestions) { question in
-                NavigationLink {
-                  SavedQuestionDetailView(question: question)
-                } label: {
-                  VStack(alignment: .leading) {
-                    // 문제의 레벨
-                    Text(LevelName(rawValue: question.level)?.description ?? "\(question.level)")
-                      .font(.caption)
-                      .foregroundColor(.darkGrayText)
+                
+                  HStack {
+                    Spacer()
+                    NavigationLink(destination: SavedQuestionDetailView(question: question)) {
+                      VStack(alignment: .leading, spacing: 8) {
+                        // 문제의 레벨
+                        Text(LevelName(rawValue: question.level)?.description ?? "\(question.level)")
+                          .font(.caption)
+                          .foregroundColor(.darkGrayText)
+                        
+                        // 문제 내용
+                        Text(question.question)
+                          .font(.headline)
+                      }
                     
-                    // 문제 내용
-                    Text(question.question)
-                      .font(.headline)
                   }
-                  .padding()
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                  .background(Color.white)
-                  .cornerRadius(10)
-                  
                 }
+                .padding()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
+                .cornerRadius(10)
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.veryLightGreenBackground)
                 .listRowInsets(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
@@ -96,6 +99,7 @@ struct SavedQuestionListView: View {
             .listStyle(.automatic)
             .scrollContentBackground(.hidden)
             .background(Color.veryLightGreenBackground)
+
           }
         }
       }
