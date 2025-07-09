@@ -63,13 +63,13 @@ struct CSQuestionView: View {
     .alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
       
 
-      Button("확인", role: .cancel) {
+      Button("취소") {
         dismiss()
       }.bold(true)
       
-      Button("취소") {
-      }
-      .bold(true)
+      Button("확인") {
+          dismiss()
+      }.bold(true)
       
     } message: {
       Text("진행 중인 문제는 저장되지 않습니다.").font(.headline)
