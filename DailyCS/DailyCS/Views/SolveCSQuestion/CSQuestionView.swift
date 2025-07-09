@@ -6,15 +6,24 @@
 //
 
 import SwiftUI
+import SwiftData
 
-
-
-
+/// TodayCS - front - CSQuestionView
+/// 문제 풀이 화면
 struct CSQuestionView: View {
   @StateObject private var csDataManager = CSDataManager.shared
+  
+  // SwiftData로 로컬에 저장된 문제들
+  @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
+  
+  // 저장된 문제들의 ID만 따로 뺀 배열
+  var savedQuestionIDs: [Int] {
+    return savedQuestions.map { $0.id }
+  }
+  
     @Environment(\.modelContext) private var modelContext
     @State var yourAnswer: Int = 0
-    @State var ChosenQuestion: Int = 0
+    @State var chosenQuestion: Int = 0
     var difficultyLevel: Int = 0
     
     @Binding var questionDatas: [QuestionData1]
@@ -23,6 +32,7 @@ struct CSQuestionView: View {
     @State var selectedAnswer: String = ""
     @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
     @State var isSaved: Bool = false
+    @State var alertMessage = ""
     
     func printLevel() -> String {
         switch difficultyLevel {
@@ -46,22 +56,22 @@ struct CSQuestionView: View {
             VStack {
                 VStack(alignment: .leading) {
                     
-                    Text("\(ChosenQuestion + 1)번 문제")
+                    Text("\(chosenQuestion + 1)번 문제")
                         .font(.headline)
                         .fontWeight(.bold)
                         .padding(.bottom, 10)
-                    Text(questionDatas[ChosenQuestion].question)
+                    Text(questionDatas[chosenQuestion].question)
                         .font(.headline)
                     
                     ScrollView {
                         VStack(alignment: .leading){
                             Button(action: {
                                 yourAnswer = 1
-                                yourAnswers[ChosenQuestion] = yourAnswer
-                                selectedAnswer = questionDatas[ChosenQuestion].answer1
+                                yourAnswers[chosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[chosenQuestion].answer1
                             }
                             ){
-                                Text("1. " + questionDatas[ChosenQuestion].answer1)
+                                Text("1. " + questionDatas[chosenQuestion].answer1)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 1 ? Color.lightLime.opacity(0.2) : Color.clear)
@@ -70,11 +80,11 @@ struct CSQuestionView: View {
                             
                             Button(action: {
                                 yourAnswer = 2
-                                yourAnswers[ChosenQuestion] = yourAnswer
-                                selectedAnswer = questionDatas[ChosenQuestion].answer2
+                                yourAnswers[chosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[chosenQuestion].answer2
                             }
                             ){
-                                Text("2. " + questionDatas[ChosenQuestion].answer2)
+                                Text("2. " + questionDatas[chosenQuestion].answer2)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 2 ? Color.lightLime.opacity(0.2) : Color.clear)
@@ -82,11 +92,11 @@ struct CSQuestionView: View {
                             
                             Button(action: {
                                 yourAnswer = 3
-                                yourAnswers[ChosenQuestion] = yourAnswer
-                                selectedAnswer = questionDatas[ChosenQuestion].answer3
+                                yourAnswers[chosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[chosenQuestion].answer3
                             }
                             ){
-                                Text("3. " + questionDatas[ChosenQuestion].answer3)
+                                Text("3. " + questionDatas[chosenQuestion].answer3)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 3 ? Color.lightLime.opacity(0.2) : Color.clear)
@@ -94,11 +104,11 @@ struct CSQuestionView: View {
                             
                             Button(action: {
                                 yourAnswer = 4
-                                yourAnswers[ChosenQuestion] = yourAnswer
-                                selectedAnswer = questionDatas[ChosenQuestion].answer4
+                                yourAnswers[chosenQuestion] = yourAnswer
+                                selectedAnswer = questionDatas[chosenQuestion].answer4
                             }
                             ){
-                                Text("4. " + questionDatas[ChosenQuestion].answer4)
+                                Text("4. " + questionDatas[chosenQuestion].answer4)
                                     .multilineTextAlignment(.leading)
                                     .padding()
                                     .background(yourAnswer == 4 ? Color.lightLime.opacity(0.2) : Color.clear)
@@ -115,30 +125,30 @@ struct CSQuestionView: View {
 //                        }
                     }
                 }
-                
+            
                 HStack{
                     
                     Button(action:{
-                        selectedAnswerArray[ChosenQuestion] = selectedAnswer
-                        ChosenQuestion -= 1
-                        yourAnswer = yourAnswers[ChosenQuestion]
+                        selectedAnswerArray[chosenQuestion] = selectedAnswer
+                        chosenQuestion -= 1
+                        yourAnswer = yourAnswers[chosenQuestion]
                     }) {
                         Text("이전 문제")
                             .font(.headline)
-                            .modifier(LevelButtonStyle(color: ChosenQuestion == 0 ? .gray : .correctGreen))
-                    }.disabled(ChosenQuestion == 0)
+                            .modifier(CustomButtonStyle(color: chosenQuestion == 0 ? .gray : .correctGreen))
+                    }.disabled(chosenQuestion == 0)
                     
-                    if ChosenQuestion < questionDatas.count - 1 {
+                    if chosenQuestion < questionDatas.count - 1 {
                         Button(action:{
-                            selectedAnswerArray[ChosenQuestion] = selectedAnswer
-                            yourAnswers[ChosenQuestion] = yourAnswer
-                            ChosenQuestion += 1
-                            yourAnswer = yourAnswers[ChosenQuestion]
+                            selectedAnswerArray[chosenQuestion] = selectedAnswer
+                            yourAnswers[chosenQuestion] = yourAnswer
+                            chosenQuestion += 1
+                            yourAnswer = yourAnswers[chosenQuestion]
                             
                         }) {
                             Text("다음 문제")
                                 .font(.headline)
-                                .modifier(LevelButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
+                                .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .correctGreen))
                         }.disabled(yourAnswer == 0)
                     }
                     else{
@@ -149,7 +159,7 @@ struct CSQuestionView: View {
                             selectedAnswerArray: selectedAnswerArray)) {
                                 Text("다 풀었어요")
                                     .font(.headline)
-                                    .modifier(LevelButtonStyle(color: .correctGreen))
+                                    .modifier(CustomButtonStyle(color: .correctGreen))
                             }
                     }
                 }
@@ -158,8 +168,17 @@ struct CSQuestionView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action : {
-                            csDataManager.saveQuestion(modelContext, question: questionDatas[ChosenQuestion])
-                            isSaved = true
+                          
+                          // 이미 저장된 경우 - 저장 x
+                          if savedQuestionIDs.contains(where: { $0 == questionDatas[chosenQuestion].id }) {
+                            print("이미 저장됨")
+                            alertMessage = "이미 저장된 문제입니다."
+                          }else {
+                            // 저장된 목록에 없는 경우 - 저장
+                            csDataManager.saveQuestion(modelContext, question: questionDatas[chosenQuestion])
+                            alertMessage = "문제가 저장되었습니다."
+                          }
+                          isSaved = true
                         }) {
                             Text("문제 저장")
                                 .font(.headline)
@@ -167,9 +186,8 @@ struct CSQuestionView: View {
                                 .padding(5)
                                 .background(Color.correctGreen)
                                 .cornerRadius(10)
-                        }.alert(isPresented: $isSaved) {
-                            Alert(title: Text("저장되었습니다."),
-                                  dismissButton: .default(Text("OK")))
+                        }.alert(alertMessage, isPresented: $isSaved) {
+                          Button("확인", role: .cancel) {}
                         }
                     }
                 }
