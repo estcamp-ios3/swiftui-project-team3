@@ -61,18 +61,24 @@ struct CSQuestionView: View {
         
         var body: some View {
             VStack {
+                Spacer()
                 Text("첫 화면으로 돌아가시겠습니까?")
-                    .font(.headline)
+                    .font(.headline).bold()
+                    .padding(.horizontal)
+                
+                Spacer()
+                
                 HStack{
                     Button("확인") {	
                         onConfirm()
                         isShowingPopup = false
-                    }
+                    }.font(.headline).bold(true).padding(.horizontal)
                     
                     Button("취소", role: .cancel){
                         isShowingPopup = false
-                    }
+                    }.font(.headline).bold(true).padding(.horizontal)
                 }
+                Spacer()
             }
         }
     }
@@ -88,7 +94,7 @@ struct CSQuestionView: View {
                 onConfirm: {
                     dismiss() // CSQuestionView의 dismiss가 전달됨
                 }
-            )
+            ).presentationDetents([.fraction(0.3)])
         }
     }
 
