@@ -13,6 +13,7 @@ struct LaunchView: View {
         Image("LauchScreenImage")
         Text("for iOS Developer")
           .font(.largeTitle)
+          .padding(.bottom, 50)
       }
     }
 }

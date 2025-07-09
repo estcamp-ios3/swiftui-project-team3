@@ -24,19 +24,39 @@ struct SavedQuestionDetailView: View {
   @Environment(\.dismiss) var dismiss
   @Environment(\.modelContext) var modelContext
   @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-  
+
   var body: some View {
     ZStack {
       Color.veryLightGreenBackground.ignoresSafeArea()
       
       VStack(spacing: 20) {
-        Spacer()
+          
         
+        VStack(alignment: .leading){
+          Text("문제 내용")
+            .font(.headline)
+            .padding(.top, 40)
+          
+          Divider()
+        }
+        .padding(.horizontal, 20)
+
+  
         Text(question.question)
           .font(.system(size: 20))
           .bold()
-          .multilineTextAlignment(.center)
-          .padding(.horizontal)
+          .multilineTextAlignment(.leading)
+          .padding(20)
+          .frame(maxWidth: .infinity, alignment: .leading)
+          .background(
+            RoundedRectangle(cornerRadius: 12)
+              .fill(Color.lightLime)
+          )
+          .padding(.horizontal, 10)
+
+        
+        Spacer()
+
         
         if !showAnswer {
           Button("정답보기") {
@@ -58,8 +78,8 @@ struct SavedQuestionDetailView: View {
         
         Spacer()
       }
-      .navigationTitle("문제 상세 (\(LevelName(rawValue: question.level)?.description ?? "\(question.level)"))")
-      .navigationBarTitleDisplayMode(.inline)
+//      .navigationTitle("문제 상세 (\(LevelName(rawValue: question.level)?.description ?? "\(question.level)"))")
+//      .navigationBarTitleDisplayMode(.inline)
       .navigationBarBackButtonHidden(true)
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -79,9 +99,10 @@ struct SavedQuestionDetailView: View {
         }
       }
       .alert(alertTitle, isPresented: $isCheckEditingAlert) {
-        Button("취소하기", role: .cancel) { }
-        
-        Button {
+        Button("취소하기") {
+        }
+
+        Button(isSaved ? "삭제하기" : "저장하기") {
           if isSaved {
             _ = CSDataManager.shared.deleteQuestion(modelContext, data: question)
             isSaved = false
@@ -90,11 +111,9 @@ struct SavedQuestionDetailView: View {
             isSaved = true
           }
           isCompleteEditingAlert = true
-        } label: {
-          Text(isSaved ? "삭제하기" : "저장하기")
-            .foregroundColor(isSaved ? .red : .accentGreen)
         }
-        .buttonStyle(.plain)
+        .foregroundStyle(Color.accentColor)
+
       }
       .alert(alertResultTitle, isPresented: $isCompleteEditingAlert) {
         Button("확인", role: .cancel) {

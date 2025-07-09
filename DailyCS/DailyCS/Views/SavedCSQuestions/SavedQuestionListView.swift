@@ -37,7 +37,7 @@ struct SavedQuestionListView: View {
         Color.veryLightGreenBackground
           .ignoresSafeArea()
         
-        VStack {
+        VStack(alignment: .leading) {
           
           HStack {
             Button("전체") {
@@ -45,7 +45,7 @@ struct SavedQuestionListView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(selectedLevel == nil ? .correctGreen : .gray)
-            .font(.title)
+            .font(.headline)
             
             ForEach(allLevels) { levelName in
               Button(levelName.description) {
@@ -53,19 +53,25 @@ struct SavedQuestionListView: View {
               }
               .buttonStyle(.borderedProminent)
               .tint(selectedLevel == levelName.rawValue ? .correctGreen : .gray)
-              .font(.title)
+              .font(.headline)
             }
           }
+          .padding(.horizontal, 20)
+          .frame(maxWidth: .infinity, alignment: .leading)
+
           
           // 저장된 문제가 없는 경우
           if filteredQuestions.isEmpty {
-            Spacer()
-            
-            Text("저장한 문제가 없습니다")
-              .font(.title3)
-              .foregroundStyle(.gray)
-            
-            Spacer()
+            VStack {
+              Spacer()
+              
+              Text("저장한 문제가 없습니다")
+                .font(.title3)
+                .foregroundStyle(.gray)
+              
+              Spacer()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
           } else {
             // 저장된 문제가 있는 경우
             List {

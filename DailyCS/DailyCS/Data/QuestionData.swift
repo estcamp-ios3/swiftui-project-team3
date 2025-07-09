@@ -20,19 +20,19 @@ struct QuestionDataDTO: Codable {
   
 }
 
+//struct QuestionData: Codable, Identifiable {
+//  var uuid: UUID = UUID()
+//  let id: Int
+//  let level: Int
+//  let question: String
+//  let answer_number: Int
+//  let answer1: String
+//  let answer2: String
+//  let answer3: String
+//  let answer4: String
+//}
+//  
 struct QuestionData: Codable, Identifiable {
-  var uuid: UUID = UUID()
-  let id: Int
-  let level: Int
-  let question: String
-  let answer_number: Int
-  let answer1: String
-  let answer2: String
-  let answer3: String
-  let answer4: String
-}
-  
-struct QuestionData1: Codable, Identifiable {
   var uuid: UUID = UUID()
   let id: Int
   let level: Int
@@ -63,7 +63,7 @@ class QuestionDataForSave {
   var question: String
   var answer: String
   
-  init(with data: QuestionData1) {
+  init(with data: QuestionData) {
     self.id = data.id
     self.level = data.level
     self.question = data.question

@@ -13,7 +13,7 @@ import SwiftUI
 struct QuestionResultView: View {
   
   // 문제 배열
-  var questionDatas: [QuestionData1] = []
+  var questionDatas: [QuestionData] = []
   // 답 1~4번 중 선택
   var yourAnswers: [Int] = []
   // 선택한 답에 대한 텍스트
@@ -21,7 +21,7 @@ struct QuestionResultView: View {
   // 맞춘 개수
   @State var correctCount = 0 // 맞춘 개수 카운트
   // 틀린 문제 모아두기
-  @State var wrongQuestionArray: [QuestionData1] = []
+  @State var wrongQuestionArray: [QuestionData] = []
   
   @State var score: Int = 0
   
@@ -40,6 +40,7 @@ struct QuestionResultView: View {
         wrongQuestionArray.append(question)
       }
       
+      print(yourAnswers)
     }
     // 점수
     score = correctCount * 20
@@ -59,9 +60,9 @@ struct QuestionResultView: View {
         .foregroundColor(.mainGreen)
       
       List {
-        ForEach(wrongQuestionArray) { array in
-        
-          NavigationLink(destination: WrongQuestionView(questionData1: array)) {
+        ForEach(Array(wrongQuestionArray.enumerated()), id: \.element.id) { index, array in
+          NavigationLink(destination: WrongQuestionView(questionData1: array,
+                                                        seletedAnswerNum: yourAnswers[index])) {
             Text(array.question)
               .font(.headline)
               .foregroundColor(.black)
@@ -75,7 +76,8 @@ struct QuestionResultView: View {
         }
       }
       .listStyle(.plain)
-      .background(Color.clear) // 리스트 배경 제거
+      .background(Color.clear)
+
       
       
       

@@ -21,10 +21,10 @@ struct QuestionRequestParams: Encodable {
 class CSDataManager: ObservableObject {
   static let shared = CSDataManager()
   
-  @Published var questions: [QuestionData1] = []
+  @Published var questions: [QuestionData] = []
   @Published var isLoaded: Bool = false
   
-  @Published var totalQuestions: [QuestionData1] = []
+  @Published var totalQuestions: [QuestionData] = []
   
   /// CS관련 질문들 랜덤하게 가져오기
   /// - Parameters:
@@ -45,7 +45,7 @@ class CSDataManager: ObservableObject {
         // 디코딩하기
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
         
-        let convertedQuestions = questions.map { QuestionData1(with: $0) }
+        let convertedQuestions = questions.map { QuestionData(with: $0) }
         
         DispatchQueue.main.async {
           self.questions = convertedQuestions
@@ -66,7 +66,7 @@ class CSDataManager: ObservableObject {
   }
   
   
-  func shuffleAnswer(data: QuestionData1) -> QuestionData1 {
+  func shuffleAnswer(data: QuestionData) -> QuestionData {
     // 질문 배열, 질문하고 정답여부
     var answerArr: [(String, Bool)] = []
     
@@ -99,7 +99,7 @@ class CSDataManager: ObservableObject {
       answer4: shuffledAnswerArr[3].0
     )
   
-    return QuestionData1(with: shuffledQuestion)
+    return QuestionData(with: shuffledQuestion)
   }
   
   
@@ -121,7 +121,7 @@ class CSDataManager: ObservableObject {
       
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
 
-        let convertedQuestions = questions.map { QuestionData1(with: $0) }
+        let convertedQuestions = questions.map { QuestionData(with: $0) }
 
         print(questions)
         
@@ -141,7 +141,7 @@ class CSDataManager: ObservableObject {
   ///   - question: 저장할 질문
   func saveQuestion<T>(_ modelContext: ModelContext, question: T) {
     // question이 QuestionData1이라면 변환 아니면 그냥 저장
-    if let q = question as? QuestionData1 {
+    if let q = question as? QuestionData {
       let saveQuestion: QuestionDataForSave = QuestionDataForSave(with: q)
       modelContext.insert(saveQuestion)
     } else if let q = question as? QuestionDataForSave {
