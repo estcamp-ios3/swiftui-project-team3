@@ -44,12 +44,16 @@ class CSDataManager: ObservableObject {
       
         // 디코딩하기
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
-
+        
         let convertedQuestions = questions.map { QuestionData1(with: $0) }
         
-        print(convertedQuestions)
         DispatchQueue.main.async {
           self.questions = convertedQuestions
+          self.questions = self.questions.map {
+            self.shuffleAnswer(data: $0)
+          }
+          
+          
           self.isLoaded = true
           
         }
@@ -66,16 +70,14 @@ class CSDataManager: ObservableObject {
     // 질문 배열, 질문하고 정답여부
     var answerArr: [(String, Bool)] = []
     
-    _ = questions.map {
-      // 여기 정답
-      answerArr.append(($0.answer1, true))
-      answerArr.append(($0.answer2, false))
-      answerArr.append(($0.answer3, false))
-      answerArr.append(($0.answer4, false))
-    }
+    answerArr.append((data.answer1, true))
+    answerArr.append((data.answer2, false))
+    answerArr.append((data.answer3, false))
+    answerArr.append((data.answer4, false))
     
     let shuffledAnswerArr = answerArr.shuffled()
-    
+  
+
     // 정답 위치
     var answerPosition: Int = 0
     
@@ -96,7 +98,7 @@ class CSDataManager: ObservableObject {
       answer3: shuffledAnswerArr[2].0,
       answer4: shuffledAnswerArr[3].0
     )
-    
+  
     return QuestionData1(with: shuffledQuestion)
   }
   
