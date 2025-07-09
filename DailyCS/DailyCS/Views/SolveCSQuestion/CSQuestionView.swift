@@ -87,8 +87,7 @@ struct CSQuestionView: View {
             Button(action: {
                 isShowPopup = true
             }) {
-                Text("처음으로")
-                    .font(.headline)
+                Image(systemName: "chevron.backward")
             }.alert("첫 화면으로 돌아가시겠습니까?", isPresented: $isShowPopup) {
                 Button("취소") {
                 }.bold(true)
