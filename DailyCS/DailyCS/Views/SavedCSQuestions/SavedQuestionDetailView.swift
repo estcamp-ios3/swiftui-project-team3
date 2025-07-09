@@ -50,9 +50,11 @@ struct SavedQuestionDetailView: View {
                     .padding(.top, 20)
                 } else {
                     Text(question.answer)
-                        .font(.title)
-                        .bold()
+                        .font(.system(size: 30))
+                        .fontWeight(.heavy)
+                        .multilineTextAlignment(.center)
                         .padding(.vertical)
+                        .padding(.horizontal)
                         .transition(.opacity)
                 }
                     Spacer()
