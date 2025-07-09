@@ -46,7 +46,7 @@ struct WrongQuestionView: View {
                             .font(.headline)
                         
                         
-                        Text("정답: \(questionData1.answer_number + 1) 번")
+                        Text("정답: \(questionData1.answer_number) 번")
                             .font(.body)
                             .fontWeight(.bold)
                             .padding(.top ,8)

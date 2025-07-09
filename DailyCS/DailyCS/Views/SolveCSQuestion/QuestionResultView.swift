@@ -33,7 +33,7 @@ struct QuestionResultView: View {
         // 예제
         for (question, answer) in zip(questionDatas, yourAnswers) {
             print("질문: \(question.answer_number), 당신의 답변: \(answer)")
-            if question.answer_number + 1 == answer {
+            if question.answer_number == answer {
                 correctCount += 1
             }else {
                 wrongQuestionArray.append(question)
