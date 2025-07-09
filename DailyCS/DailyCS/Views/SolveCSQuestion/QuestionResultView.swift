@@ -11,99 +11,113 @@ import SwiftUI
 /// TodayCS - front - QuestionResultView
 /// 문제풀이 결과 화면
 struct QuestionResultView: View {
-    //    @State private var moveToSelectLevelView = false
+    
+    // 문제 배열
     var questionDatas: [QuestionData1] = []
+    // 답 1~4번 중 선택
     var yourAnswers: [Int] = []
+    // 선택한 답에 대한 텍스트
     var selectedAnswerArray: [String] = []
-    @State private var path = NavigationPath()
+    // 맞춘 개수
+    @State var correctCount = 0 // 맞춘 개수 카운트
+    // 틀린 문제 모아두기
+    @State var wrongQuestionArray: [QuestionData1] = []
     
-    func test(){
-        var questionArray: [QuestionData1] = []
+    @State var score: Int = 0
+    
+    func questionAnswers(){
         
+        //초기화
+        correctCount = 0
+        wrongQuestionArray = []
+        // 예제
         for (question, answer) in zip(questionDatas, yourAnswers) {
-            print("질문: \(question), 당신의 답변: \(answer)")
-            if question.answer_number != answer {
-                questionArray.append(question)
-                
+            print("질문: \(question.answer_number), 당신의 답변: \(answer)")
+            if question.answer_number + 1 == answer {
+                correctCount += 1
+            }else {
+                wrongQuestionArray.append(question)
             }
+            
         }
-    
-
-        _ = 100 - (questionArray.count * 20)
-        
-        // 리스트 출력
-
-
-        
+        // 점수
+        score = correctCount * 20
     }
     
     var body: some View {
-        NavigationStack(path:$path) {
+        
+        ZStack {
+            // 배경
+            Color.veryLightGreenBackground.ignoresSafeArea()
             
-            ZStack {
-                Color.veryLightGreenBackground.edgesIgnoringSafeArea(.all)
+            
+            VStack(spacing: 16) {
                 
-                VStack(spacing: 16) {
-                    
-                    HStack {
-                        Button(action: {
-                            // 닫기 액션
-                            path.append("SelectLevel")
-                            //      moveToSelectLevelView = true
-                        }) {
-                            Image(systemName: "xmark")
-                                .font(.title)
-                                .padding()
-                        }
-                        Spacer()
-                        
+                HStack {
+                    NavigationLink(destination: SelectLevelView())
+                    {
+                        Image(systemName: "xmark")
+                            .font(.title)
+                            .padding()
                     }
+                    Spacer()
                     
-                    // 오늘의 점수
-                    VStack(spacing: 20) {
-                        Text("오늘의 점수").foregroundColor(.green)
-                            .font(.largeTitle)
-                        
-                        Text("\(_=100 - (questionDatas.count * 20))점 (\(questionDatas.count)문제 중 \(questionDatas.count - yourAnswers.filter({$0 != 0}).count)문제 틀림)")
-                            .font(.title2)
-                            .bold()
-                        
-                    }
+                }
+                
+                // 오늘의 점수
+                VStack(spacing: 20) {
+                    Text("오늘의 점수").foregroundColor(.green)
+                        .font(.largeTitle)
                     
-                    .padding()
-                    
-                    // 더미 데이터
-                    Text("틀린 문제 리스트")
+                    // 맞힌 점수
+                    Text("총 \(score)점")
                         .font(.title2)
-                        .fontWeight(.medium)
-                        .foregroundColor(.red)
-                        .tint(.black)
-                    List(questionDummyDatas) {data in HStack {
-                        //
-                        Text(data.question)
-
-                    }
-
-
-                    }
+                        .bold()
+                    
                 }
-
-
-            }
-            .padding(.horizontal, 20)
-            .navigationDestination(for: String.self) { destination in
-                if destination == "SelectLevel" {
-                    SelectLevelView()
-                }
-                //                    .navigationDestination(isPresented: $moveToSelectLevelView, destination: {
-                //                        SelectLevelView()
-                //                    })
                 
+                .padding()
+                
+                // 더미 데이터
+                Text("틀린 문제 리스트")
+                    .font(.title2)
+                    .fontWeight(.medium)
+                    .foregroundColor(.red)
+                
+                // 틀린 문제 배열
+                List {
+                    ForEach(wrongQuestionArray) { array in
+                        NavigationLink {
+                            WrongQuestionView(questionData1: array)
+                            
+                        }label: {
+                            VStack(alignment: .leading) {
+                                
+                                Text(array.question)
+                                    .font(.headline)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .shadow(color: Color.black.opacity(0.1), radius: 3, x: 0, y: 2)
+                        }
+                    }
+                }
             }
-            .navigationBarBackButtonHidden(true) // Back 버튼 없애기
+            .scrollContentBackground(.hidden)
+            .background(Color.clear)
+            .padding()
+            
+        }
+        .navigationBarBackButtonHidden(true) // Back 버튼 없애기
+        .onAppear() {
+            questionAnswers()
         }
     }
+    
 }
+
 
 struct QuestionResultView_Previews: PreviewProvider {
     static var previews: some View {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		23793D412E1CFBCD00FCAC70 /* LevelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23793D402E1CFBCD00FCAC70 /* LevelName.swift */; };
+		4F3F2A0C2E1E3E5100CCB629 /* WrongQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F2A0B2E1E3E5100CCB629 /* WrongQuestionView.swift */; };
 		EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0725542E1B929800086878 /* EntireQuestionsView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		23793D402E1CFBCD00FCAC70 /* LevelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelName.swift; sourceTree = "<group>"; };
+		4F3F2A0B2E1E3E5100CCB629 /* WrongQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongQuestionView.swift; sourceTree = "<group>"; };
 		EE0725542E1B929800086878 /* EntireQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionsView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */,
 				EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */,
 				EEEA64772E1CA364001AA420 /* QuestionResultView.swift */,
+				4F3F2A0B2E1E3E5100CCB629 /* WrongQuestionView.swift */,
 			);
 			path = SolveCSQuestion;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */,
 				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
+				4F3F2A0C2E1E3E5100CCB629 /* WrongQuestionView.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
 				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
 				23793D412E1CFBCD00FCAC70 /* LevelName.swift in Sources */,
