@@ -120,9 +120,8 @@ struct CSQuestionView: View {
                     
                     Button(action:{
                         selectedAnswerArray[ChosenQuestion] = selectedAnswer
-                        yourAnswer = 
                         ChosenQuestion -= 1
-                        
+                        yourAnswer = yourAnswers[ChosenQuestion]
                     }) {
                         Text("이전 문제")
                             .font(.headline)
@@ -132,8 +131,9 @@ struct CSQuestionView: View {
                     if ChosenQuestion < questionDatas.count - 1 {
                         Button(action:{
                             selectedAnswerArray[ChosenQuestion] = selectedAnswer
-                            yourAnswer = 0
+                            yourAnswers[ChosenQuestion] = yourAnswer
                             ChosenQuestion += 1
+                            yourAnswer = yourAnswers[ChosenQuestion]
                             
                         }) {
                             Text("다음 문제")
