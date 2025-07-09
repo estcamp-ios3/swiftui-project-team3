@@ -8,6 +8,7 @@ import SwiftUI
 import _SwiftData_SwiftUI
 
 
+///TodayCS - front - SavedQuesionListView
 struct SavedQuestionListView: View {
     
     @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
@@ -37,15 +38,20 @@ struct SavedQuestionListView: View {
                 Color.veryLightGreenBackground
                     .ignoresSafeArea()
                 
-                VStack {
+                VStack(spacing: 0) {
                     
-                    HStack {
+                    Text("저장한 문제 리스트")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                    
+                    HStack(spacing: 26) {
                         Button("전체") {
                             selectedLevel = nil
                         }
                         .buttonStyle(.borderedProminent)
                         .tint(selectedLevel == nil ? .correctGreen : .gray)
-                        .font(.title)
+                        .font(.headline)
                         
                         ForEach(allLevels) { levelName in
                             Button(levelName.description) {
@@ -53,14 +59,15 @@ struct SavedQuestionListView: View {
                             }
                             .buttonStyle(.borderedProminent)
                             .tint(selectedLevel == levelName.rawValue ? .correctGreen : .gray)
-                            .font(.title)
+                            .font(.headline)
                         }
                     }
+                    .padding(.horizontal, 10)
                     
                     if filteredQuestions.isEmpty {
                         Spacer()
                         Text("저장한 문제가 없습니다")
-                            .font(.title3)
+                            .font(.title2)
                             .foregroundStyle(.gray)
                         Spacer()
                     } else {
@@ -94,8 +101,6 @@ struct SavedQuestionListView: View {
                     }
                 }
             }
-            .navigationBarTitle("저장된 문제 리스트")
-            .navigationBarTitleDisplayMode(.large)
         }
     }
 }

@@ -26,7 +26,7 @@ class CSDataManager: ObservableObject {
   
   @Published var totalQuestions: [QuestionData1] = []
   
-  /// CS관련 질문들 가져오기
+  /// CS관련 질문들 랜덤하게 가져오기
   /// - Parameters:
   ///   - level: 질문의 레벨
   ///   - limit: 질문의 갯수
@@ -98,10 +98,17 @@ class CSDataManager: ObservableObject {
   /// 질문 저장하기
   /// - Parameters:
   ///   - question: 저장할 질문
-  func saveQuestion(_ modelContext: ModelContext, question: QuestionData1) {
-    let saveQuestion: QuestionDataForSave = QuestionDataForSave(with: question)
-    
-    modelContext.insert(saveQuestion)
+  func saveQuestion<T>(_ modelContext: ModelContext, question: T) {
+    // question이 QuestionData1이라면 변환 아니면 그냥 저장
+    if let q = question as? QuestionData1 {
+      let saveQuestion: QuestionDataForSave = QuestionDataForSave(with: q)
+      modelContext.insert(saveQuestion)
+    } else if let q = question as? QuestionDataForSave {
+      modelContext.insert(q)
+    }else {
+      print("지원되지 않는 타입입니다.")
+      return
+    }
     
     do {
       try modelContext.save()
@@ -122,12 +129,14 @@ class CSDataManager: ObservableObject {
   /// 저장된 질문 삭제하기
   /// - Parameters:
   ///   - data: 삭제할 질문
-  func deleteQuestion(_ modelContext: ModelContext, data: QuestionDataForSave) {
+  func deleteQuestion(_ modelContext: ModelContext, data: QuestionDataForSave) -> Bool {
     modelContext.delete(data)
     do {
       try modelContext.save()
+      return true
     }catch{
       print("질문 삭제에 실패했어요.\(error)")
+      return false
     }
   }
 
