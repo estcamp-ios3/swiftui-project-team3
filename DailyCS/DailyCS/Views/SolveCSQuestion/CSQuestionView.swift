@@ -29,7 +29,7 @@ struct CSQuestionView: View {
   @State var isShowPopup: Bool = false // 뒤로가기 팝업창 제어용 bool
   var difficultyLevel: Int = 0
   
-  @Binding var questionDatas: [QuestionData1]
+  @Binding var questionDatas: [QuestionData]
   
   //사용자가 제출한 정답 번호를 저장하는 배열
   @State var yourAnswers: [Int] = Array(repeating: 0, count: 5)
