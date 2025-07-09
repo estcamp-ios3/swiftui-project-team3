@@ -57,16 +57,16 @@ struct CSQuestionView: View {
     
     struct BackPopup: View {
         @Binding var isShowingPopup: Bool
-        @Environment(\.dismiss) var dismissPopup
+        var onConfirm: () -> Void
         
         var body: some View {
             VStack {
                 Text("첫 화면으로 돌아가시겠습니까?")
                     .font(.headline)
                 HStack{
-                    Button("확인") {
+                    Button("확인") {	
+                        onConfirm()
                         isShowingPopup = false
-                        dismissPopup()
                     }
                     
                     Button("취소", role: .cancel){
@@ -82,7 +82,14 @@ struct CSQuestionView: View {
         }) {
             Text("처음으로")
                 .font(.headline)
-        }.sheet(isPresented: $isShowPopup) {BackPopup(isShowingPopup: $isShowPopup)}
+        }.sheet(isPresented: $isShowPopup) {
+            BackPopup(
+                isShowingPopup: $isShowPopup,
+                onConfirm: {
+                    dismiss() // CSQuestionView의 dismiss가 전달됨
+                }
+            )
+        }
     }
 
     var body: some View {
