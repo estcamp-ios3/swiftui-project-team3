@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 /// 레벨에 따른 케이스
-enum LevelCase: Int {
+enum LevelCase: Int, CaseIterable {
   case easy = 1
   case normal = 2
   case hard = 3
@@ -21,16 +21,6 @@ enum LevelCase: Int {
     case .easy: "Easy"
     case .normal: "Normal"
     case .hard: "Hard"
-    }
-  }
-  
-  
-  /// 난이도 반환
-  var convertNum: Int {
-    switch self {
-    case .easy: 1
-    case .normal: 2
-    case .hard: 3
     }
   }
   
@@ -57,7 +47,7 @@ struct EntireQuestionsView: View {
   var savedQuestionIDs: [Int] {
     return savedQuestions.map { $0.id }
   }
-
+  
   
   @State private var selectedLevel: String = "전체"
   @State private var startIndex: Int = 1
@@ -103,9 +93,9 @@ struct EntireQuestionsView: View {
         List(csDataManager.totalQuestions) { question in
           NavigationLink {
             let isSaved = savedQuestions.contains(where: { $0.id == question.id })
-
+            
             let data = savedQuestions.first(where: { $0.id == question.id }) ?? QuestionDataForSave(with: question)
-
+            
             SavedQuestionDetailView(question: data, isSaved: isSaved)
             
           } label: {
@@ -115,7 +105,7 @@ struct EntireQuestionsView: View {
               Text(question.question)
             }
           }
-
+          
           .onAppear {
             
             print(savedQuestionIDs)
@@ -141,8 +131,6 @@ struct EntireQuestionsView: View {
           // 처음 리스트 시작 시 서버에서 데이터 가져오기
           csDataManager.fetchCSQuestionWithPaging()
         }
-        
-        
       }
       .modifier(BackgroundStyle(navigationTitle: "전체 문제"))
     }
@@ -170,35 +158,10 @@ struct EntireQuestionsView: View {
     }
   }
 }
-  
-  
-  /// 버튼 스타일
-  struct CustomButtonStyle: ViewModifier {
-    let color: Color
-    func body(content: Content) -> some View {
-      content
-        .font(.title)
-        .foregroundColor(.white)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(color)
-        .cornerRadius(10)
-    }
-  }
-  
-  // 배경 스타일 + 네비게이션타이틀
-  struct BackgroundStyle: ViewModifier {
-    let navigationTitle: String
-    func body(content: Content) -> some View {
-      content
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.veryLightGreenBackground)
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.large)
-    }
-  }
-  
-  
-  #Preview {
-    EntireQuestionsView()
-  }
+
+
+
+
+#Preview {
+  EntireQuestionsView()
+}
