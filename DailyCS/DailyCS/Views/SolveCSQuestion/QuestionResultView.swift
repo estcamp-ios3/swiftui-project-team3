@@ -16,6 +16,9 @@ struct QuestionResultView: View {
   var questionDatas: [QuestionData] = []
   // 답 1~4번 중 선택
   var yourAnswers: [Int] = []
+  
+  @State var wrongAnswers: [Int] = []
+  
   // 선택한 답에 대한 텍스트
   var selectedAnswerArray: [String] = []
   // 맞춘 개수
@@ -38,9 +41,9 @@ struct QuestionResultView: View {
         correctCount += 1
       }else {
         wrongQuestionArray.append(question)
+        wrongAnswers.append(answer)
       }
       
-      print(yourAnswers)
     }
     // 점수
     score = correctCount * 20
@@ -62,7 +65,7 @@ struct QuestionResultView: View {
       List {
         ForEach(Array(wrongQuestionArray.enumerated()), id: \.element.id) { index, array in
           NavigationLink(destination: WrongQuestionView(questionData1: array,
-                                                        seletedAnswerNum: yourAnswers[index])) {
+                                                        seletedAnswerNum: wrongAnswers[index])) {
             Text(array.question)
               .font(.headline)
               .foregroundColor(.black)
