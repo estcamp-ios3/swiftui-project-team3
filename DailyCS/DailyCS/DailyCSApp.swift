@@ -10,19 +10,6 @@ import SwiftData
 
 @main
 struct DailyCSApp: App {
-//  var modelContainer: ModelContainer = {
-//    let schema = Schema([QuestionDataForSave.self])
-//
-//    let configuration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-//
-//    do {
-//      let container = try ModelContainer(for: schema, configurations: [configuration])
-//      return container
-//    }catch {
-//      fatalError("Model Conatiner 생성 실패: \(error)")
-//    }
-//  }()
-
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -5,21 +5,28 @@
 //
 
 import SwiftUI
-import _SwiftData_SwiftUI
+import SwiftData
 
 
+/// TodayCS - front - SavedQuesionListView
+/// 저장된 문제리스트 화면
 struct SavedQuestionListView: View {
-  
+  // 저장되어 있는 질문
   @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
-  @Environment(\.modelContext) private var modelContext 
+  @Environment(\.modelContext) private var modelContext
+  
+  // 네트워크
   private let csDataManager = CSDataManager.shared
+  
+  // 선택한 난이도 - 전체, Easy, Normal, Hard
   @State private var selectedLevel: Int? = nil
-  
-  private var allLevels: [LevelName] {
-    LevelName.allCases.sorted(by: { $0.rawValue < $1.rawValue })
+
+  // 모든 난이도 배열
+  private var allLevels: [LevelCase] {
+    LevelCase.allCases
   }
-  
-  
+
+  // 난이도별로 질문 필터링
   private var filteredQuestions: [QuestionDataForSave] {
     if let levelRawValue = selectedLevel {
       return savedQuestions.filter { $0.level == levelRawValue }
@@ -27,18 +34,15 @@ struct SavedQuestionListView: View {
       return savedQuestions.sorted(by: { $0.level < $1.level })
     }
   }
-  @AppStorage("hasLoadedInitialSavedQuestions") private var hasLoadedInitialSavedQuestions: Bool = false
   
   var body: some View {
-    
     NavigationStack {
-      
       ZStack {
-        Color.veryLightGreenBackground
-          .ignoresSafeArea()
+        Color.veryLightGreenBackground.ignoresSafeArea()
         
         VStack(alignment: .leading) {
           
+          // 난이도 버튼 - 전체, Easy, Normal, Hard
           HStack {
             Button("전체") {
               selectedLevel = nil
@@ -46,20 +50,19 @@ struct SavedQuestionListView: View {
             .buttonStyle(.borderedProminent)
             .tint(selectedLevel == nil ? .correctGreen : .gray)
             .font(.headline)
-            
-            ForEach(allLevels) { levelName in
-              Button(levelName.description) {
-                selectedLevel = levelName.rawValue
+
+            ForEach(allLevels) { level in
+              Button(level.titleValue) {
+                selectedLevel = level.rawValue
               }
               .buttonStyle(.borderedProminent)
-              .tint(selectedLevel == levelName.rawValue ? .correctGreen : .gray)
+              .tint(selectedLevel == level.rawValue ? .correctGreen : .gray)
               .font(.headline)
             }
           }
           .padding(.horizontal, 20)
           .frame(maxWidth: .infinity, alignment: .leading)
 
-          
           // 저장된 문제가 없는 경우
           if filteredQuestions.isEmpty {
             VStack {
@@ -76,21 +79,22 @@ struct SavedQuestionListView: View {
             // 저장된 문제가 있는 경우
             List {
               ForEach(filteredQuestions) { question in
-                
-                  HStack {
-                    Spacer()
-                    NavigationLink(destination: SavedQuestionDetailView(question: question)) {
-                      VStack(alignment: .leading, spacing: 8) {
-                        // 문제의 레벨
-                        Text(LevelName(rawValue: question.level)?.description ?? "\(question.level)")
-                          .font(.caption)
-                          .foregroundColor(.darkGrayText)
-                        
-                        // 문제 내용
-                        Text(question.question)
-                          .font(.headline)
-                      }
-                    
+                HStack {
+                  
+                  Spacer()
+                  
+                  // 저장된 질문 상세화면으로 이동
+                  NavigationLink(destination: QuestionDetailView(question: question)) {
+                    VStack(alignment: .leading, spacing: 8) {
+                      // 문제의 레벨
+                      Text(LevelCase.converToString(for: question.level))
+                        .font(.caption)
+                        .foregroundColor(.darkGrayText)
+
+                      // 문제 내용
+                      Text(question.question)
+                        .font(.headline)
+                    }
                   }
                 }
                 .padding()
@@ -105,7 +109,6 @@ struct SavedQuestionListView: View {
             .listStyle(.automatic)
             .scrollContentBackground(.hidden)
             .background(Color.veryLightGreenBackground)
-
           }
         }
       }

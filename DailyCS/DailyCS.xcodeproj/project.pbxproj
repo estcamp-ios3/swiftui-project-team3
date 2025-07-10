@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		23793D412E1CFBCD00FCAC70 /* LevelName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23793D402E1CFBCD00FCAC70 /* LevelName.swift */; };
 		4F3F2A0C2E1E3E5100CCB629 /* WrongQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F2A0B2E1E3E5100CCB629 /* WrongQuestionView.swift */; };
 		EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0725542E1B929800086878 /* EntireQuestionsView.swift */; };
 		EE4F8CAC2E17CA4F00B7924E /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C992E17CA4F00B7924E /* Color+Ext.swift */; };
 		EE4F8CAD2E17CA4F00B7924E /* CSQuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */; };
 		EE4F8CAF2E17CA4F00B7924E /* SelectLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */; };
 		EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */; };
-		EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */; };
+		EE4F8CB12E17CA4F00B7924E /* QuestionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA22E17CA4F00B7924E /* QuestionDetailView.swift */; };
 		EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */; };
 		EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA52E17CA4F00B7924E /* ContentView.swift */; };
 		EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE4F8CA92E17CA4F00B7924E /* DailyCSApp.swift */; };
@@ -31,10 +30,10 @@
 		EEEA64802E1D5C67001AA420 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA647F2E1D5C67001AA420 /* LaunchView.swift */; };
 		EEEA648A2E1EA3F4001AA420 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64892E1EA3F4001AA420 /* Modifiers.swift */; };
 		EEEA649F2E1EB251001AA420 /* NavigationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */; };
+		EEEA64A12E1F412D001AA420 /* LavelCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEA64A02E1F412D001AA420 /* LavelCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		23793D402E1CFBCD00FCAC70 /* LevelName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelName.swift; sourceTree = "<group>"; };
 		4F3F2A0B2E1E3E5100CCB629 /* WrongQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongQuestionView.swift; sourceTree = "<group>"; };
 		EE0725542E1B929800086878 /* EntireQuestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntireQuestionsView.swift; sourceTree = "<group>"; };
 		EE4F8C122E17786200B7924E /* DailyCS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyCS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,7 +42,7 @@
 		EE4F8C9D2E17CA4F00B7924E /* CSQuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSQuestionView.swift; sourceTree = "<group>"; };
 		EE4F8C9F2E17CA4F00B7924E /* SelectLevelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLevelView.swift; sourceTree = "<group>"; };
 		EE4F8CA12E17CA4F00B7924E /* QuestionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionData.swift; sourceTree = "<group>"; };
-		EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionDetailView.swift; sourceTree = "<group>"; };
+		EE4F8CA22E17CA4F00B7924E /* QuestionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailView.swift; sourceTree = "<group>"; };
 		EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedQuestionListView.swift; sourceTree = "<group>"; };
 		EE4F8CA52E17CA4F00B7924E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		EEEA647F2E1D5C67001AA420 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		EEEA64892E1EA3F4001AA420 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtils.swift; sourceTree = "<group>"; };
+		EEEA64A02E1F412D001AA420 /* LavelCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LavelCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,8 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				EE4F8CA32E17CA4F00B7924E /* SavedQuestionListView.swift */,
-				EE4F8CA22E17CA4F00B7924E /* SavedQuestionDetailView.swift */,
-				23793D402E1CFBCD00FCAC70 /* LevelName.swift */,
+				EE4F8CA22E17CA4F00B7924E /* QuestionDetailView.swift */,
 			);
 			path = SavedCSQuestions;
 			sourceTree = "<group>";
@@ -153,8 +152,7 @@
 				EE4F8CA72E17CA4F00B7924E /* Views */,
 				EE4F8CB92E17CA6500B7924E /* Data */,
 				EE4F8C9A2E17CA4F00B7924E /* Extension */,
-				EEEA64892E1EA3F4001AA420 /* Modifiers.swift */,
-				EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */,
+				EEEA64A22E1F4138001AA420 /* Utils */,
 				EE4F8CD42E1A21E000B7924E /* Config.xcconfig */,
 				EE4F8CA82E17CA4F00B7924E /* Assets.xcassets */,
 			);
@@ -170,6 +168,16 @@
 				EE4F8CD82E1A22C900B7924E /* Supabase.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		EEEA64A22E1F4138001AA420 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EEEA64892E1EA3F4001AA420 /* Modifiers.swift */,
+				EEEA649E2E1EB251001AA420 /* NavigationUtils.swift */,
+				EEEA64A02E1F412D001AA420 /* LavelCase.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,11 +268,11 @@
 				EE4F8CB02E17CA4F00B7924E /* QuestionData.swift in Sources */,
 				EE0725552E1B929800086878 /* EntireQuestionsView.swift in Sources */,
 				EEEA649F2E1EB251001AA420 /* NavigationUtils.swift in Sources */,
-				EE4F8CB12E17CA4F00B7924E /* SavedQuestionDetailView.swift in Sources */,
+				EE4F8CB12E17CA4F00B7924E /* QuestionDetailView.swift in Sources */,
 				4F3F2A0C2E1E3E5100CCB629 /* WrongQuestionView.swift in Sources */,
+				EEEA64A12E1F412D001AA420 /* LavelCase.swift in Sources */,
 				EE4F8CB22E17CA4F00B7924E /* SavedQuestionListView.swift in Sources */,
 				EE4F8CB32E17CA4F00B7924E /* ContentView.swift in Sources */,
-				23793D412E1CFBCD00FCAC70 /* LevelName.swift in Sources */,
 				EE4F8CD92E1A22C900B7924E /* Supabase.swift in Sources */,
 				EE4F8CBB2E17CA7B00B7924E /* CSDataManager.swift in Sources */,
 				EE4F8CB52E17CA4F00B7924E /* DailyCSApp.swift in Sources */,
@@ -412,8 +420,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,8 +451,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -37,7 +37,8 @@ struct SelectLevelView: View {
 
           Spacer()
           
-          Text(printLevel())
+          // 선택한 난이도에 대한 설명
+          Text(LevelCase.printLevel(for: difficultyLevel).description)
             .font(.headline)
           
           Spacer()
@@ -54,23 +55,11 @@ struct SelectLevelView: View {
         }.font(.title)
           .padding()
           .navigationDestination(isPresented: $csDataManager.isLoaded) {
-            CSQuestionView(difficultyLevel: difficultyLevel,
-                           questionDatas: $csDataManager.questions)
+            // 화면이동시 질문을 같이 넘겨줌
+            CSQuestionView(questionDatas: $csDataManager.questions)
           }
           .modifier(BackgroundStyle(navigationTitle: "난이도 선택"))
 
-    }
-  }
-  
-  
-  /// 선택한 난이도에 대한 설명
-  /// - Returns: 난이도에 대한 설명
-  func printLevel() -> String {
-    switch difficultyLevel {
-    case 1:  "해당 난이도는 0 ~ 1년차 대상입니다."
-    case 2:  "해당 난이도는 1 ~ 3년차 대상입니다."
-    case 3:  "해당 난이도는 5 ~ 7년차 이상 대상입니다."
-    default: "난이도를 선택해주세요."
     }
   }
 }

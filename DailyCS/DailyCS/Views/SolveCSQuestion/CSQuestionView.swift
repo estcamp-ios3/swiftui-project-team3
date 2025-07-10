@@ -23,11 +23,15 @@ struct CSQuestionView: View {
   }
   
   @Environment(\.modelContext) private var modelContext
+  
   @Environment(\.dismiss) var dismiss
+  
   @State var yourAnswer: Int = 0
+  
   @State var chosenQuestion: Int = 0
-  @State var isShowPopup: Bool = false // 뒤로가기 팝업창 제어용 bool
-  var difficultyLevel: Int = 0
+  
+  // 뒤로가기 팝업창 제어용 bool
+  @State var isShowPopup: Bool = false
   
   @Binding var questionDatas: [QuestionData]
   
@@ -36,22 +40,12 @@ struct CSQuestionView: View {
   
   //제출한 정답 번호에 해당하는 답안 내용을 저장해두고 QuestionResultView로 넘기기 위한 변수
   @State var selectedAnswer: String = ""
-  @State var selectedAnswerArray: [String] = Array(repeating: "", count: 5)
   
   //문제 저장 버튼에서 쓸 bool과 알림 메세지용 string
   @State var isSaved: Bool = false
+  
+  // 삭제 / 저장 알림에 대한 메세지
   @State var alertMessage = ""
-  
-  
-  // 난이도 별로 출력
-  func printLevel() -> String {
-    switch difficultyLevel {
-    case 1: "난이도 Easy"
-    case 2:"난이도 Normal"
-    case 3: "난이도 Hard"
-    default: "난이도를 선택해주세요."
-    }
-  }
   
   // 뒤로가기 버튼
   var backButton: some View {
@@ -82,6 +76,7 @@ struct CSQuestionView: View {
       VStack {
         VStack(alignment: .leading) {
           
+          // 문제 번호
           Text("\(chosenQuestion + 1)번 문제")
             .font(.title3)
             .padding(.bottom, 10)
@@ -105,6 +100,7 @@ struct CSQuestionView: View {
                 questionDatas[chosenQuestion].answer4
               ]
               
+              // 정답 버튼 출력
               ForEach(0..<answers.count, id: \.self) { index in
                 Button(action: {
                   yourAnswer = index + 1
@@ -128,7 +124,6 @@ struct CSQuestionView: View {
           // 이전문제 , 다음문제로 이동하는 버튼
           HStack {
             Button(action:{
-              selectedAnswerArray[chosenQuestion] = selectedAnswer
               chosenQuestion -= 1
               yourAnswer = yourAnswers[chosenQuestion]
             }) {
@@ -139,7 +134,6 @@ struct CSQuestionView: View {
             // 마지막 문제가 아닌 경우 다음 문제로
             if chosenQuestion < questionDatas.count - 1 {
               Button(action:{
-                selectedAnswerArray[chosenQuestion] = selectedAnswer
                 chosenQuestion += 1
                 yourAnswer = yourAnswers[chosenQuestion]
               }) {
@@ -151,9 +145,9 @@ struct CSQuestionView: View {
               // 마지막 문제에 도달한 경우 결과보기 화면으로 이동
               NavigationLink(destination: QuestionResultView(
                 questionDatas: questionDatas,
-                yourAnswers: yourAnswers,
-                selectedAnswerArray: selectedAnswerArray)) {
-                  Text("결과 보기").modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .mainGreen))
+                yourAnswers: yourAnswers)) {
+                  Text("결과 보기")
+                    .modifier(CustomButtonStyle(color: yourAnswer == 0 ? .gray : .mainGreen))
                   
                 }
                 .disabled(yourAnswer == 0)
@@ -166,7 +160,6 @@ struct CSQuestionView: View {
               Button(action : {
                 // 이미 저장된 경우 - 저장 x
                 if savedQuestionIDs.contains(where: { $0 == questionDatas[chosenQuestion].id }) {
-                  print("이미 저장됨")
                   alertMessage = "이미 저장된 문제입니다."
                 }else {
                   // 저장된 목록에 없는 경우 - 저장
