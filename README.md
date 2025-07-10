@@ -13,7 +13,7 @@
 - 피그잼 : https://www.figma.com/board/u42tzdBAGzhfVerG7CRrxA/하루CS?node-id=0-1&p=f
 
 # 참고자료
-- 질문내용 : https://github.com/jeonyeohun/Getting-Ready-For-Interview
+- 질문내용 : [https://github.com/jeonyeohun/Getting-Ready-For-Interview](https://github.com/JeaSungLEE/iOSInterviewquestions)
  
 # 작동환경
 - Xcode 버전 정보: 16.2
