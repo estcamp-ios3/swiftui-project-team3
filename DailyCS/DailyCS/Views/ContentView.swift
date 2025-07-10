@@ -27,7 +27,7 @@ struct ContentView: View {
     }else {
       
       TabView {
-        Tab("난이도 선택", systemImage: "house") {
+        Tab("문제 풀이", systemImage: "house") {
           SelectLevelView()
         }
         
