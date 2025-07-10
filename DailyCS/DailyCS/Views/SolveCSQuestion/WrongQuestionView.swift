@@ -36,7 +36,7 @@ struct WrongQuestionView: View {
           VStack(alignment: .leading){
             Text("문제 내용")
               .font(.headline)
-              .padding(.vertical, 20)
+              .padding(.vertical, 10)
             
             Text("선택하신 번호가 표시됩니다.")
               .font(.subheadline)
@@ -55,38 +55,41 @@ struct WrongQuestionView: View {
           Divider()
             .padding(.horizontal, 20)
 
-          
-          VStack(alignment: .leading) {
-            
-            
-            let answers = [
-              questionData1.answer1,
-              questionData1.answer2,
-              questionData1.answer3,
-              questionData1.answer4
-            ]
-
-            ForEach(0..<answers.count, id: \.self) { index in
-              Text("\(index + 1)번: \(answers[index])")
-                .font(.headline)
-                .padding(8)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(seletedAnswerNum == index + 1 ? Color.yellow.opacity(0.3) : Color.clear)
-                .cornerRadius(8)
+          ScrollView{
+            VStack(alignment: .leading) {
+              
+              
+              let answers = [
+                questionData1.answer1,
+                questionData1.answer2,
+                questionData1.answer3,
+                questionData1.answer4
+              ]
+              
+              ForEach(0..<answers.count, id: \.self) { index in
+                Text("\(index + 1)번: \(answers[index])")
+                  .font(.headline)
+                  .padding(8)
+                  .frame(maxWidth: .infinity, alignment: .leading)
+                  .background(seletedAnswerNum == index + 1 ? Color.yellow.opacity(0.3) : Color.clear)
+                  .cornerRadius(8)
+                  .lineLimit(nil)
+                  .fixedSize(horizontal: false, vertical: true)
+              }
+              
+              Spacer()
+              
+              Text("정답: \(questionData1.answer_number) 번")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(.top ,8)
+                .frame(maxWidth: .infinity, alignment: .center)
+              
             }
-
-            Spacer()
+            .padding()
             
-            Text("정답: \(questionData1.answer_number) 번")
-              .font(.title)
-              .fontWeight(.bold)
-              .padding(.top ,8)
-              .frame(maxWidth: .infinity, alignment: .center)
-
+            Spacer()
           }
-          .padding()
-          
-          Spacer()
         }
         .frame(maxWidth: .infinity)
         .padding(.top, 20)
