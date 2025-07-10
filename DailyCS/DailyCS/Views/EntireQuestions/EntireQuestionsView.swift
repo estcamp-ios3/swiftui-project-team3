@@ -8,32 +8,6 @@
 import SwiftUI
 import SwiftData
 
-/// 레벨에 따른 케이스
-enum LevelCase: Int, CaseIterable {
-  case easy = 1
-  case normal = 2
-  case hard = 3
-  
-  
-  /// 버튼 및 네비게이션 타이틀
-  var titleValue: String {
-    switch self {
-    case .easy: "Easy"
-    case .normal: "Normal"
-    case .hard: "Hard"
-    }
-  }
-  
-  
-  ///  난이도 문자열로 변경
-  /// - Parameter rawValue: 문제의 레벨
-  /// - Returns: 변환된 난이도
-  static func converToString(for rawValue: Int) -> String {
-    return LevelCase(rawValue: rawValue)?.titleValue ?? "Easy"
-  }
-}
-
-
 /// TodayCS - front - EntireQuestionsView
 /// 전체 질문 화면
 struct EntireQuestionsView: View {
@@ -48,23 +22,26 @@ struct EntireQuestionsView: View {
     return savedQuestions.map { $0.id }
   }
   
-  
+  // 선택된 난이도
   @State private var selectedLevel: String = "전체"
+  
+  // 스크롤 시 추가로 불러올 데이터의 처음 인덱스(startIndex ~ endIndex 범위로 불러옴)
   @State private var startIndex: Int = 1
+  
+  // 스크롤 시 추가로 불러올 데이터의 마지막 인덱스
   @State private var endIndex: Int = 10
   
-  
-  private var allLevels: [String] = [
-    LevelCase.easy.titleValue,
-    LevelCase.normal.titleValue,
-    LevelCase.hard.titleValue
-  ]
-  
+  // 모든 난이도에 대한 타이틀
+  private var allLevels: [String] {
+    LevelCase.allCases.map { $0.titleValue }
+  }
+
   
   var body: some View {
     
     NavigationStack {
       VStack(alignment: .leading) {
+        // 난이도 버튼
           HStack {
             Button("전체") {
               selectedLevel = "전체"
@@ -89,31 +66,33 @@ struct EntireQuestionsView: View {
         
         Spacer()
         
+        // 전체 질문에 대한 리스트
         List(csDataManager.totalQuestions) { question in
+          // 터치 시 질문에 대한 상세화면으로 이동
           NavigationLink {
             let isSaved = savedQuestions.contains(where: { $0.id == question.id })
             
             let data = savedQuestions.first(where: { $0.id == question.id }) ?? QuestionDataForSave(with: question)
             
-            SavedQuestionDetailView(question: data, isSaved: isSaved)
+            QuestionDetailView(question: data, isSaved: isSaved)
             
           } label: {
             VStack(alignment: .leading, spacing: 10) {
+              // 질문에 대한 난이도
               Text(LevelCase.converToString(for: question.level))
               
+              // 질문 내용
               Text(question.question)
             }
           }
           
           .onAppear {
             
-            print(savedQuestionIDs)
             // 리스트 스크롤 시 문제의 아이디가 서버에서 가져온 질문의 마지막 아이디와 같다면 데이터 더 불러오기
             // 불러오고 시간 텀 두기
             if question.id == csDataManager.totalQuestions.last?.id {
               
               DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                print("마지막")
                 startIndex += 10
                 endIndex += 10
                 csDataManager.fetchCSQuestionWithPaging(level: convertLevel(),
@@ -138,12 +117,7 @@ struct EntireQuestionsView: View {
   
   ///  convert 레벨  to Int level
   func convertLevel() -> Int {
-    switch selectedLevel {
-    case LevelCase.easy.titleValue: 1
-    case LevelCase.normal.titleValue: 2
-    case LevelCase.hard.titleValue: 3
-    default:  1
-    }
+    return LevelCase.fromTitle(selectedLevel)?.rawValue ?? 1
   }
   
   

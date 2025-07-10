@@ -7,15 +7,24 @@
 import SwiftUI
 import SwiftData
 
+/// TodayCS - front - QuestionDetailView
 /// 질문 상세 화면
-struct SavedQuestionDetailView: View {
+struct QuestionDetailView: View {
+  // 저장된 질문
   @Bindable var question: QuestionDataForSave
   
   @Query(sort: \QuestionDataForSave.id) var savedQuestions: [QuestionDataForSave]
   
+  // 저장여부 확인 - 저장되었으면 true , 안되었으면 false
   @State var isSaved: Bool = false
+  
+  // 저장 및 삭제 알람 체크
   @State private var isCheckEditingAlert = false
+  
+  // 저장 및 삭제 완료 알람 체크
   @State private var isCompleteEditingAlert = false
+  
+  // 정답버튼이 터치되었는지 여부
   @State private var showAnswer = false
   
   @State private var alertTitle = ""
@@ -31,7 +40,6 @@ struct SavedQuestionDetailView: View {
       
       VStack(spacing: 20) {
           
-        
         VStack(alignment: .leading){
           Text("문제 내용")
             .font(.headline)
@@ -41,7 +49,8 @@ struct SavedQuestionDetailView: View {
         }
         .padding(.horizontal, 20)
 
-  
+        
+        // 문제 내용
         Text(question.question)
           .font(.system(size: 20))
           .bold()
@@ -57,7 +66,7 @@ struct SavedQuestionDetailView: View {
         
         Spacer()
 
-        
+        // 정답보기 버튼
         if !showAnswer {
           Button("정답보기") {
             withAnimation {
@@ -69,6 +78,7 @@ struct SavedQuestionDetailView: View {
           .tint(.correctGreen)
           .padding(.top, 20)
         } else {
+          // 정답보기 버튼이 눌린 경우 해당 질문에 대한 정답 출력
           Text(question.answer)
             .font(.title)
             .bold()
@@ -78,14 +88,14 @@ struct SavedQuestionDetailView: View {
         
         Spacer()
       }
-//      .navigationTitle("문제 상세 (\(LevelName(rawValue: question.level)?.description ?? "\(question.level)"))")
-//      .navigationBarTitleDisplayMode(.inline)
       .navigationBarBackButtonHidden(true)
       .toolbar {
+        // 뒤로가기 버튼
         ToolbarItem(placement: .navigationBarLeading) {
           backButton
         }
         
+        // 저장 및 삭제 버튼
         ToolbarItem(placement: .navigationBarTrailing) {
           Button {
             alertTitle = isSaved ? "나만의 노트에서 삭제할까요?" : "나만의 노트에 저장할까요?"
@@ -98,15 +108,17 @@ struct SavedQuestionDetailView: View {
           }
         }
       }
+      // 질문 삭제 및 저장 얼랏
       .alert(alertTitle, isPresented: $isCheckEditingAlert) {
-        Button("취소하기") {
-        }
+        Button("취소하기") { }
 
         Button(isSaved ? "삭제하기" : "저장하기") {
+          // 저장되어 있는 경우 삭제
           if isSaved {
             _ = CSDataManager.shared.deleteQuestion(modelContext, data: question)
             isSaved = false
           } else {
+            // 저장이 안되어 있는 경우 저장
             CSDataManager.shared.saveQuestion(modelContext, question: question)
             isSaved = true
           }
@@ -115,6 +127,7 @@ struct SavedQuestionDetailView: View {
         .foregroundStyle(Color.accentColor)
 
       }
+      // 질문 삭제 및 저장 확인 얼랏
       .alert(alertResultTitle, isPresented: $isCompleteEditingAlert) {
         Button("확인", role: .cancel) {
           dismiss()
@@ -126,6 +139,7 @@ struct SavedQuestionDetailView: View {
     }
   }
   
+  // 뒤로가기 버튼
   var backButton: some View {
     Button {
       presentationMode.wrappedValue.dismiss()

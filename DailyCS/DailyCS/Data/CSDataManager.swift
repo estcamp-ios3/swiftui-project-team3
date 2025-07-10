@@ -45,17 +45,17 @@ class CSDataManager: ObservableObject {
         // 디코딩하기
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
         
+        // 서버에서 넘어온 데이터 앱에서 사용하는 구조로 변경
         let convertedQuestions = questions.map { QuestionData(with: $0) }
         
         DispatchQueue.main.async {
           self.questions = convertedQuestions
+          // 질문 섞어주기 -
           self.questions = self.questions.map {
             self.shuffleAnswer(data: $0)
           }
           
-          
           self.isLoaded = true
-          
         }
     
       } catch {
@@ -66,21 +66,26 @@ class CSDataManager: ObservableObject {
   }
   
   
+  /// 정답 섞어주는 함수(원래 서버에서 넘어온는 데이터는 정답이 모두 첫번째 정답임)
+  /// - Parameter data: 해당하는 질문
+  /// - Returns: 섞인 정답 항목
   func shuffleAnswer(data: QuestionData) -> QuestionData {
     // 질문 배열, 질문하고 정답여부
     var answerArr: [(String, Bool)] = []
-    
+  
+    // 첫번째 정답이 정답이기 때문에 true로 설정
     answerArr.append((data.answer1, true))
     answerArr.append((data.answer2, false))
     answerArr.append((data.answer3, false))
     answerArr.append((data.answer4, false))
     
+    // 섞기
     let shuffledAnswerArr = answerArr.shuffled()
   
-
     // 정답 위치
     var answerPosition: Int = 0
     
+    // 정답위치 찾기
     for i in shuffledAnswerArr{
       answerPosition += 1
       if i.1 {
@@ -88,6 +93,7 @@ class CSDataManager: ObservableObject {
       }
     }
     
+    // 섞인 데이터로 재구성
     let shuffledQuestion = QuestionDataDTO(
       id: data.id,
       level: data.level,
@@ -117,13 +123,10 @@ class CSDataManager: ObservableObject {
           .execute()
           .data
 
-        
-      
+
         let questions = try JSONDecoder().decode([QuestionDataDTO].self, from: data)
 
         let convertedQuestions = questions.map { QuestionData(with: $0) }
-
-        print(questions)
         
         DispatchQueue.main.async {
           self.totalQuestions.append(contentsOf: convertedQuestions)
@@ -176,7 +179,6 @@ class CSDataManager: ObservableObject {
       try modelContext.save()
       return true
     }catch{
-      print("질문 삭제에 실패했어요.\(error)")
       return false
     }
   }
